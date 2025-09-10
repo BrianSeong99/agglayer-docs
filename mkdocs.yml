@@ -56,98 +56,97 @@ nav:
       - Get Started:
         - agglayer/get-started/index.md
         - Quickstart: agglayer/get-started/quickstart.md
-        - Supported Networks: agglayer/get-started/supported-networks.md
-        - Agglayer Developer Portal: build.agglayer.dev
-        - Changelog: agglayer/get-started/changelog.md
-      - Core Concepts:
-        - agglayer/core-concepts/index.md
-        - What is Agglayer?: agglayer/core-concepts/what-is-agglayer.md
-        - Architecture: agglayer/core-concepts/architecture.md
-        - Unified Bridge: 
-          - agglayer/core-concepts/unified-bridge.md
-          - Core Concepts:
-            - Data Structures: agglayer/core-concepts/unified-bridge/data-structures.md
-            - Local Exit Root & Local Index: agglayer/core-concepts/unified-bridge/local-exit-root.md
-            - Rollup Exit Root: agglayer/core-concepts/unified-bridge/rollup-exit-root.md
-            - Mainnet Exit Root: agglayer/core-concepts/unified-bridge/mainnet-exit-root.md
-            - Global Exit Root: agglayer/core-concepts/unified-bridge/global-exit-root.md
-            - L1 Info Tree: agglayer/core-concepts/unified-bridge/l1-info-tree.md
-          - Components & Operations:
-            - Bridge Components: agglayer/core-concepts/unified-bridge/bridge-components.md
-            - Asset Bridging: agglayer/core-concepts/unified-bridge/asset-bridging.md
-            - Message Bridging: agglayer/core-concepts/unified-bridge/message-bridging.md
-            - Bridge-and-Call: agglayer/core-concepts/unified-bridge/bridge-and-call.md
-          - Security & Development:
-            - Security Model: agglayer/core-concepts/unified-bridge/security-model.md
-            - Developer Examples: agglayer/core-concepts/unified-bridge/developer-examples.md
-        - Pessimistic Proofs: 
-          - agglayer/core-concepts/pessimistic-proofs.md
-          - Architecture & Data:
-            - Architecture Overview: agglayer/core-concepts/pessimistic-proofs/architecture.md
-            - Data Structures: agglayer/core-concepts/pessimistic-proofs/data-structures.md
-            - Local Balance Tree: agglayer/core-concepts/pessimistic-proofs/local-balance-tree.md
-            - Nullifier Tree: agglayer/core-concepts/pessimistic-proofs/nullifier-tree.md
-          - Proof Components:
-            - Bridge Exits: agglayer/core-concepts/pessimistic-proofs/bridge-exits.md
-            - Imported Bridge Exits: agglayer/core-concepts/pessimistic-proofs/imported-bridge-exits.md
-            - Multi Batch Header: agglayer/core-concepts/pessimistic-proofs/multi-batch-header.md
-            - Proof Generation: agglayer/core-concepts/pessimistic-proofs/proof-generation.md
-          - zkVM Integration:
-            - zkVM Integration: agglayer/core-concepts/pessimistic-proofs/zkvm-integration.md
-            - SP1 Prover Network: agglayer/core-concepts/pessimistic-proofs/sp1-prover-network.md
-            - RiscZero Integration: agglayer/core-concepts/pessimistic-proofs/risczero-integration.md
-            - Pico Integration: agglayer/core-concepts/pessimistic-proofs/pico-integration.md
-          - Performance & Benchmarks:
-            - Performance Benchmarks: agglayer/core-concepts/pessimistic-proofs/performance-benchmarks.md
-        - State Transition Proofs: 
-          - agglayer/core-concepts/state-transition-proofs.md
-          - Background & Overview:
-            - Background & Problem Statement: agglayer/core-concepts/state-transition-proofs/background.md
-            - Trust Flow: agglayer/core-concepts/state-transition-proofs/trust-flow.md
-          - Proof Types:
-            - Aggchain Proof: agglayer/core-concepts/state-transition-proofs/aggchain-proof.md
-            - ECDSA Verification: agglayer/core-concepts/state-transition-proofs/ecdsa-verification.md
-            - Validity Proof Verification: agglayer/core-concepts/state-transition-proofs/validity-proof-verification.md
-        - AggKit:
-          - agglayer/core-concepts/aggkit/index.md
-          - AggSender: agglayer/core-concepts/aggkit/aggsender.md
-          - AggOracle: agglayer/core-concepts/aggkit/aggoracle.md
-          - Bridge Service: agglayer/core-concepts/aggkit/bridge-service.md
-          - L1InfoTreeSync: agglayer/core-concepts/aggkit/l1infotreesync.md
-          - ClaimSponsor: agglayer/core-concepts/aggkit/claimsponsor.md
-        - Prover:
-          - agglayer/core-concepts/prover/index.md
-          - Prover Architecture: agglayer/core-concepts/prover/architecture.md
-          - Proof Generation: agglayer/core-concepts/prover/proof-generation.md
-          - Verification Process: agglayer/core-concepts/prover/verification-process.md
-      - Bridge on Agglayer:
-        - agglayer/bridging/index.md
-        - Asset Bridging: agglayer/bridging/asset-bridging.md
-        - Message Bridging: agglayer/bridging/message-bridging.md
-        - Bridge-and-Call: agglayer/bridging/bridge-and-call.md
-        - Bridge on Agglayer via VaultBridge: agglayer/bridging/vaultbridge.md
-      - Developer Tools:
-        - agglayer/developer-tools/index.md
-        - Agglayer SDK: agglayer/developer-tools/agglayer-sdk.md
-        - AggSandbox:
-          - agglayer/developer-tools/aggsandbox/index.md
-          - Installation: agglayer/developer-tools/aggsandbox/installation.md
-          - CLI Commands: agglayer/developer-tools/aggsandbox/cli-commands.md
-          - Local Development: agglayer/developer-tools/aggsandbox/local-development.md
-          - Forking from Mainnet: agglayer/developer-tools/aggsandbox/forking.md
-        - Lxly.js:
-          - agglayer/developer-tools/lxlyjs/index.md
-          - Installation: agglayer/developer-tools/lxlyjs/installation.md
-          - Client Initialization: agglayer/developer-tools/lxlyjs/client-initialization.md
-          - ERC20 Token Operations: agglayer/developer-tools/lxlyjs/erc20-operations.md
-          - Custom Contracts: agglayer/developer-tools/lxlyjs/custom-contracts.md
-          - API Reference: agglayer/developer-tools/lxlyjs/api-reference.md
-        - Bridge Service API:
-          - agglayer/developer-tools/bridge-service-api/index.md
-          - REST API: agglayer/developer-tools/bridge-service-api/rest-api.md
-          - gRPC API: agglayer/developer-tools/bridge-service-api/grpc-api.md
-          - WebSocket API: agglayer/developer-tools/bridge-service-api/websocket-api.md
-          - Authentication: agglayer/developer-tools/bridge-service-api/authentication.md
+        - Supported Networks: https://build.agglayer.dev/chains
+        - Agglayer Developer Portal: https://build.agglayer.dev
+      # - Core Concepts:
+      #   - agglayer/core-concepts/index.md
+      #   - What is Agglayer?: agglayer/core-concepts/what-is-agglayer.md
+      #   - Architecture: agglayer/core-concepts/architecture.md
+      #   - Unified Bridge: 
+      #     - agglayer/core-concepts/unified-bridge.md
+      #     - Core Concepts:
+      #       - Data Structures: agglayer/core-concepts/unified-bridge/data-structures.md
+      #       - Local Exit Root & Local Index: agglayer/core-concepts/unified-bridge/local-exit-root.md
+      #       - Rollup Exit Root: agglayer/core-concepts/unified-bridge/rollup-exit-root.md
+      #       - Mainnet Exit Root: agglayer/core-concepts/unified-bridge/mainnet-exit-root.md
+      #       - Global Exit Root: agglayer/core-concepts/unified-bridge/global-exit-root.md
+      #       - L1 Info Tree: agglayer/core-concepts/unified-bridge/l1-info-tree.md
+      #     - Components & Operations:
+      #       - Bridge Components: agglayer/core-concepts/unified-bridge/bridge-components.md
+      #       - Asset Bridging: agglayer/core-concepts/unified-bridge/asset-bridging.md
+      #       - Message Bridging: agglayer/core-concepts/unified-bridge/message-bridging.md
+      #       - Bridge-and-Call: agglayer/core-concepts/unified-bridge/bridge-and-call.md
+      #     - Security & Development:
+      #       - Security Model: agglayer/core-concepts/unified-bridge/security-model.md
+      #       - Developer Examples: agglayer/core-concepts/unified-bridge/developer-examples.md
+      #   - Pessimistic Proofs: 
+      #     - agglayer/core-concepts/pessimistic-proofs.md
+      #     - Architecture & Data:
+      #       - Architecture Overview: agglayer/core-concepts/pessimistic-proofs/architecture.md
+      #       - Data Structures: agglayer/core-concepts/pessimistic-proofs/data-structures.md
+      #       - Local Balance Tree: agglayer/core-concepts/pessimistic-proofs/local-balance-tree.md
+      #       - Nullifier Tree: agglayer/core-concepts/pessimistic-proofs/nullifier-tree.md
+      #     - Proof Components:
+      #       - Bridge Exits: agglayer/core-concepts/pessimistic-proofs/bridge-exits.md
+      #       - Imported Bridge Exits: agglayer/core-concepts/pessimistic-proofs/imported-bridge-exits.md
+      #       - Multi Batch Header: agglayer/core-concepts/pessimistic-proofs/multi-batch-header.md
+      #       - Proof Generation: agglayer/core-concepts/pessimistic-proofs/proof-generation.md
+      #     - zkVM Integration:
+      #       - zkVM Integration: agglayer/core-concepts/pessimistic-proofs/zkvm-integration.md
+      #       - SP1 Prover Network: agglayer/core-concepts/pessimistic-proofs/sp1-prover-network.md
+      #       - RiscZero Integration: agglayer/core-concepts/pessimistic-proofs/risczero-integration.md
+      #       - Pico Integration: agglayer/core-concepts/pessimistic-proofs/pico-integration.md
+      #     - Performance & Benchmarks:
+      #       - Performance Benchmarks: agglayer/core-concepts/pessimistic-proofs/performance-benchmarks.md
+      #   - State Transition Proofs: 
+      #     - agglayer/core-concepts/state-transition-proofs.md
+      #     - Background & Overview:
+      #       - Background & Problem Statement: agglayer/core-concepts/state-transition-proofs/background.md
+      #       - Trust Flow: agglayer/core-concepts/state-transition-proofs/trust-flow.md
+      #     - Proof Types:
+      #       - Aggchain Proof: agglayer/core-concepts/state-transition-proofs/aggchain-proof.md
+      #       - ECDSA Verification: agglayer/core-concepts/state-transition-proofs/ecdsa-verification.md
+      #       - Validity Proof Verification: agglayer/core-concepts/state-transition-proofs/validity-proof-verification.md
+      #   - AggKit:
+      #     - agglayer/core-concepts/aggkit/index.md
+      #     - AggSender: agglayer/core-concepts/aggkit/aggsender.md
+      #     - AggOracle: agglayer/core-concepts/aggkit/aggoracle.md
+      #     - Bridge Service: agglayer/core-concepts/aggkit/bridge-service.md
+      #     - L1InfoTreeSync: agglayer/core-concepts/aggkit/l1infotreesync.md
+      #     - ClaimSponsor: agglayer/core-concepts/aggkit/claimsponsor.md
+      #   - Prover:
+      #     - agglayer/core-concepts/prover/index.md
+      #     - Prover Architecture: agglayer/core-concepts/prover/architecture.md
+      #     - Proof Generation: agglayer/core-concepts/prover/proof-generation.md
+      #     - Verification Process: agglayer/core-concepts/prover/verification-process.md
+      # - Bridge on Agglayer:
+      #   - agglayer/bridging/index.md
+      #   - Asset Bridging: agglayer/bridging/asset-bridging.md
+      #   - Message Bridging: agglayer/bridging/message-bridging.md
+      #   - Bridge-and-Call: agglayer/bridging/bridge-and-call.md
+      #   - Bridge on Agglayer via VaultBridge: agglayer/bridging/vaultbridge.md
+      # - Developer Tools:
+      #   - agglayer/developer-tools/index.md
+      #   - Agglayer SDK: agglayer/developer-tools/agglayer-sdk.md
+      #   - AggSandbox:
+      #     - agglayer/developer-tools/aggsandbox/index.md
+      #     - Installation: agglayer/developer-tools/aggsandbox/installation.md
+      #     - CLI Commands: agglayer/developer-tools/aggsandbox/cli-commands.md
+      #     - Local Development: agglayer/developer-tools/aggsandbox/local-development.md
+      #     - Forking from Mainnet: agglayer/developer-tools/aggsandbox/forking.md
+      #   - Lxly.js:
+      #     - agglayer/developer-tools/lxlyjs/index.md
+      #     - Installation: agglayer/developer-tools/lxlyjs/installation.md
+      #     - Client Initialization: agglayer/developer-tools/lxlyjs/client-initialization.md
+      #     - ERC20 Token Operations: agglayer/developer-tools/lxlyjs/erc20-operations.md
+      #     - Custom Contracts: agglayer/developer-tools/lxlyjs/custom-contracts.md
+      #     - API Reference: agglayer/developer-tools/lxlyjs/api-reference.md
+      #   - Bridge Service API:
+      #     - agglayer/developer-tools/bridge-service-api/index.md
+      #     - REST API: agglayer/developer-tools/bridge-service-api/rest-api.md
+      #     - gRPC API: agglayer/developer-tools/bridge-service-api/grpc-api.md
+      #     - WebSocket API: agglayer/developer-tools/bridge-service-api/websocket-api.md
+      #     - Authentication: agglayer/developer-tools/bridge-service-api/authentication.md
   - CDK:
       - CDK: cdk/index.md
       - Get Started:
