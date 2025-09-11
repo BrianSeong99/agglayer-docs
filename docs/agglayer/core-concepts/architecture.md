@@ -71,10 +71,6 @@ State transition proof is trust validation process of local chain in Agglayer th
 - **Atomic cross-chain execution**: Guarantees that assets and messages move between chains in a single, indivisible step
 - **Modular extensibility**: New proof mechanisms (optimistic, fraud, etc.) can be integrated without altering Agglayer's external interface
 
-## Getting Started
-
-Ready to explore Agglayer's architecture in practice?
-
 <!-- CTA Button Component -->
 <div style="text-align: center; margin: 3rem 0;">
   <a href="/agglayer/get-started/quickstart/" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
