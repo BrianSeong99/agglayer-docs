@@ -19,9 +19,9 @@ The Agglayer is designed to provide an interoperability framework for cross-chai
 
 ## High-Level Architecture
 
-![AggLayer Overall Data Flows](../../img/architecture.png)
+![Agglayer Overall Data Flows](../../img/architecture.png)
 
-*Figure 1: AggLayer Overall Data Flows - showing transaction sequencing, settlement, and L1-L2 synchronization processes*
+*Figure 1: Agglayer Overall Data Flows - showing transaction sequencing, settlement, and L1-L2 synchronization processes*
 
 ## Core Components
 

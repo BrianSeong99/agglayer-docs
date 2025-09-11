@@ -144,7 +144,7 @@ After querying the Bridge API, you will receive information on the transaction s
   The transaction has been initiated on the source chain (Sepolia) via the `bridgeAsset` API.
 
 - **READY_TO_CLAIM:**  
-  The asset is now available on the destination chain (zkEVM / AggLayer) and is awaiting claim.
+  The asset is now available on the destination chain (zkEVM / Agglayer) and is awaiting claim.
 
 - **CLAIMED:**  
   The asset has been successfully claimed on the destination chain after using the `claimAsset` API.

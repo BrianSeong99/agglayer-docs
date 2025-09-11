@@ -165,7 +165,7 @@ After querying the Bridge API, you will receive information on the transaction s
 | **Status**          | **Description** |
 |---------------------|---------------------------------------------------------------|
 | **BRIDGED**        | Transaction initiated on Sepolia via `bridgeAsset` API. |
-| **READY_TO_CLAIM** | Asset available on zkEVM/AggLayer, awaiting claim. |
+| **READY_TO_CLAIM** | Asset available on zkEVM/Agglayer, awaiting claim. |
 | **CLAIMED**        | Asset successfully claimed via `claimAsset` API. |
 
 These states are verified by querying the API (for example, via Postman).

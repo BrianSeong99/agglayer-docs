@@ -17,7 +17,9 @@ title: Bridge-and-Call
 
 Bridge-and-Call is an advanced feature of the Unified Bridge that allows developers to initiate cross-chain transactions that both transfer assets and execute smart contract functions on the destination chain in a single operation. This enables more complex cross-chain workflows and reduces the number of transactions required for sophisticated cross-chain applications.
 
-![Bridge-and-Call Process](../../img/agglayer/BridgeAndCallProcess.png)
+It is different from **Bridge Message**, where Bridge Message requires the destination address to be a smart contract that implemented the `IBridgeMessageReceiver.sol` interface. Whereas for **Bridge-and-Call**, it itself is the contract that has implemented the interface, and it will be able to execute any functions on any smart contract in the destination network.
+
+![Bridge-and-Call Process](../../../img/agglayer/BridgeAndCallProcess.png)
 
 *Figure 1: Complete Bridge-and-Call flow showing asset transfer and contract execution*
 
@@ -37,6 +39,7 @@ Bridge-and-Call is an advanced feature of the Unified Bridge that allows develop
 The main contract that handles Bridge-and-Call operations on both source and destination chains.
 
 **Key Functions**:
+
 - `bridgeAndCall()`: Initiates asset transfer with contract call
 - `onMessageReceived()`: Handles incoming Bridge-and-Call messages
 
@@ -47,6 +50,7 @@ The main contract that handles Bridge-and-Call operations on both source and des
 A temporary contract that executes the actual function calls on the destination chain.
 
 **Key Features**:
+
 - **Temporary Contract**: Created for each Bridge-and-Call operation
 - **Asset Handling**: Receives and manages transferred assets
 - **Function Execution**: Executes calls on target contracts
@@ -126,12 +130,12 @@ function onMessageReceived(
 - **`originAddress`**: BridgeExtension address on source chain
 - **`originNetwork`**: Network ID of source chain
 - **`data`**: Encoded call data containing:
-  - `dependsOnIndex`: Index of the asset bridge transaction
-  - `callAddress`: Contract to call on destination
-  - `fallbackAddress`: Fallback address for failed executions
-  - `assetOriginalNetwork`: Original network of the asset
-  - `assetOriginalAddress`: Original address of the asset
-  - `callData`: Function call data
+    - `dependsOnIndex`: Index of the asset bridge transaction
+    - `callAddress`: Contract to call on destination
+    - `fallbackAddress`: Fallback address for failed executions
+    - `assetOriginalNetwork`: Original network of the asset
+    - `assetOriginalAddress`: Original address of the asset
+    - `callData`: Function call data
 
 ### Process Steps
 
@@ -166,78 +170,61 @@ constructor(
 3. **Function Call**: Execute the specified function call
 4. **Fallback Handling**: Handle failed executions by transferring to fallback address
 
-### Asset Handling
-
-#### ETH
-```solidity
-// Transfer ETH to callAddress
-callAddress.call{value: address(this).balance}(callData);
-```
-
-#### WETH
-```solidity
-// Transfer WETH to callAddress
-IWETH(wethAddress).transfer(callAddress, amount);
-callAddress.call(callData);
-```
-
-#### ERC20 Tokens
-```solidity
-// Transfer ERC20 to callAddress
-IERC20(tokenAddress).transfer(callAddress, amount);
-callAddress.call(callData);
-```
-
 ## Bridging Flows
-
-### L2 to L2 Bridge-and-Call
-
-1. **User Action**: User calls `bridgeAndCall` on L2A
-2. **Asset Preparation**: Tokens prepared and locked on L2A
-3. **Asset Bridging**: `bridgeAsset` called to transfer tokens
-4. **Message Bridging**: `bridgeMessage` called with call data
-5. **L2A Submission**: L2A submits transactions to L1
-6. **GER Update**: Global Exit Root updated on L1
-7. **L2B Sync**: L2B syncs with latest GER
-8. **User Claim**: User claims both asset and message on L2B
-9. **JumpPoint Execution**: JumpPoint contract executes call on L2B
 
 ### L1 to L2 Bridge-and-Call
 
-1. **User Action**: User calls `bridgeAndCall` on L1
-2. **Asset Preparation**: Tokens prepared and locked on L1
-3. **Asset Bridging**: `bridgeAsset` called to transfer tokens
-4. **Message Bridging**: `bridgeMessage` called with call data
-5. **GER Update**: Global Exit Root updated on L1
-6. **L2 Sync**: L2 syncs with latest GER
-7. **User Claim**: User claims both asset and message on L2
-8. **JumpPoint Execution**: JumpPoint contract executes call on L2
+```mermaid
+sequenceDiagram
+    participant User
+    participant L1_BridgeExt as L1 BridgeExtension
+    participant L1_Bridge as L1 Bridge Contract
+    participant L1_MET as L1 Mainnet Exit Tree
+    participant GER_Manager as Global Exit Root Manager
+    participant L2_GER as L2 Global Exit Root
+    participant L2_BridgeExt as L2 BridgeExtension
+    participant JumpPoint as JumpPoint Contract
+    participant Target_Contract as Target Contract
 
-## Use Cases
+    User->>L1_BridgeExt: bridgeAndCall()
+    L1_BridgeExt->>L1_BridgeExt: Prepare tokens
+    L1_BridgeExt->>L1_Bridge: bridgeAsset()
+    L1_BridgeExt->>L1_Bridge: bridgeMessage()
+    L1_Bridge->>L1_MET: Add transactions to MET
+    L1_MET->>GER_Manager: Update Global Exit Root
+    GER_Manager->>L2_GER: Sync latest GER
+    User->>L2_BridgeExt: first claimAsset() + then claimMessage()
+    L2_BridgeExt->>JumpPoint: Create JumpPoint contract
+    JumpPoint->>Target_Contract: Execute call with assets
+```
 
-### Cross-Chain DeFi
+### L2 to L2 Bridge-and-Call
 
-- **Liquidity Provision**: Provide liquidity and immediately stake in yield farms
-- **Token Swaps**: Bridge tokens and execute swaps in single transaction
-- **Lending**: Bridge collateral and immediately open lending positions
+```mermaid
+sequenceDiagram
+    participant User
+    participant L2A_BridgeExt as L2A BridgeExtension
+    participant L2A_Bridge as L2A Bridge Contract
+    participant L2A_LET as L2A Local Exit Tree
+    participant RollupManager as Rollup Manager (L1)
+    participant GER_Manager as Global Exit Root Manager
+    participant L2B_GER as L2B Global Exit Root
+    participant L2B_BridgeExt as L2B BridgeExtension
+    participant JumpPoint as JumpPoint Contract
+    participant Target_Contract as Target Contract
 
-### Cross-Chain Gaming
-
-- **Asset Transfers**: Transfer game assets and equip them immediately
-- **State Updates**: Update game state across chains with asset transfers
-- **Event Triggers**: Trigger game events based on cross-chain actions
-
-### Cross-Chain Governance
-
-- **Voting with Assets**: Transfer governance tokens and cast votes
-- **Treasury Management**: Move treasury funds and execute proposals
-- **Multi-Chain Proposals**: Execute proposals across multiple chains
-
-### Cross-Chain Identity
-
-- **Credential Verification**: Transfer identity tokens and verify credentials
-- **Access Control**: Grant access to resources across chains
-- **Identity Updates**: Update identity state across multiple chains
+    User->>L2A_BridgeExt: bridgeAndCall()
+    L2A_BridgeExt->>L2A_BridgeExt: Prepare tokens
+    L2A_BridgeExt->>L2A_Bridge: bridgeAsset()
+    L2A_BridgeExt->>L2A_Bridge: bridgeMessage()
+    L2A_Bridge->>L2A_LET: Add transactions to LET
+    L2A_LET->>RollupManager: Submit LET to L1
+    RollupManager->>GER_Manager: Update Global Exit Root
+    GER_Manager->>L2B_GER: Sync latest GER
+    User->>L2B_BridgeExt: first claimAsset() + then claimMessage()
+    L2B_BridgeExt->>JumpPoint: Create JumpPoint contract
+    JumpPoint->>Target_Contract: Execute call with assets
+```
 
 ## Security Considerations
 
@@ -258,30 +245,6 @@ callAddress.call(callData);
 - **Asset Locking**: Assets locked until successful execution or fallback
 - **No Double Execution**: Each Bridge-and-Call can only be executed once
 - **Proof Requirements**: Cryptographic proofs prevent invalid executions
-
-## Best Practices
-
-### Contract Design
-
-- **Idempotent Functions**: Design target functions to be idempotent
-- **Error Handling**: Include proper error handling in target contracts
-- **Gas Estimation**: Accurately estimate gas requirements
-
-### Security
-
-- **Source Validation**: Validate call sources in target contracts
-- **Access Control**: Implement proper access control for sensitive functions
-- **Rate Limiting**: Consider rate limiting for high-value operations
-
-### Monitoring
-
-- **Event Logging**: Log important events in JumpPoint execution
-- **Error Tracking**: Track and monitor execution failures
-- **Performance Monitoring**: Monitor gas usage and execution times
-
-## Getting Started
-
-Ready to start building with Bridge-and-Call?
 
 <!-- CTA Button Component -->
 <div style="text-align: center; margin: 3rem 0;">

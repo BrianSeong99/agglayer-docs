@@ -9,143 +9,37 @@ title: Unified Bridge
 
 <div style="text-align: left; margin: 0.5rem 0;">
   <p style="font-size: 18px; color: #666; max-width: 600px; margin: 0;">
-    The core interoperability layer enabling seamless cross-chain communication and asset transfers across AggLayer connected chains
+    The core interoperability layer enabling seamless cross-chain communication and asset transfers across Agglayer connected chains
   </p>
 </div>
 
 ## Overview
 
-The Unified Bridge is the primary interoperability layer that enables cross-chain communication among AggLayer connected chains. It provides a unified interface for developers and users to initiate cross-chain transactions, facilitating seamless interaction between different networks including L1 to L2, L2 to L1, and L2 to L2 transfers.
+The Unified Bridge is the core interoperability layer that enables seamless cross-chain communication and asset transfers across Agglayer connected chains. It solves the fragmentation problem by providing a unified interface for L1 to L2, L2 to L1, and L2 to L2 transfers.
 
-## Key Features
+**Key Benefits:**
 
-- **Unified Interface**: Single bridge contract interface across all connected chains
-- **Asset Bridging**: Secure transfer of tokens and native assets between chains
-- **Message Bridging**: Cross-chain smart contract communication and execution
-- **Trustless Security**: Cryptographic verification of all cross-chain transactions
-- **Developer Friendly**: Simple APIs and comprehensive tooling support
+- **Unified Experience**: Single interface across all connected chains
+- **Trustless Security**: Cryptographic verification of all transactions
+- **Developer Friendly**: Simple APIs and comprehensive tooling
 
-## Core Components
+## What You Can Do
 
-### Bridge Contracts
+- **Transfer Assets**: Bridge tokens and native assets between any connected chains
+- **Execute Cross-Chain Calls**: Trigger smart contract functions on destination chains
+- **Build Cross-Chain Apps**: Create applications that work seamlessly across multiple chains
 
-The core smart contracts deployed on each connected chain:
+## How It Works
 
-- **PolygonZKEVMBridgeV2.sol**: Main bridge contract maintaining Local Exit Tree (LET)
-- **PolygonRollupManager.sol**: L1 contract managing rollup state updates
-- **PolygonZkEVMGlobalExitRootV2.sol**: L1 contract maintaining Global Exit Root (GER)
-- **PolygonZkEVMGlobalExitRootL2.sol**: L2 contract syncing with L1 GER updates
-
-### Bridge Service
-
-Off-chain infrastructure providing:
-
-- **Chain Indexer Framework**: EVM blockchain data indexer for each connected chain
-- **Transaction API**: Real-time bridge transaction status and details
-- **Proof Generation API**: Merkle proof generation for claim verification
-
-### Developer Tools
-
-- **Lxly.js SDK**: JavaScript library with prebuilt bridge functions
-- **Auto Claim Service**: Automated claiming service for bridge transactions
-- **API Documentation**: Comprehensive API reference and examples
-
-## Data Structure
-
-The Unified Bridge maintains a sophisticated Merkle tree structure to track and verify all cross-chain transactions:
+The Unified Bridge uses a sophisticated Merkle tree structure to securely track and verify all cross-chain transactions:
 
 ![Unified Bridge Data Structure](../../img/agglayer/UnifiedBridgeTree.png)
 
-### Local Exit Root (LER)
+**Security Model:**
 
-Each connected chain maintains its own Local Exit Tree (LET) that records all outgoing cross-chain transactions:
-
-- **Height**: 32-level binary tree
-- **Updates**: Root updated with each new bridge transaction
-- **Storage**: Maintained in `PolygonZKEVMBridgeV2.sol` on each chain
-
-### Rollup Exit Root (RER)
-
-The L1 contract maintains a tree of all L2 Local Exit Roots:
-
-- **Purpose**: Aggregates all L2 bridge transactions
-- **Updates**: Updated when L2s submit their LET to L1
-- **Management**: Handled by `PolygonRollupManager.sol`
-
-### Mainnet Exit Root (MER)
-
-Tracks L1 to L2 bridge transactions:
-
-- **Purpose**: Records L1 bridge activities
-- **Updates**: Updated when L1 bridge transactions occur
-- **Storage**: Maintained in `PolygonZKEVMBridgeV2.sol` on L1
-
-### Global Exit Root (GER)
-
-The root hash combining RER and MER:
-
-- **Formula**: `GER = hash(RER, MER)`
-- **Purpose**: Single root representing all cross-chain activity
-- **Sync**: L2s sync with L1 GER updates
-
-## Bridging Operations
-
-### Asset Bridging
-
-Transfer tokens and native assets between chains:
-
-**Bridge Asset Process:**
-1. User calls `bridgeAsset()` on source chain
-2. Tokens are locked/burned on source chain
-3. Transaction recorded in Local Exit Tree
-4. L2 submits LET to L1 (if applicable)
-5. GER updated on L1
-6. User claims assets on destination chain
-
-**Claim Asset Process:**
-1. User calls `claimAsset()` on destination chain
-2. Merkle proofs verified against GER
-3. Tokens minted/transferred on destination chain
-4. Transaction marked as claimed
-
-### Message Bridging
-
-Enable cross-chain smart contract communication:
-
-**Bridge Message Process:**
-1. User calls `bridgeMessage()` on source chain
-2. Message data recorded in Local Exit Tree
-3. L2 submits LET to L1 (if applicable)
-4. GER updated on L1
-5. User claims message on destination chain
-
-**Claim Message Process:**
-1. User calls `claimMessage()` on destination chain
-2. Merkle proofs verified against GER
-3. Message executed on destination chain
-4. Transaction marked as claimed
-
-## Security Model
-
-The Unified Bridge implements multiple layers of security:
-
-### Cryptographic Verification
-
-- **Merkle Proofs**: All claims require valid Merkle proofs
-- **Global Index**: Unique identifier for each cross-chain transaction
-- **Root Verification**: Claims verified against Global Exit Root
-
-### Trust Assumptions
-
-- **L1 Security**: Relies on L1 blockchain security
-- **Rollup Validity**: Assumes rollup state transitions are valid
-- **Contract Security**: Smart contract implementations are secure
-
-### Economic Security
-
-- **Asset Locking**: Source chain assets locked until claimed
-- **Proof Verification**: Cryptographic proofs prevent invalid claims
-- **Finality Requirements**: Claims only possible after L1 finality
+- All transactions are settled on Ethereum before claiming
+- Cryptographic proofs verify every cross-chain operation  
+- Immutable transaction data prevents incorrect claims
 
 ## Getting Started
 
@@ -217,6 +111,7 @@ Ready to start building with the Unified Bridge?
       Learn more →
     </a>
   </div>
+
 
 </div>
 

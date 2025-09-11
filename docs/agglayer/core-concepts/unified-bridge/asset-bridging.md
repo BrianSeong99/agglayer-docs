@@ -15,11 +15,11 @@ title: Asset Bridging
 
 ## Overview
 
-Asset bridging enables the transfer of tokens and native assets between AggLayer connected chains. The Unified Bridge supports various token types and provides a secure, trustless mechanism for cross-chain asset transfers.
+Asset bridging enables the transfer of tokens and native assets between Agglayer connected chains. The Unified Bridge supports various token types and provides a secure, trustless mechanism for cross-chain asset transfers.
 
-![Asset Bridging Process](../../img/agglayer/BridgeAssetProcess.png)
+![Asset Bridging Process](../../../img/agglayer/BridgeAssetProcess.png)
 
-*Figure 1: Complete asset bridging flow from source chain to destination chain*
+*Figure 1: Complete asset bridging flow from L1 to L2*
 
 ## Supported Token Types
 
@@ -67,31 +67,38 @@ function bridgeAsset(
 
 ### Token Preparation Logic
 
-#### Native Gas Token
+The bridge handles different token types with specific mechanisms based on their origin and nature:
+
+> Note that in case `ETH` is the native token, WETHToken will be at `0x0` address.
+
+#### Native Gas Token (ETH, Custom Gas Token)
 ```solidity
 // Bridge contract holds the tokens
-// No additional action required
+// The native gas token is already transferred via msg.value
+// No additional token transfer required
 ```
 
-#### WETH
+#### WETH Token
 ```solidity
 // Burn WETH tokens from user's address
 IWETH(token).burnFrom(msg.sender, amount);
 ```
 
-#### Foreign ERC20
+#### Foreign ERC20 Token (Not native to source chain)
 ```solidity
-// Burn ERC20 tokens from user's address
+// If the token contract is not originally from the source network, 
+// burn the ERC20 token from user's address
 IERC20(token).burnFrom(msg.sender, amount);
 ```
 
-#### Native ERC20
+#### Native ERC20 Token (Native to source chain)
 ```solidity
-// Execute permit if provided
+// If the token contract is originally from the source network:
+// 1. Execute permit if provided
 if (permitData.length > 0) {
     IERC20Permit(token).permit(...);
 }
-// Transfer tokens to bridge contract
+// 2. Transfer tokens from user to bridge contract
 IERC20(token).transferFrom(msg.sender, address(this), amount);
 ```
 
@@ -136,8 +143,21 @@ function claimAsset(
 1. **Validation**: Verify destination network matches current chain
 2. **Proof Verification**: Verify Merkle proofs against Global Exit Root
 3. **Duplicate Check**: Ensure transaction hasn't been claimed before
-4. **Token Transfer**: Transfer tokens based on token type
+4. **Token Transfer**: Transfer tokens based on token type (see Token Transfer Logic below)
 5. **Claim Record**: Mark transaction as claimed
+
+### Token Transfer Logic
+
+Once the proof verification passes, the bridge claims tokens using different mechanisms based on the token type:
+
+| Token type | Action |
+| --- | --- |
+| **ETH is gas token** | Bridge contract transfers the amount from itself to the destination address |
+| **WETH where ETH is not gas token** | Mint new WETH tokens to the destination address |
+| **Custom gas token** | Bridge contract transfers the amount from itself to the destination address |
+| **Native ERC20 Token** | If the token contract is originally from this destination network, transfer the ERC20 token from bridge contract to destination address |
+| **Foreign ERC20 Token, First time bridging** | Deploy a new ERC20 Token contract to host this new Foreign ERC20 Token, and mint the transfer amount to destination address |
+| **Foreign ERC20 Token, Contract exists** | Mint the transfer amount to destination address |
 
 ### Proof Verification Logic
 
@@ -163,102 +183,73 @@ if (originNetwork == 0) {
 
 ### L1 to L2 Bridging
 
-1. **User Action**: User calls `bridgeAsset` on L1
-2. **Token Locking**: Native tokens locked in L1 bridge contract
-3. **Event Emission**: `BridgeEvent` emitted with transaction details
-4. **LET Update**: Transaction added to L1's Local Exit Tree
-5. **MER Update**: Mainnet Exit Root updated on L1
-6. **GER Update**: Global Exit Root updated
-7. **L2 Sync**: L2 syncs with latest GER
-8. **User Claim**: User calls `claimAsset` on L2
-9. **Token Transfer**: Tokens transferred to user on L2
+```mermaid
+sequenceDiagram
+    participant User
+    participant L1_Bridge as L1 Bridge Contract
+    participant L1_MET as L1 Mainnet Exit Tree
+    participant GER_Manager as Global Exit Root Manager
+    participant L2_Bridge as L2 Bridge Contract
+    participant L2_GER as L2 Global Exit Root
+
+    User->>L1_Bridge: bridgeAsset()
+    L1_Bridge->>L1_Bridge: Lock/Burn tokens
+    L1_Bridge->>L1_Bridge: Emit BridgeEvent
+    L1_Bridge->>L1_MET: Add transaction to MET
+    L1_MET->>GER_Manager: Update Mainnet Exit Root
+    GER_Manager->>GER_Manager: Update Global Exit Root
+    GER_Manager->>L2_GER: Sync latest GER
+    User->>L2_Bridge: claimAsset() + proofs
+    L2_Bridge->>L2_Bridge: Verify Merkle proofs
+    L2_Bridge->>User: Transfer/Mint tokens
+```
 
 ### L2 to L1 Bridging
 
-1. **User Action**: User calls `bridgeAsset` on L2
-2. **Token Burning**: Tokens burned on L2
-3. **Event Emission**: `BridgeEvent` emitted with transaction details
-4. **LET Update**: Transaction added to L2's Local Exit Tree
-5. **L2 Submission**: L2 submits LET to L1 via RollupManager
-6. **RER Update**: Rollup Exit Root updated on L1
-7. **GER Update**: Global Exit Root updated
-8. **User Claim**: User calls `claimAsset` on L1
-9. **Token Transfer**: Tokens transferred to user on L1
+```mermaid
+sequenceDiagram
+    participant User
+    participant L2_Bridge as L2 Bridge Contract
+    participant L2_LET as L2 Local Exit Tree
+    participant RollupManager as Rollup Manager (L1)
+    participant GER_Manager as Global Exit Root Manager
+    participant L1_Bridge as L1 Bridge Contract
+
+    User->>L2_Bridge: bridgeAsset()
+    L2_Bridge->>L2_Bridge: Hold/Burn tokens
+    L2_Bridge->>L2_Bridge: Emit BridgeEvent
+    L2_Bridge->>L2_LET: Add transaction to LET
+    L2_LET->>RollupManager: Submit LER to L1
+    RollupManager->>RollupManager: Update Rollup Exit Root
+    RollupManager->>GER_Manager: Update Global Exit Root
+    User->>L1_Bridge: claimAsset() + proofs
+    L1_Bridge->>L1_Bridge: Verify Merkle proofs
+    L1_Bridge->>User: Transfer tokens
+```
 
 ### L2 to L2 Bridging
 
-1. **User Action**: User calls `bridgeAsset` on L2A
-2. **Token Burning**: Tokens burned on L2A
-3. **Event Emission**: `BridgeEvent` emitted with transaction details
-4. **LET Update**: Transaction added to L2A's Local Exit Tree
-5. **L2A Submission**: L2A submits LET to L1 via RollupManager
-6. **RER Update**: Rollup Exit Root updated on L1
-7. **GER Update**: Global Exit Root updated
-8. **L2B Sync**: L2B syncs with latest GER
-9. **User Claim**: User calls `claimAsset` on L2B
-10. **Token Transfer**: Tokens transferred to user on L2B
+```mermaid
+sequenceDiagram
+    participant User
+    participant L2A_Bridge as L2A Bridge Contract
+    participant L2A_LET as L2A Local Exit Tree
+    participant RollupManager as Rollup Manager (L1)
+    participant GER_Manager as Global Exit Root Manager
+    participant L2B_GER as L2B Global Exit Root
+    participant L2B_Bridge as L2B Bridge Contract
 
-## Using Lxly.js SDK
-
-The Lxly.js SDK simplifies asset bridging with prebuilt functions.
-
-### Installation
-
-```bash
-npm install @polygon/lxly
-```
-
-### Basic Usage
-
-```javascript
-import { Lxly } from '@polygon/lxly';
-
-// Initialize Lxly instance
-const lxly = new Lxly({
-  rpcUrl: 'https://rpc-url',
-  bridgeAddress: '0x...',
-  networkId: 1
-});
-
-// Bridge assets
-const txHash = await lxly.bridgeAsset({
-  destinationNetwork: 0,
-  destinationAddress: '0x...',
-  amount: '1000000000000000000', // 1 ETH
-  token: '0x0000000000000000000000000000000000000000', // ETH
-  forceUpdateGlobalExitRoot: true
-});
-
-console.log('Bridge transaction hash:', txHash);
-```
-
-### Advanced Usage
-
-```javascript
-// Bridge ERC20 tokens
-const txHash = await lxly.bridgeAsset({
-  destinationNetwork: 1,
-  destinationAddress: '0x...',
-  amount: '1000000000000000000', // 1 token
-  token: '0x...', // ERC20 token address
-  forceUpdateGlobalExitRoot: false,
-  permitData: '0x...' // Optional permit data
-});
-
-// Claim assets
-const claimTxHash = await lxly.claimAsset({
-  smtProofLocalExitRoot: [...],
-  smtProofRollupExitRoot: [...],
-  globalIndex: '0x...',
-  mainnetExitRoot: '0x...',
-  rollupExitRoot: '0x...',
-  originNetwork: 0,
-  originTokenAddress: '0x...',
-  destinationNetwork: 1,
-  destinationAddress: '0x...',
-  amount: '1000000000000000000',
-  metadata: '0x'
-});
+    User->>L2A_Bridge: bridgeAsset()
+    L2A_Bridge->>L2A_Bridge: Hold/Burn tokens
+    L2A_Bridge->>L2A_Bridge: Emit BridgeEvent
+    L2A_Bridge->>L2A_LET: Add transaction to LET
+    L2A_LET->>RollupManager: Submit LET to L1
+    RollupManager->>RollupManager: Update Rollup Exit Root
+    RollupManager->>GER_Manager: Update Global Exit Root
+    GER_Manager->>L2B_GER: Sync latest GER
+    User->>L2B_Bridge: claimAsset() + proofs
+    L2B_Bridge->>L2B_Bridge: Verify Merkle proofs
+    L2B_Bridge->>User: Mint/Transfer tokens
 ```
 
 ## Security Considerations
@@ -280,10 +271,6 @@ const claimTxHash = await lxly.claimAsset({
 - **No Double Spending**: Each transaction can only be claimed once
 - **Proof Requirements**: Cryptographic proofs prevent invalid claims
 - **Finality Requirements**: L1 finality ensures transaction security
-
-## Getting Started
-
-Ready to start bridging assets?
 
 <!-- CTA Button Component -->
 <div style="text-align: center; margin: 3rem 0;">

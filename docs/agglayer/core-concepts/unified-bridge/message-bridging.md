@@ -17,15 +17,16 @@ title: Message Bridging
 
 Message bridging enables smart contracts on different chains to communicate and execute functions across chains. This allows for complex cross-chain applications where contracts can trigger actions on other chains.
 
-![Message Bridging Process](../../img/agglayer/BridgeMessageProcess.png)
+![Message Bridging Process](../../../img/agglayer/BridgeMessageProcess.png)
 
-*Figure 1: Complete message bridging flow from source chain to destination chain*
+*Figure 1: Complete message bridging flow from L2 to L1*
 
 ## Key Concepts
 
 ### Cross-Chain Execution
 
 Message bridging enables:
+
 - **Contract-to-Contract Communication**: Smart contracts can call functions on other chains
 - **Cross-Chain State Updates**: Contracts can update state on destination chains
 - **Complex Workflows**: Multi-chain applications with coordinated execution
@@ -34,6 +35,7 @@ Message bridging enables:
 ### Message Structure
 
 Cross-chain messages contain:
+
 - **Destination Contract**: Address of the contract to execute on destination chain
 - **Function Data**: Encoded function call data
 - **Value**: ETH value to send with the message (if any)
@@ -137,125 +139,111 @@ function claimMessage(
 require(success, "Message execution failed");
 ```
 
+**Important Notes:**
+
+- Messages can only be executed if the `destinationAddress` is a smart contract that implements the `IBridgeMessageReceiver` interface
+- If the receiving address is an EOA, the call will result as a success, meaning that the amount of ether will be transferred correctly, but the message will not trigger any execution
+- If the native gas token is `ETH`, then transfer `ETH` to the `destinationAddress` and execute the message
+- If `ETH` is not the native gas token, then mint `WETH` to the `destinationAddress` and execute the message
+
+### IBridgeMessageReceiver Interface
+
+For a contract to receive bridged messages, it must implement the `IBridgeMessageReceiver` interface:
+
+```solidity
+interface IBridgeMessageReceiver {
+    function onMessageReceived(
+        address originAddress,
+        uint32 originNetwork,
+        bytes calldata data
+    ) external payable;
+}
+```
+
+**Parameters:**
+
+- `originAddress`: Address that sent the message on the source chain
+- `originNetwork`: Network ID of the source chain  
+- `data`: The message data/metadata sent from source chain
+
 ## Bridging Flows
 
 ### L1 to L2 Message Bridging
 
-1. **User Action**: User calls `bridgeMessage` on L1
-2. **Value Handling**: ETH value locked in L1 bridge contract
-3. **Event Emission**: `BridgeEvent` emitted with message details
-4. **LET Update**: Message added to L1's Local Exit Tree
-5. **MER Update**: Mainnet Exit Root updated on L1
-6. **GER Update**: Global Exit Root updated
-7. **L2 Sync**: L2 syncs with latest GER
-8. **User Claim**: User calls `claimMessage` on L2
-9. **Message Execution**: Message executed on L2 contract
+```mermaid
+sequenceDiagram
+    participant User
+    participant L1_Bridge as L1 Bridge Contract
+    participant L1_MET as L1 Mainnet Exit Tree
+    participant GER_Manager as Global Exit Root Manager
+    participant L2_Bridge as L2 Bridge Contract
+    participant L2_GER as L2 Global Exit Root
+    participant Target_Contract as Target Contract
+
+    User->>L1_Bridge: bridgeMessage()
+    L1_Bridge->>L1_Bridge: Handle ETH value
+    L1_Bridge->>L1_Bridge: Emit BridgeEvent
+    L1_Bridge->>L1_MET: Add message to MET
+    L1_MET->>GER_Manager: Update Mainnet Exit Root
+    GER_Manager->>GER_Manager: Update Global Exit Root
+    GER_Manager->>L2_GER: Sync latest GER
+    User->>L2_Bridge: claimMessage() + proofs
+    L2_Bridge->>L2_Bridge: Verify Merkle proofs
+    L2_Bridge->>Target_Contract: Execute message
+    Target_Contract->>Target_Contract: onMessageReceived()
+```
 
 ### L2 to L1 Message Bridging
 
-1. **User Action**: User calls `bridgeMessage` on L2
-2. **Value Handling**: ETH value locked in L2 bridge contract
-3. **Event Emission**: `BridgeEvent` emitted with message details
-4. **LET Update**: Message added to L2's Local Exit Tree
-5. **L2 Submission**: L2 submits LET to L1 via RollupManager
-6. **RER Update**: Rollup Exit Root updated on L1
-7. **GER Update**: Global Exit Root updated
-8. **User Claim**: User calls `claimMessage` on L1
-9. **Message Execution**: Message executed on L1 contract
+```mermaid
+sequenceDiagram
+    participant User
+    participant L2_Bridge as L2 Bridge Contract
+    participant L2_LET as L2 Local Exit Tree
+    participant RollupManager as Rollup Manager (L1)
+    participant GER_Manager as Global Exit Root Manager
+    participant L1_Bridge as L1 Bridge Contract
+    participant Target_Contract as Target Contract
+
+    User->>L2_Bridge: bridgeMessage()
+    L2_Bridge->>L2_Bridge: Handle ETH value
+    L2_Bridge->>L2_Bridge: Emit BridgeEvent
+    L2_Bridge->>L2_LET: Add message to LET
+    L2_LET->>RollupManager: Submit LET to L1
+    RollupManager->>RollupManager: Update Rollup Exit Root
+    RollupManager->>GER_Manager: Update Global Exit Root
+    User->>L1_Bridge: claimMessage() + proofs
+    L1_Bridge->>L1_Bridge: Verify Merkle proofs
+    L1_Bridge->>Target_Contract: Execute message
+    Target_Contract->>Target_Contract: onMessageReceived()
+```
 
 ### L2 to L2 Message Bridging
 
-1. **User Action**: User calls `bridgeMessage` on L2A
-2. **Value Handling**: ETH value locked in L2A bridge contract
-3. **Event Emission**: `BridgeEvent` emitted with message details
-4. **LET Update**: Message added to L2A's Local Exit Tree
-5. **L2A Submission**: L2A submits LET to L1 via RollupManager
-6. **RER Update**: Rollup Exit Root updated on L1
-7. **GER Update**: Global Exit Root updated
-8. **L2B Sync**: L2B syncs with latest GER
-9. **User Claim**: User calls `claimMessage` on L2B
-10. **Message Execution**: Message executed on L2B contract
+```mermaid
+sequenceDiagram
+    participant User
+    participant L2A_Bridge as L2A Bridge Contract
+    participant L2A_LET as L2A Local Exit Tree
+    participant RollupManager as Rollup Manager (L1)
+    participant GER_Manager as Global Exit Root Manager
+    participant L2B_GER as L2B Global Exit Root
+    participant L2B_Bridge as L2B Bridge Contract
+    participant Target_Contract as Target Contract
 
-## Using Lxly.js SDK
-
-The Lxly.js SDK simplifies message bridging with prebuilt functions.
-
-### Basic Usage
-
-```javascript
-import { Lxly } from '@polygon/lxly';
-
-// Initialize Lxly instance
-const lxly = new Lxly({
-  rpcUrl: 'https://rpc-url',
-  bridgeAddress: '0x...',
-  networkId: 1
-});
-
-// Bridge a message
-const txHash = await lxly.bridgeMessage({
-  destinationNetwork: 0,
-  destinationAddress: '0x...', // Contract address on destination
-  gasLimit: 100000,
-  data: '0x...' // Encoded function call data
-});
-
-console.log('Bridge message transaction hash:', txHash);
+    User->>L2A_Bridge: bridgeMessage()
+    L2A_Bridge->>L2A_Bridge: Handle ETH value
+    L2A_Bridge->>L2A_Bridge: Emit BridgeEvent
+    L2A_Bridge->>L2A_LET: Add message to LET
+    L2A_LET->>RollupManager: Submit LET to L1
+    RollupManager->>RollupManager: Update Rollup Exit Root
+    RollupManager->>GER_Manager: Update Global Exit Root
+    GER_Manager->>L2B_GER: Sync latest GER
+    User->>L2B_Bridge: claimMessage() + proofs
+    L2B_Bridge->>L2B_Bridge: Verify Merkle proofs
+    L2B_Bridge->>Target_Contract: Execute message
+    Target_Contract->>Target_Contract: onMessageReceived()
 ```
-
-### Advanced Usage
-
-```javascript
-// Bridge a message with ETH value
-const txHash = await lxly.bridgeMessage({
-  destinationNetwork: 1,
-  destinationAddress: '0x...',
-  gasLimit: 200000,
-  data: '0x...',
-  value: '1000000000000000000' // 1 ETH
-});
-
-// Claim a message
-const claimTxHash = await lxly.claimMessage({
-  smtProofLocalExitRoot: [...],
-  smtProofRollupExitRoot: [...],
-  globalIndex: '0x...',
-  mainnetExitRoot: '0x...',
-  rollupExitRoot: '0x...',
-  originNetwork: 0,
-  originAddress: '0x...',
-  destinationNetwork: 1,
-  destinationAddress: '0x...',
-  gasLimit: 200000,
-  data: '0x...'
-});
-```
-
-## Use Cases
-
-### Cross-Chain DeFi
-
-- **Liquidity Provision**: Provide liquidity on one chain, trigger actions on another
-- **Yield Farming**: Farm yields across multiple chains with coordinated strategies
-- **Arbitrage**: Execute arbitrage opportunities across chains
-
-### Cross-Chain Gaming
-
-- **Asset Transfers**: Move game assets between chains
-- **State Synchronization**: Keep game state synchronized across chains
-- **Cross-Chain Events**: Trigger events on other chains based on game actions
-
-### Cross-Chain Governance
-
-- **Voting**: Cast votes on one chain, execute decisions on another
-- **Treasury Management**: Manage treasuries across multiple chains
-- **Proposal Execution**: Execute governance proposals across chains
-
-### Cross-Chain Identity
-
-- **Identity Verification**: Verify identity on one chain, use on another
-- **Credential Sharing**: Share credentials across chains
-- **Access Control**: Control access to resources across chains
 
 ## Security Considerations
 
@@ -277,33 +265,9 @@ const claimTxHash = await lxly.claimMessage({
 - **Proof Requirements**: Cryptographic proofs prevent invalid message execution
 - **Finality Requirements**: L1 finality ensures message security
 
-## Best Practices
-
-### Message Design
-
-- **Idempotent Functions**: Design functions to be idempotent when possible
-- **Error Handling**: Include proper error handling in destination contracts
-- **Gas Estimation**: Accurately estimate gas requirements for message execution
-
-### Security
-
-- **Source Validation**: Validate message sources in destination contracts
-- **Access Control**: Implement proper access control for message execution
-- **Rate Limiting**: Consider rate limiting for message execution
-
-### Monitoring
-
-- **Event Logging**: Log important events in message execution
-- **Error Tracking**: Track and monitor message execution errors
-- **Performance Monitoring**: Monitor gas usage and execution times
-
-## Getting Started
-
-Ready to start building cross-chain applications?
-
 <!-- CTA Button Component -->
 <div style="text-align: center; margin: 3rem 0;">
-  <a href="/agglayer/get-started/quickstart/" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
-    Start Building →
+  <a href="/agglayer/core-concepts/unified-bridge/bridge-and-call" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
+    Learn about Bridge and Call →
   </a>
 </div>
