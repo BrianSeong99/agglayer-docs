@@ -22,10 +22,22 @@ Use for call-to-action buttons with consistent styling.
 **File:** `button.html`
 **Usage:** Include in markdown files
 
-### Card Component
+### Feature Card
 Use for feature cards and content sections.
 
-**File:** `card.html`
+**File:** `feature-card.html`
+**Usage:** Include in markdown files
+
+### Compact Card
+Use for compact feature cards with minimal spacing.
+
+**File:** `compact-card.html`
+**Usage:** Include in markdown files
+
+### Card Container
+Use to wrap multiple cards with consistent spacing.
+
+**File:** `card-container.html`
 **Usage:** Include in markdown files
 
 ### Alert Component

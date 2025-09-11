@@ -24,16 +24,23 @@ This file shows how to use all the shared components in your documentation.
 </div>
 ```
 
+## Card Container
+```html
+<div style="display: flex; flex-direction: column; gap: 1rem; max-width: 800px; margin: 1rem 0;">
+  <!-- Cards go here -->
+</div>
+```
+
 ## Feature Card
 ```html
-<div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 12px; padding: 2rem; margin: 1rem 0;">
-  <h3 style="color: #0071F7; margin-bottom: 1rem; font-size: 22px; font-weight: 600;">
+<div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem; margin: 0.25rem 0;">
+  <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
     Card Title
   </h3>
-  <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.6;">
+  <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
     Card description goes here
   </p>
-  <a href="/your-link" style="color: #0071F7; text-decoration: none; font-weight: 500;">
+  <a href="/your-link" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
     Learn more →
   </a>
 </div>

@@ -58,10 +58,10 @@ nav:
         - Quickstart: agglayer/get-started/quickstart.md
         - Supported Networks: https://build.agglayer.dev/chains
         - Agglayer Developer Portal: https://build.agglayer.dev
-      # - Core Concepts:
-      #   - agglayer/core-concepts/index.md
-      #   - What is Agglayer?: agglayer/core-concepts/what-is-agglayer.md
-      #   - Architecture: agglayer/core-concepts/architecture.md
+      - Core Concepts:
+        - agglayer/core-concepts/index.md
+        - What is Agglayer?: agglayer/core-concepts/what-is-agglayer.md
+        - Architecture: agglayer/core-concepts/architecture.md
       #   - Unified Bridge: 
       #     - agglayer/core-concepts/unified-bridge.md
       #     - Core Concepts:

@@ -51,6 +51,7 @@ shared/
 - **Primary Blue:** `#0071F7` (headers, buttons, links)
 - **Gray Text:** `#666` (subtitles, descriptions)
 - **Light Gray:** `#f8f9fa` (card backgrounds)
+- **Border Gray:** `#dee2e6` (card borders)
 
 ### Typography
 - **Headings:** Inter Tight, 700 weight
