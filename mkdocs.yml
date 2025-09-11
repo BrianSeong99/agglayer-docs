@@ -62,23 +62,13 @@ nav:
         - agglayer/core-concepts/index.md
         - What is Agglayer?: agglayer/core-concepts/what-is-agglayer.md
         - Architecture: agglayer/core-concepts/architecture.md
-      #   - Unified Bridge: 
-      #     - agglayer/core-concepts/unified-bridge.md
-      #     - Core Concepts:
-      #       - Data Structures: agglayer/core-concepts/unified-bridge/data-structures.md
-      #       - Local Exit Root & Local Index: agglayer/core-concepts/unified-bridge/local-exit-root.md
-      #       - Rollup Exit Root: agglayer/core-concepts/unified-bridge/rollup-exit-root.md
-      #       - Mainnet Exit Root: agglayer/core-concepts/unified-bridge/mainnet-exit-root.md
-      #       - Global Exit Root: agglayer/core-concepts/unified-bridge/global-exit-root.md
-      #       - L1 Info Tree: agglayer/core-concepts/unified-bridge/l1-info-tree.md
-      #     - Components & Operations:
-      #       - Bridge Components: agglayer/core-concepts/unified-bridge/bridge-components.md
-      #       - Asset Bridging: agglayer/core-concepts/unified-bridge/asset-bridging.md
-      #       - Message Bridging: agglayer/core-concepts/unified-bridge/message-bridging.md
-      #       - Bridge-and-Call: agglayer/core-concepts/unified-bridge/bridge-and-call.md
-      #     - Security & Development:
-      #       - Security Model: agglayer/core-concepts/unified-bridge/security-model.md
-      #       - Developer Examples: agglayer/core-concepts/unified-bridge/developer-examples.md
+        - Unified Bridge: 
+          - agglayer/core-concepts/unified-bridge.md
+          - Data Structures: agglayer/core-concepts/unified-bridge/data-structures.md
+          - Bridge Components: agglayer/core-concepts/unified-bridge/bridge-components.md
+          - Asset Bridging: agglayer/core-concepts/unified-bridge/asset-bridging.md
+          - Message Bridging: agglayer/core-concepts/unified-bridge/message-bridging.md
+          - Bridge-and-Call: agglayer/core-concepts/unified-bridge/bridge-and-call.md
       #   - Pessimistic Proofs: 
       #     - agglayer/core-concepts/pessimistic-proofs.md
       #     - Architecture & Data:
