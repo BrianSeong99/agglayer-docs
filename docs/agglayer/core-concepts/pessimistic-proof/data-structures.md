@@ -29,9 +29,11 @@ Pessimistic Proof builds on top of the Unified Bridge data structure. For comple
 
 **Key Unified Bridge Components:**
 
-- **Local Exit Tree**: Records outgoing cross-chain transactions
-- **Global Exit Root**: Combines all chain states for verification
-- **Global Index**: Unique reference for transactions within Global Exit Root
+- **Local Exit Tree**: Records outgoing cross-chain transactions as cryptographic commitments in a 32-level Sparse Merkle Tree, with each leaf representing a hash of bridge transaction details including destination, amount, and metadata.
+
+- **Global Exit Root**: Combines all chain states for verification by computing `hash(RollupExitRoot, MainnetExitRoot)`, providing a single unified root that represents the complete state of cross-chain activities across the entire network.
+
+- **Global Index**: Unique 256-bit reference for transactions within Global Exit Root, encoding the source network type (mainnet flag), rollup identifier, and local transaction index to enable precise transaction location across the hierarchical tree structure.
 
 ![Unified Bridge Tree](../../../img/agglayer/UnifiedBridgeTree.png)
 
@@ -54,14 +56,15 @@ pub struct TokenInfo {
 
 ### Key Layout
 
-The `TokenInfo` key uses a clever bit layout:
+The `TokenInfo` key uses a clever bit layout for efficient storage and lookup:
 
-- **First 32 bits**: Origin network ID where the token originated
-- **Next 160 bits**: Token address on the origin chain
+- **First 32 bits**: Origin network ID where the token originally exists, enabling the system to track tokens across multiple chains while maintaining their original identity and preventing confusion between tokens with the same address on different chains.
+
+- **Next 160 bits**: Token address on the origin chain (standard Ethereum address size), ensuring that each token can be uniquely identified by combining its origin network and original contract address, even when wrapped versions exist on other chains.
 
 ### Balance Updates
 
-When assets are bridged out or claimed, the token balance in the Local Balance Tree is updated accordingly.
+When assets are bridged out or claimed, the token balance in the Local Balance Tree is updated accordingly through atomic operations that ensure balance conservation and prevent overdraft conditions. Outbound bridging decreases the balance while inbound claiming increases it, with all changes verified through Merkle proof validation.
 
 ![Local Balance Tree](../../../img/agglayer/LocalBalanceTree.png)
 
@@ -73,25 +76,13 @@ The Nullifier Tree prevents double-spending and ensures transaction uniqueness a
 
 ### Key Structure
 
-The Nullifier Tree key is constructed using:
+The Nullifier Tree key is constructed using a 64-bit identifier that uniquely identifies each claimable transaction:
 
-- **First 32 bits**: Network ID of the chain where the transaction originated
-- **Last 32 bits**: Index of the bridge exit within the LET of the source chain (Local Index/depositCount)
+- **First 32 bits**: Network ID of the chain where the transaction originated, enabling the system to track which source chain a claimed transaction came from and prevent confusion between transactions from different networks.
+
+- **Last 32 bits**: Index of the bridge exit within the Local Exit Tree of the source chain (also called Local Index or depositCount), providing the exact position of the transaction within the source chain's bridge transaction history.
 
 ### Double-Spending Prevention
-
-```rust
-// Default state: all leaves are false
-nullifier_tree.get(key) == false
-
-// After claiming: leaf is marked true
-nullifier_tree.set(key, true)
-
-// Prevents re-claiming
-if nullifier_tree.get(key) == true {
-    return Err("Already claimed");
-}
-```
 
 ![Nullifier Tree](../../../img/agglayer/NullifierTree.png)
 
@@ -122,7 +113,7 @@ pub struct BridgeExit {
 
 ### Usage
 
-All outbound transactions from a chain are represented in a `BridgeExit` vector during pessimistic proof generation.
+All outbound transactions from a chain are represented in a `BridgeExit` vector during pessimistic proof generation. Each `BridgeExit` contains complete transaction information needed to validate that the chain has sufficient balance for the outbound transfer and to update the Local Exit Tree with the new transaction commitment.
 
 ## Imported Bridge Exits
 
@@ -150,10 +141,11 @@ pub enum Claim {
 }
 ```
 
-**Separation Reason**: L1 and Rollup claims require different proof paths:
+**Separation Reason**: L1 and Rollup claims require different proof paths due to their different positions in the hierarchical tree structure:
 
-- **Mainnet**: Direct proof from Mainnet Exit Root to L1 Info Root
-- **Rollup**: Proof from Local Exit Root → Rollup Exit Root → L1 Info Root
+- **Mainnet**: Requires direct proof from Mainnet Exit Root to L1 Info Root since L1 transactions are recorded directly in the Mainnet Exit Tree and don't need to go through the Rollup Exit Tree aggregation layer.
+
+- **Rollup**: Requires a two-step proof path from Local Exit Root → Rollup Exit Root → L1 Info Root because L2 transactions must first prove inclusion in the L2's Local Exit Tree, then prove that the L2's Local Exit Root was properly submitted to the Rollup Exit Tree on L1.
 
 ## Local State
 
@@ -174,9 +166,11 @@ pub struct LocalNetworkState {
 
 ### Components
 
-- **Exit Tree**: Records all outgoing bridge transactions
-- **Balance Tree**: Tracks token balances for all assets
-- **Nullifier Tree**: Prevents double-spending of claimed assets
+- **Exit Tree**: Records all outgoing bridge transactions as a 32-level Sparse Merkle Tree, storing cryptographic commitments of `bridgeAsset` and `bridgeMessage` operations that represent assets and messages being sent to other chains.
+
+- **Balance Tree**: Tracks token balances for all assets on the chain using a 192-bit depth Sparse Merkle Tree, with TokenInfo keys enabling precise tracking of token origins and current balances for every asset type on the chain.
+
+- **Nullifier Tree**: Prevents double-spending of claimed assets by maintaining a 64-bit depth Sparse Merkle Tree that marks imported bridge exits as claimed, ensuring that each cross-chain transaction can only be processed once on the destination chain.
 
 ## Multi Batch Header
 
@@ -215,7 +209,7 @@ pub struct MultiBatchHeader<H> {
 
 ### Purpose
 
-Serves as the master input capturing the complete set of changes between old and new local states, containing all data required for pessimistic proof generation.
+Serves as the master input capturing the complete set of changes between old and new local states, containing all data required for pessimistic proof generation. This structure packages together the previous state roots, all state transition data (bridge exits and imported bridge exits), balance proofs, and target state commitments needed to mathematically verify that the proposed state transition is valid and secure.
 
 ## Pessimistic Proof Output
 
@@ -278,7 +272,7 @@ pub struct Certificate {
 
 ### Validation
 
-If a certificate is invalid, any state transitions in the current epoch will be reverted, protecting the network from invalid state changes.
+If a certificate is invalid, any state transitions in the current epoch will be reverted, protecting the network from invalid state changes. The validation process ensures that all bridge exits have sufficient balances, all imported bridge exits have valid proofs and haven't been double-claimed, and that the cryptographic signature properly commits to all the state transition data. This atomic validation prevents partial state updates that could compromise network security.
 
 <!-- CTA Button Component -->
 <div style="text-align: center; margin: 3rem 0;">
