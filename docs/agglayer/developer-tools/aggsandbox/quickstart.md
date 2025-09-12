@@ -192,10 +192,10 @@ You've successfully completed your first cross-chain bridge operation! You've:
 5. **Claim Execution**: Tokens released on L2 (destination network)
 
 ### Key Concepts
-- **Networks**: L1 (ID: 0), L2 (ID: 1)
-- **Tokens**: ERC20 tokens become wrapped tokens on destination
-- **Timing**: ~30 seconds for AggKit sync between networks
-- **Verification**: Multiple ways to confirm success
+- **Networks**: L1 (ID: 0) serves as the settlement layer and source of truth, while L2 (ID: 1) provides fast, low-cost transactions with full EVM compatibility
+- **Tokens**: ERC20 tokens are automatically wrapped when bridged to maintain 1:1 value backing, with the original tokens locked on the source network and wrapped representations created on the destination
+- **Timing**: Approximately 30 seconds is required for AggKit services to synchronize cross-chain state between networks, ensuring all bridge operations are properly indexed and validated
+- **Verification**: The system provides multiple verification methods including transaction APIs, claim status endpoints, and on-chain balance checks to confirm successful bridge operations
 
 ## Next Steps
 

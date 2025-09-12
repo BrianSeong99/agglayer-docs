@@ -42,9 +42,9 @@ aggsandbox bridge asset \
 
 **Token Mapping:**
 
-- **Original Token**: Lives on source network
-- **Wrapped Token**: Represents original token on destination network
-- **1:1 Backing**: Each wrapped token backed by locked original token
+- **Original Token**: The authentic token that exists natively on its source blockchain network, maintaining its original contract address, metadata, and full functionality within its native ecosystem
+- **Wrapped Token**: A derivative representation of the original token created on the destination network, preserving the same value and transferability while adapting to the destination network's token standards
+- **1:1 Backing**: Every wrapped token is backed by exactly one original token locked in the bridge contract, ensuring perfect value preservation and enabling seamless redemption back to the original asset
 
 ### **Message Bridges**
 
@@ -109,8 +109,8 @@ aggsandbox bridge bridge-and-call \
 
 **Two-Phase Claiming:**
 
-- **Phase 1**: Claim asset bridge (deposit_count = 0)
-- **Phase 2**: Claim message bridge (deposit_count = 1)
+- **Phase 1**: First claim the asset bridge (deposit_count = 0) to transfer the tokens to the destination network and make them available for the contract execution phase
+- **Phase 2**: Then claim the message bridge (deposit_count = 1) to execute the contract function using the newly transferred tokens, completing the atomic operation
 
 ## Network Combinations
 
@@ -124,9 +124,9 @@ aggsandbox bridge bridge-and-call \
 
 ### **Network IDs**
 
-- **Network 0**: L1 (Ethereum)
-- **Network 1**: L2-1 (Polygon zkEVM)
-- **Network 2**: L2-2 (Additional Chain)
+- **Network 0**: L1 (Ethereum) - The primary settlement layer that serves as the source of truth for all cross-chain operations and maintains the Global Exit Root
+- **Network 1**: L2-1 (Polygon zkEVM) - The main Layer 2 testing network that provides fast, low-cost transactions while maintaining EVM compatibility
+- **Network 2**: L2-2 (Additional Chain) - A secondary Layer 2 network available in multi-L2 mode for testing complex L2↔L2 bridging scenarios
 
 ## Bridge Lifecycle
 
@@ -156,15 +156,6 @@ graph TB
         L --> M[Asset Release]
     end
 ```
-
-### **Timing Considerations**
-
-#### **Why the Wait?**
-
-- **Security**: Pessimistic proofs require validation time
-- **Consensus**: Networks need time to reach finality
-- **Synchronization**: Cross-chain state must be consistent
-- **Proof Generation**: Cryptographic proofs take time to compute
 
 #### **Timing Breakdown**
 
@@ -240,10 +231,10 @@ aggsandbox bridge utils get-origin \
 
 The Agglayer bridge operates on a **minimized trust model**:
 
-- **Smart Contracts**: Audited, immutable bridge logic
-- **Cryptographic Proofs**: Mathematical validation of operations
-- **Pessimistic Approach**: Assume invalid until proven valid
-- **Decentralized Validation**: Multiple validators confirm operations
+- **Smart Contracts**: The bridge uses thoroughly audited, immutable smart contract logic that has been battle-tested in production environments, ensuring reliable and secure operation
+- **Cryptographic Proofs**: Every bridge operation is validated through rigorous mathematical proofs that provide cryptographic certainty about transaction legitimacy and state correctness
+- **Pessimistic Approach**: The system takes a security-first stance by treating all operations as potentially invalid until they are mathematically proven to be correct through cryptographic verification
+- **Decentralized Validation**: Multiple independent validators and proof systems work together to confirm operations, eliminating single points of failure and ensuring robust security
 
 ### **Proof System**
 
@@ -259,10 +250,10 @@ Each bridge operation requires **cryptographic proof**:
 
 ### **Security Considerations**
 
-- **Finality**: Wait for network finality before bridging
-- **Proof Validation**: Always verify proofs before claiming
-- **Rate Limiting**: Be aware of bridge rate limits
-- **Error Handling**: Implement proper error recovery
+- **Finality**: Always wait for proper network finality before initiating bridge operations to prevent issues with transaction reorgs or rollbacks that could compromise bridge security
+- **Proof Validation**: Implement thorough proof verification in your applications before allowing users to claim assets, ensuring that all cryptographic requirements are met
+- **Rate Limiting**: Be aware of potential rate limits in bridge operations and implement appropriate backoff strategies to handle high-volume scenarios gracefully
+- **Error Handling**: Build robust error recovery mechanisms into your applications to handle network issues, proof failures, and other edge cases that may occur during bridge operations
 
 ## Common Patterns
 

@@ -35,9 +35,9 @@ aggsandbox bridge message \
 
 **Network ID Reference:**
 
-- **L1 (Ethereum)**: `--network-id 0`
-- **L2-1 (zkEVM)**: `--network-id 1` 
-- **L2-2 (Additional)**: `--network-id 2` (requires `--multi-l2` mode)
+- **L1 (Ethereum)**: `--network-id 0` - The settlement layer where Global Exit Root updates are stored and cross-chain message proofs are validated for final execution
+- **L2-1 (zkEVM)**: `--network-id 1` - Primary Layer 2 network that supports cross-chain message execution with full EVM compatibility and low gas costs
+- **L2-2 (Additional)**: `--network-id 2` - Secondary Layer 2 network available in multi-L2 mode for testing complex cross-chain message scenarios between different L2 networks
 
 **Variable Reference:**
 
@@ -214,9 +214,9 @@ echo "Contract verification complete"
 
 **RPC Port Reference:**
 
-- **L1**: `http://localhost:8545`
-- **L2-1**: `http://localhost:8546`
-- **L2-2**: `http://localhost:8547`
+- **L1**: `http://localhost:8545` - Primary RPC endpoint for interacting with L1 contracts and executing cross-chain message operations on the settlement layer
+- **L2-1**: `http://localhost:8546` - L2 RPC endpoint for deploying message receiver contracts and executing cross-chain message claims on the primary L2 network
+- **L2-2**: `http://localhost:8547` - Additional L2 RPC endpoint available in multi-L2 mode for testing message bridging between different Layer 2 networks
 
 ## Network Combinations
 

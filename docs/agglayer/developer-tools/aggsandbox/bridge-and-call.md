@@ -38,9 +38,9 @@ aggsandbox bridge bridge-and-call \
 
 **Network ID Reference:**
 
-- **L1 (Ethereum)**: `--network-id 0`
-- **L2-1 (zkEVM)**: `--network-id 1` 
-- **L2-2 (Additional)**: `--network-id 2` (requires `--multi-l2` mode)
+- **L1 (Ethereum)**: `--network-id 0` - The settlement layer that coordinates both asset transfers and contract execution in bridge-and-call operations
+- **L2-1 (zkEVM)**: `--network-id 1` - Primary Layer 2 network supporting atomic bridge-and-call operations with full EVM contract execution capabilities
+- **L2-2 (Additional)**: `--network-id 2` - Secondary Layer 2 network available in multi-L2 mode for testing complex atomic operations between different L2 networks
 
 **Variable Reference:**
 
@@ -56,8 +56,8 @@ aggsandbox show bridges --network-id $LX
 
 You'll see two bridges with consecutive deposit counts:
 
-- **Asset Bridge**: `deposit_count: N`, `leaf_type: 0` (asset)
-- **Message Bridge**: `deposit_count: N+1`, `leaf_type: 1` (message)
+- **Asset Bridge**: `deposit_count: N`, `leaf_type: 0` (asset) - The first bridge operation that transfers tokens to the destination network, creating the foundation for the subsequent contract execution
+- **Message Bridge**: `deposit_count: N+1`, `leaf_type: 1` (message) - The second bridge operation that executes the contract function using the transferred tokens, completing the atomic bridge-and-call sequence
 
 ### Step 3: Prepare Call Data
 
@@ -337,9 +337,9 @@ echo "✅ Bridge-and-call operation completed successfully!"
 
 **RPC Port Reference:**
 
-- **L1**: `http://localhost:8545`
-- **L2-1**: `http://localhost:8546`
-- **L2-2**: `http://localhost:8547`
+- **L1**: `http://localhost:8545` - Primary RPC endpoint for L1 bridge-and-call operations, contract deployment, and settlement layer interactions
+- **L2-1**: `http://localhost:8546` - L2 RPC endpoint for deploying target contracts and executing atomic bridge-and-call operations on the primary Layer 2 network
+- **L2-2**: `http://localhost:8547` - Additional L2 RPC endpoint for multi-L2 bridge-and-call testing scenarios between different Layer 2 networks
 
 ## Network Combinations
 

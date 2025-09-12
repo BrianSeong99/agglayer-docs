@@ -5,10 +5,10 @@
 ## System Requirements
 
 ### Minimum Requirements
-- **OS**: Linux, macOS, or Windows with WSL2
-- **RAM**: 4GB minimum, 8GB recommended
-- **Storage**: 2GB free space
-- **CPU**: 2 cores minimum, 4 cores recommended
+- **OS**: Linux, macOS, or Windows with WSL2 - AggSandbox requires a Unix-like environment for optimal Docker performance and shell script compatibility
+- **RAM**: 4GB minimum for basic operations, 8GB recommended for smooth multi-network testing and concurrent bridge operations without performance degradation
+- **Storage**: 2GB free space for Docker images, blockchain data, and service databases - additional space may be needed for extended testing sessions
+- **CPU**: 2 cores minimum for basic functionality, 4 cores recommended for optimal performance when running multiple blockchain networks and bridge services simultaneously
 
 ### Required Software
 
@@ -164,9 +164,9 @@ aggsandbox start --detach
 
 **Provides:**
 
-- L1 Ethereum (Network 0, Port 8545)
-- L2 zkEVM (Network 1, Port 8546)
-- Bridge service with AggKit
+- **L1 Ethereum (Network 0, Port 8545)**: A complete Ethereum simulation with pre-deployed bridge contracts, test tokens, and funded accounts for comprehensive L1 testing
+- **L2 zkEVM (Network 1, Port 8546)**: A Polygon zkEVM-compatible network that provides fast, low-cost transactions while maintaining full EVM compatibility for realistic L2 testing
+- **Bridge service with AggKit**: Fully functional bridge coordination service that handles cross-chain state synchronization, proof generation, and transaction indexing between L1 and L2
 
 ### Multi-L2 Mode
 
@@ -178,10 +178,10 @@ aggsandbox start --multi-l2 --detach
 
 **Provides:**
 
-- L1 Ethereum (Network 0, Port 8545)
-- L2-1 zkEVM (Network 1, Port 8546)
-- L2-2 Additional Chain (Network 2, Port 8547)
-- Enhanced bridge service
+- **L1 Ethereum (Network 0, Port 8545)**: The settlement layer that coordinates all cross-chain operations and maintains the Global Exit Root for both L2 networks
+- **L2-1 zkEVM (Network 1, Port 8546)**: Primary Layer 2 network for testing standard L1↔L2 bridge operations and serving as one endpoint for L2↔L2 testing
+- **L2-2 Additional Chain (Network 2, Port 8547)**: Secondary Layer 2 network that enables testing of complex L2↔L2 bridge scenarios and multi-chain application workflows
+- **Enhanced bridge service**: Advanced AggKit configuration with multiple service instances to handle coordination between three networks and complex multi-chain state synchronization
 
 ### Fork Mode
 
@@ -198,10 +198,10 @@ aggsandbox start --fork --detach
 
 **Benefits:**
 
-- Real contract addresses
-- Real token balances
-- Real network state
-- Production-like testing
+- **Real contract addresses**: Test against actual production contract addresses and configurations, ensuring your applications work with real-world deployed infrastructure
+- **Real token balances**: Access to authentic token distributions and balances from mainnet, enabling realistic testing scenarios with actual market conditions
+- **Real network state**: Fork from current blockchain state including deployed contracts, historical transactions, and existing protocol configurations
+- **Production-like testing**: Experience realistic network behavior, gas costs, and contract interactions that closely mirror what users will encounter in production environments
 
 ## Troubleshooting Installation
 

@@ -36,9 +36,9 @@ aggsandbox bridge asset \
 
 **Network ID Reference:**
 
-- **L1 (Ethereum)**: `--network-id 0`
-- **L2-1 (zkEVM)**: `--network-id 1` 
-- **L2-2 (Additional)**: `--network-id 2` (requires `--multi-l2` mode)
+- **L1 (Ethereum)**: `--network-id 0` - The primary settlement layer that maintains the Global Exit Root and serves as the authoritative source for all cross-chain operations
+- **L2-1 (zkEVM)**: `--network-id 1` - The main Polygon zkEVM-compatible Layer 2 network providing fast, low-cost transactions with full EVM compatibility
+- **L2-2 (Additional)**: `--network-id 2` - A secondary Layer 2 network available only in multi-L2 mode for testing complex L2↔L2 bridging scenarios
 
 **Variable Reference:**
 
@@ -209,9 +209,9 @@ cast call $WRAPPED_TOKEN_ADDRESS \
 
 **RPC Port Reference:**
 
-- **L1**: `http://localhost:8545`
-- **L2-1**: `http://localhost:8546`
-- **L2-2**: `http://localhost:8547`
+- **L1**: `http://localhost:8545` - Standard Ethereum RPC endpoint for interacting with the L1 settlement layer and its deployed bridge contracts
+- **L2-1**: `http://localhost:8546` - Dedicated RPC endpoint for the primary L2 network, enabling independent interaction with L2 contracts and state
+- **L2-2**: `http://localhost:8547` - RPC endpoint for the additional L2 network, available when running in multi-L2 mode for advanced testing scenarios
 
 ## Network Combinations
 
@@ -254,10 +254,10 @@ aggsandbox bridge asset \
 
 The bridge maintains **1:1 token backing**:
 
-- **Total Supply**: `Original Tokens + Wrapped Tokens = Constant`
-- **Bridge Lock**: Original tokens locked on source network
-- **Wrapped Mint**: Equivalent wrapped tokens minted on destination
-- **Burn on Return**: Wrapped tokens burned when bridging back
+- **Total Supply**: The mathematical relationship `Original Tokens + Wrapped Tokens = Constant` ensures perfect conservation of value across all networks in the bridge ecosystem
+- **Bridge Lock**: Original tokens are securely locked in the bridge contract on the source network, serving as collateral that backs the wrapped tokens created on the destination
+- **Wrapped Mint**: The bridge creates an equivalent amount of wrapped tokens on the destination network, maintaining 1:1 value parity with the locked original tokens
+- **Burn on Return**: When bridging back to the original network, wrapped tokens are permanently burned and the corresponding original tokens are released from the bridge contract
 
 ## Troubleshooting
 
