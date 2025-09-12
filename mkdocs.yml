@@ -76,15 +76,10 @@ nav:
           - Data Structures: agglayer/core-concepts/pessimistic-proof/data-structures.md
           - Proof Generation: agglayer/core-concepts/pessimistic-proof/proof-generation.md
           - Benchmarks: agglayer/core-concepts/pessimistic-proof/benchmarks.md
-      #   - State Transition Proofs: 
-      #     - agglayer/core-concepts/state-transition-proofs.md
-      #     - Background & Overview:
-      #       - Background & Problem Statement: agglayer/core-concepts/state-transition-proofs/background.md
-      #       - Trust Flow: agglayer/core-concepts/state-transition-proofs/trust-flow.md
-      #     - Proof Types:
-      #       - Aggchain Proof: agglayer/core-concepts/state-transition-proofs/aggchain-proof.md
-      #       - ECDSA Verification: agglayer/core-concepts/state-transition-proofs/ecdsa-verification.md
-      #       - Validity Proof Verification: agglayer/core-concepts/state-transition-proofs/validity-proof-verification.md
+        - State Transition Proof: 
+          - Introduction: agglayer/core-concepts/state-transition-proof.md
+          - Architecture: agglayer/core-concepts/state-transition-proof/architecture.md
+          - Aggchain Proof: agglayer/core-concepts/state-transition-proof/aggchain-proof.md
       #   - AggKit:
       #     - agglayer/core-concepts/aggkit/index.md
       #     - AggSender: agglayer/core-concepts/aggkit/aggsender.md
