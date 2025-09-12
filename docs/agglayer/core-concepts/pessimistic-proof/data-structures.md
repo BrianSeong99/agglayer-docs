@@ -273,10 +273,3 @@ pub struct Certificate {
 ### Validation
 
 If a certificate is invalid, any state transitions in the current epoch will be reverted, protecting the network from invalid state changes. The validation process ensures that all bridge exits have sufficient balances, all imported bridge exits have valid proofs and haven't been double-claimed, and that the cryptographic signature properly commits to all the state transition data. This atomic validation prevents partial state updates that could compromise network security.
-
-<!-- CTA Button Component -->
-<div style="text-align: center; margin: 3rem 0;">
-  <a href="/agglayer/core-concepts/pessimistic-proof/proof-generation/" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
-    Learn About Proof Generation →
-  </a>
-</div>

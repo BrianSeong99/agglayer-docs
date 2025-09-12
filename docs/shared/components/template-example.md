@@ -15,15 +15,6 @@ This file shows how to use all the shared components in your documentation.
 </div>
 ```
 
-## CTA Button
-```html
-<div style="text-align: center; margin: 3rem 0;">
-  <a href="/your-link" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
-    Your Button Text →
-  </a>
-</div>
-```
-
 ## Card Container
 ```html
 <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 800px; margin: 1rem 0;">

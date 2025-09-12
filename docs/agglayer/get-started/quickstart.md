@@ -90,18 +90,3 @@ If you encounter any issues:
 2. **Verify Ports**: Ensure ports 8545, 8546, and 8080 are available
 3. **Restart Services**: Try `aggsandbox stop` then `aggsandbox start --detach`
 4. **Check Logs**: Use `aggsandbox logs` to see detailed error messages
-
-## Need Help?
-
-- Join our [Discord community](https://discord.gg/agglayer) for support
-- Check the [AggSandbox documentation](/agglayer/developer-tools/aggsandbox/) for detailed guides
-- Visit the [developer portal](https://build.agglayer.dev/) for interactive examples
-
----
-
-<!-- CTA Button Component -->
-<div style="text-align: center; margin: 3rem 0;">
-  <a href="/agglayer/bridging/asset-bridging/" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
-    Next: Learn Asset Bridging →
-  </a>
-</div>

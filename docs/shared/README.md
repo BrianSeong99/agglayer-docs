@@ -23,17 +23,12 @@ shared/
 **Purpose:** Consistent page titles and subtitles
 **Usage:** Copy HTML and customize title/subtitle text
 
-### 2. CTA Button
-**File:** `components/cta-button.html`
-**Purpose:** Call-to-action buttons with consistent styling
-**Usage:** Copy HTML and customize text and href
-
-### 3. Feature Card
+### 2. Feature Card
 **File:** `components/feature-card.html`
 **Purpose:** Feature cards with title, description, and link
 **Usage:** Copy HTML and customize content
 
-### 4. Alert
+### 3. Alert
 **File:** `components/alert.html`
 **Purpose:** Important notices and warnings
 **Usage:** Copy HTML and customize message

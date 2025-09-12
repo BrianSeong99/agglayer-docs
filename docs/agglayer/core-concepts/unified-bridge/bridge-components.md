@@ -219,9 +219,3 @@ curl --location 'https://api-gateway.polygon.technology/api/v3/transactions/main
 - Private keys for claiming with appropriate security measures and key rotation policies
 - Gas price settings including maximum gas prices, priority fees, and dynamic pricing strategies based on network congestion
 
-<!-- CTA Button Component -->
-<div style="text-align: center; margin: 3rem 0;">
-  <a href="/agglayer/core-concepts/unified-bridge/asset-bridging/" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
-    Learn About Asset Bridging →
-  </a>
-</div>

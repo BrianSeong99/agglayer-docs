@@ -251,9 +251,4 @@ sequenceDiagram
     L2B_Bridge->>L2B_Bridge: Verify Merkle proofs
     L2B_Bridge->>User: Mint/Transfer tokens
 ```
-<!-- CTA Button Component -->
-<div style="text-align: center; margin: 3rem 0;">
-  <a href="/agglayer/core-concepts/unified-bridge/message-bridging/" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
-    Learn About Message Bridging →
-  </a>
-</div>
+

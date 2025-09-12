@@ -191,10 +191,3 @@ The proof generation enforces several mathematical constraints:
 - **Cryptographic Integrity**: All state changes are cryptographically verified through Merkle tree operations using Keccak256 hashing, zkVM proof generation, and signature validation, ensuring that no invalid state modifications can be accepted by the system.
 
 - **Atomic Updates**: All changes succeed or fail together through the comprehensive validation process where any failure in balance verification, nullifier checking, or signature validation causes the entire state transition to be rejected, preventing partial updates that could compromise system integrity.
-
-<!-- CTA Button Component -->
-<div style="text-align: center; margin: 3rem 0;">
-  <a href="/agglayer/core-concepts/pessimistic-proof/benchmarks" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
-    Learn About Benchmark →
-  </a>
-</div>

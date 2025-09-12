@@ -63,7 +63,7 @@ nav:
         - What is Agglayer?: agglayer/core-concepts/what-is-agglayer.md
         - Architecture: agglayer/core-concepts/architecture.md
         - Unified Bridge: 
-          - Introduction: agglayer/core-concepts/unified-bridge.md
+          - Introduction: agglayer/core-concepts/unified-bridge/introduction.md
           - Architecture: agglayer/core-concepts/unified-bridge/architecture.md
           - Data Structures: agglayer/core-concepts/unified-bridge/data-structures.md
           - Bridge Components: agglayer/core-concepts/unified-bridge/bridge-components.md
@@ -71,13 +71,13 @@ nav:
           - Message Bridging: agglayer/core-concepts/unified-bridge/message-bridging.md
           - Bridge-and-Call: agglayer/core-concepts/unified-bridge/bridge-and-call.md
         - Pessimistic Proof: 
-          - Introduction: agglayer/core-concepts/pessimistic-proof.md
+          - Introduction: agglayer/core-concepts/pessimistic-proof/introduction.md
           - Architecture: agglayer/core-concepts/pessimistic-proof/architecture.md
           - Data Structures: agglayer/core-concepts/pessimistic-proof/data-structures.md
           - Proof Generation: agglayer/core-concepts/pessimistic-proof/proof-generation.md
           - Benchmarks: agglayer/core-concepts/pessimistic-proof/benchmarks.md
         - State Transition Proof: 
-          - Introduction: agglayer/core-concepts/state-transition-proof.md
+          - Introduction: agglayer/core-concepts/state-transition-proof/introduction.md
           - Architecture: agglayer/core-concepts/state-transition-proof/architecture.md
           - Aggchain Proof: agglayer/core-concepts/state-transition-proof/aggchain-proof.md
       #   - AggKit:
@@ -98,15 +98,19 @@ nav:
       #   - Message Bridging: agglayer/bridging/message-bridging.md
       #   - Bridge-and-Call: agglayer/bridging/bridge-and-call.md
       #   - Bridge on Agglayer via VaultBridge: agglayer/bridging/vaultbridge.md
-      # - Developer Tools:
-      #   - agglayer/developer-tools/index.md
-      #   - Agglayer SDK: agglayer/developer-tools/agglayer-sdk.md
-      #   - AggSandbox:
-      #     - agglayer/developer-tools/aggsandbox/index.md
-      #     - Installation: agglayer/developer-tools/aggsandbox/installation.md
-      #     - CLI Commands: agglayer/developer-tools/aggsandbox/cli-commands.md
-      #     - Local Development: agglayer/developer-tools/aggsandbox/local-development.md
-      #     - Forking from Mainnet: agglayer/developer-tools/aggsandbox/forking.md
+      - Developer Tools:
+        - agglayer/developer-tools/index.md
+        # - Agglayer SDK: agglayer/developer-tools/agglayer-sdk.md
+        - AggSandbox:
+          - Introduction: agglayer/developer-tools/aggsandbox/introduction.md
+          - Quickstart: agglayer/developer-tools/aggsandbox/quickstart.md
+          - Installation: agglayer/developer-tools/aggsandbox/installation.md
+          - Architecture: agglayer/developer-tools/aggsandbox/architecture.md
+          - Bridge Basics: agglayer/developer-tools/aggsandbox/bridge-basics.md
+          - Asset Bridging: agglayer/developer-tools/aggsandbox/asset-bridging.md
+          - Message Bridging: agglayer/developer-tools/aggsandbox/message-bridging.md
+          - Bridge-and-Call: agglayer/developer-tools/aggsandbox/bridge-and-call.md
+          - CLI Commands: agglayer/developer-tools/aggsandbox/cli-commands.md
       #   - Lxly.js:
       #     - agglayer/developer-tools/lxlyjs/index.md
       #     - Installation: agglayer/developer-tools/lxlyjs/installation.md

@@ -149,9 +149,3 @@ sequenceDiagram
 - **Atomic Operations**: All operations succeed or fail completely through the comprehensive validation pipeline where any failure in consensus verification, bridge constraints, or pessimistic proof validation causes the entire state transition to be rejected
 - **Proof Requirements**: Invalid operations cannot proceed without proper verification because the system requires valid cryptographic proofs at multiple stages (consensus + bridge + balance conservation) before accepting any state changes
 
-<!-- CTA Button Component -->
-<div style="text-align: center; margin: 3rem 0;">
-  <a href="/agglayer/core-concepts/state-transition-proof/aggchain-proof/" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
-    Learn about Aggchain Proof →
-  </a>
-</div>

@@ -225,10 +225,3 @@ sequenceDiagram
     L2B_BridgeExt->>JumpPoint: Create JumpPoint contract
     JumpPoint->>Target_Contract: Execute call with assets
 ```
-
-<!-- CTA Button Component -->
-<div style="text-align: center; margin: 3rem 0;">
-  <a href="/agglayer/core-concepts/pessimistic-proof" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
-    Learn About Pessimistic Proof →
-  </a>
-</div>

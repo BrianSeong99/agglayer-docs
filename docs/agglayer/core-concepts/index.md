@@ -79,7 +79,7 @@ Ready to understand how Agglayer works? Start with the fundamentals and work you
     <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
       Gateway 1: Where cross-chain transactions happen. Learn how assets and messages move between chains securely.
     </p>
-    <a href="/agglayer/core-concepts/unified-bridge/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+    <a href="/agglayer/core-concepts/unified-bridge/introduction" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
       Learn more →
     </a>
   </div>
@@ -92,7 +92,7 @@ Ready to understand how Agglayer works? Start with the fundamentals and work you
     <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
       Gateway 2: The financial firewall. Understand how Agglayer prevents compromised chains from draining funds.
     </p>
-    <a href="/agglayer/core-concepts/pessimistic-proof/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+    <a href="/agglayer/core-concepts/pessimistic-proof/introduction" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
       Learn more →
     </a>
   </div>
@@ -105,16 +105,9 @@ Ready to understand how Agglayer works? Start with the fundamentals and work you
     <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
       Gateway 3: Dual proof system. Learn how Agglayer validates both internal chain operations and cross-chain transfers.
     </p>
-    <a href="/agglayer/core-concepts/state-transition-proof/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+    <a href="/agglayer/core-concepts/state-transition-proof/introduction" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
       Learn more →
     </a>
   </div>
 
-</div>
-
-<!-- CTA Button Component -->
-<div style="text-align: center; margin: 3rem 0;">
-  <a href="/agglayer/get-started/quickstart/" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
-    Start Building with Agglayer →
-  </a>
 </div>

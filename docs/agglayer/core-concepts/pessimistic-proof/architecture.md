@@ -183,10 +183,3 @@ Pessimistic Proof computation is primarily focused on state transition verificat
 ![Execution Graph](../../../img/agglayer/execution_graph.png)
 
 *Figure 2: Execution profile showing Keccak hash dominance in computation*
-
-<!-- CTA Button Component -->
-<div style="text-align: center; margin: 3rem 0;">
-  <a href="/agglayer/core-concepts/pessimistic-proof/data-structures/" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
-    Learn About Data Structures →
-  </a>
-</div>

@@ -102,14 +102,3 @@ But all this complexity is hidden behind simple, familiar interfaces.
 Agglayer represents the evolution toward a truly unified blockchain ecosystem. Just as TCP/IP enabled the internet to become a unified network rather than isolated systems, Agglayer is building the infrastructure for a unified Web3.
 
 The goal isn't to replace existing chains, but to connect them in a way that preserves their sovereignty while enabling seamless interoperability. Each chain can continue to innovate and specialize while participating in a larger, more powerful network.
-
-## Dive Deeper
-
-Ready to understand how Agglayer works under the hood?
-
-<!-- CTA Button Component -->
-<div style="text-align: center; margin: 3rem 0;">
-  <a href="/agglayer/core-concepts/architecture/" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
-    Learn About Architecture →
-  </a>
-</div>

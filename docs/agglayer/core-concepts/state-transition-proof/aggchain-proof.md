@@ -254,9 +254,3 @@ flowchart TD
 
 - **Root Verification**: Confirms that **Merkle proofs** lead to the correct **L1 Info Root** by reconstructing the proof path and validating that it produces the expected root hash. This verification ensures that proofs are based on legitimate L1 state and haven't been tampered with.
 
-<!-- CTA Button Component -->
-<div style="text-align: center; margin: 3rem 0;">
-  <a href="/agglayer/core-concepts/aggkit" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
-    Learn About Aggkit →
-  </a>
-</div>

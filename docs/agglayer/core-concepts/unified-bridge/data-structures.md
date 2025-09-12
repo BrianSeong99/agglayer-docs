@@ -167,9 +167,3 @@ This structure enables efficient lookup of any transaction across the entire net
 
 ![Bridge and Call L2 to L2](../../../img/agglayer/BridgeAndCallProcess.png)
 
-<!-- CTA Button Component -->
-<div style="text-align: center; margin: 3rem 0;">
-  <a href="/agglayer/core-concepts/unified-bridge/bridge-components/" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
-    Learn About Components →
-  </a>
-</div>
