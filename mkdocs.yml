@@ -69,25 +69,12 @@ nav:
           - Asset Bridging: agglayer/core-concepts/unified-bridge/asset-bridging.md
           - Message Bridging: agglayer/core-concepts/unified-bridge/message-bridging.md
           - Bridge-and-Call: agglayer/core-concepts/unified-bridge/bridge-and-call.md
-      #   - Pessimistic Proofs: 
-      #     - agglayer/core-concepts/pessimistic-proofs.md
-      #     - Architecture & Data:
-      #       - Architecture Overview: agglayer/core-concepts/pessimistic-proofs/architecture.md
-      #       - Data Structures: agglayer/core-concepts/pessimistic-proofs/data-structures.md
-      #       - Local Balance Tree: agglayer/core-concepts/pessimistic-proofs/local-balance-tree.md
-      #       - Nullifier Tree: agglayer/core-concepts/pessimistic-proofs/nullifier-tree.md
-      #     - Proof Components:
-      #       - Bridge Exits: agglayer/core-concepts/pessimistic-proofs/bridge-exits.md
-      #       - Imported Bridge Exits: agglayer/core-concepts/pessimistic-proofs/imported-bridge-exits.md
-      #       - Multi Batch Header: agglayer/core-concepts/pessimistic-proofs/multi-batch-header.md
-      #       - Proof Generation: agglayer/core-concepts/pessimistic-proofs/proof-generation.md
-      #     - zkVM Integration:
-      #       - zkVM Integration: agglayer/core-concepts/pessimistic-proofs/zkvm-integration.md
-      #       - SP1 Prover Network: agglayer/core-concepts/pessimistic-proofs/sp1-prover-network.md
-      #       - RiscZero Integration: agglayer/core-concepts/pessimistic-proofs/risczero-integration.md
-      #       - Pico Integration: agglayer/core-concepts/pessimistic-proofs/pico-integration.md
-      #     - Performance & Benchmarks:
-      #       - Performance Benchmarks: agglayer/core-concepts/pessimistic-proofs/performance-benchmarks.md
+        - Pessimistic Proof: 
+          - agglayer/core-concepts/pessimistic-proof.md
+          - Architecture: agglayer/core-concepts/pessimistic-proof/architecture.md
+          - Data Structures: agglayer/core-concepts/pessimistic-proof/data-structures.md
+          - Proof Generation: agglayer/core-concepts/pessimistic-proof/proof-generation.md
+          - Benchmarks: agglayer/core-concepts/pessimistic-proof/benchmarks.md
       #   - State Transition Proofs: 
       #     - agglayer/core-concepts/state-transition-proofs.md
       #     - Background & Overview:

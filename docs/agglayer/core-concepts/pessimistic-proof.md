@@ -1,77 +1,132 @@
-# Pessimistic Proof
+---
+title: Pessimistic Proof
+---
+
+<!-- Page Header Component -->
+<h1 style="text-align: left; font-size: 38px; font-weight: 700; font-family: 'Inter Tight', sans-serif;">
+  Pessimistic Proof
+</h1>
+
+<div style="text-align: left; margin: 0.5rem 0;">
+  <p style="font-size: 18px; color: #666; max-width: 600px; margin: 0;">
+    Advanced security mechanism that prevents compromised chains from draining funds beyond their deposits
+  </p>
+</div>
+
+## Background
+
+### Chains Connected to Agglayer
+
+Agglayer creates a seamless network that bridges independent blockchain ecosystems into one cohesive experience. By connecting sovereign chains, it enables:
+
+- **Unified liquidity pools** across chains
+- **Seamless user experience** as if operating on a single chain
+- **Shared state and network effects** between different blockchains
+- **Enhanced security** through its interconnected design
+
+This architecture delivers the best of both worlds - chains maintain their sovereignty while users benefit from a smooth, integrated multi-chain experience with improved capital efficiency and stronger network effects.
+
+### Security Challenge
+
+While the Unified Bridge provides robust security for cross-chain transactions, Agglayer implements additional protective measures to handle a critical scenario: **what happens if a connected L2 becomes compromised?**
+
+This multi-layered security approach addresses two key aspects:
+
+1. The bridge ensures safe cross-chain transaction flows
+2. Protection mechanisms safeguard funds on Agglayer even if connected L2s become compromised
+
+The second aspect is secured via **Pessimistic Proof**.
 
 ## Overview
 
-The pessimistic proof provides each chain connected to the Agglayer a way to cryptographically prove that any withdrawal claims made to the Agglayer are backed by deposits made to the unified bridge contract. The pessimistic proof is a novel ZK proof whose program logic is written in Rust and proven using the SP1 zkVM and the Plonky3 proving system.
+Agglayer assumes every prover can be unsound. The pessimistic proof guarantees that even if a prover for a chain is unsound, that prover cannot drain more funds than are currently deposited on that chain. In this way, the soundness issue cannot infect the rest of the ecosystem.
 
+**Key Benefits:**
+- **Containment**: Limits damage to individual chain deposits
+- **Ecosystem Protection**: Prevents security issues from spreading
+- **Financial Isolation**: Creates a "firewall" between chains
 
-## Design & Safety
+## What You Can Do
 
-The Agglayer is designed to be flexible enough to support blockchain architectures with different state transition functions, including Proof of Stake–style consensus or ZK rollups that use different proving systems.
+- **Secure Multi-Chain Assets**: Protect funds across interconnected chains
+- **Isolate Risk**: Contain potential security breaches to individual chains
+- **Enable Safe Interoperability**: Allow chains to interact without systemic risk
 
-The pessimistic proof does not extend security to chains integrated with the Agglayer; rather, each chain connected to the Agglayer is as secure as it would be if it were not integrated with the Agglayer.
+## How It Works
 
-The Agglayer uses per-chain pessimistic proofs to ensure a complete view of all token and message transfers occurring over the protocol. This allows chains that may not trust one another to safely interoperate.
+The pessimistic proof mechanism implements a safety boundary between chains - it ensures that even if a chain's prover becomes compromised or unsound, the damage is strictly limited to the funds currently deposited on that specific chain.
 
-## Integration with State Transition Proof
+![Pessimistic Proof Flow](../../img/agglayer/PessimisticProofFlow.png)
 
-The pessimistic proof works as part of the State Transition Proof system, specifically in the cross-chain verification layer. After the Aggchain Proof verifies both internal chain operations and bridge constraints, the pessimistic proof provides the final verification step to ensure asset balance consistency across the network.
+**Security Model:**
 
-### Verification Flow
+- Each chain has a financial "blast radius" limited to its own deposits
+- State transitions are cryptographically verified before acceptance
+- Mathematical constraints prevent unauthorized fund drainage
 
-1. **State Transition Proof**: Verifies internal chain operations (ECDSA or Validity Proof)
-2. **Aggchain Proof**: Verifies bridge constraints and combines internal verification with bridge verification
-3. **Pessimistic Proof**: Final verification of asset balance changes and nullifier updates
+## Getting Started
 
+Ready to learn about Pessimistic Proof?
 
-## Building a Pessimistic Proof
+<div style="display: flex; flex-direction: column; gap: 1rem; max-width: 800px; margin: 1rem 0;">
 
-For any cross-chain token transfer to be finalized such that the token may be withdrawn on the underlying L1, a valid pessimistic proof must be generated. Each chain connected to the Agglayer is required to provide some of the inputs necessary for building a valid pessimistic proof.
+  <!-- Architecture Overview Card -->
+  <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
+    <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
+      Architecture Overview
+    </h3>
+    <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
+      Understand how Pessimistic Proof works and its role in Agglayer security.
+    </p>
+    <a href="/agglayer/core-concepts/pessimistic-proof/architecture/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+      Learn more →
+    </a>
+  </div>
 
-The pessimistic proof now receives validated bridge events from the Aggchain Proof, ensuring that only verified cross-chain operations are processed.
+  <!-- Data Structures Card -->
+  <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
+    <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
+      Data Structures
+    </h3>
+    <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
+      Explore Local Balance Trees, Nullifier Trees, and other core data structures.
+    </p>
+    <a href="/agglayer/core-concepts/pessimistic-proof/data-structures/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+      Learn more →
+    </a>
+  </div>
 
-Note: For more on how the Agglayer settles bridge claims to the underlying L1, see: [Unified Bridge](https://docs.agglayer.dev/agglayer/core-concepts/unified-bridge/)
+  <!-- Proof Generation Card -->
+  <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
+    <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
+      Proof Generation
+    </h3>
+    <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
+      Learn how pessimistic proof is generated and validated in zkVMs.
+    </p>
+    <a href="/agglayer/core-concepts/pessimistic-proof/proof-generation/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+      Learn more →
+    </a>
+  </div>
 
+  <!-- Benchmarks Card -->
+  <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
+    <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
+      Pessimistic Proof Benchmarks
+    </h3>
+    <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
+      Experimental performance analysis across different zkVM implementations.
+    </p>
+    <a href="/agglayer/core-concepts/pessimistic-proof/benchmarks/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+      Learn more →
+    </a>
+  </div>
 
-## Chain State
+</div>
 
-Each chain has a Local Network State composed of three Sparse Merkle Trees.
-
-* **Local Exit Tree** <br>
-    * The Local Exit Tree tracks only the messages and token transfers originating from it. In the unified bridge, Ethereum holds a Global Exit Tree, which represents a tree containing all of the Local Exit Roots of chains integrated with the Agglayer.
-
-* **Local Balance Tree** <br>
-    * The Local Balance Tree*tracks the total balance for all tokens of the given chain. The tokens which originate from one chain (as per the token info) are not tracked in the Local Balance Tree because they have the capacity to withdraw unlimited funds as the token supplier.
-
-* **Nullifier Tree** <br>
-    * The Nullifier Tree tracks all the imported bridge exits which are claimed. The main purpose of this tree is to prevent double spend through a replay attack by nullifying every claim after proper update of the source chain’s Local Balance Tree.
-
-!!! note  
-    The settlement of one pessimistic proof updates solely the Local Network State of the given source chain.  
-    In particular: no update is performed on the Local Network State of the destination chains.  
-    The destination chain gets updated only upon submission of a verifiable proof by the destination chain, which would potentially include received claims.
-
-
-The two chain operations update the source chain Local Network State differently:
-
-* **Operation 1: Withdrawals**
-    * Append the withdrawal in the Local Exit Tree
-    * Debit the token balance in the Local Balance Tree
-
-* **Operation 2: Claims** 
-    * Append a unique identifier of the claim (so-called "global index") in the Local Nullifier Tree**
-    * Credit the token balance in the Local Balance Tree
-
-
-
-## Proving Statement 
-
-The pessimistic proof cryptographically attests to two statements:
-
-1. **No chain withdraws more than what it claimed.**
-    * Ensured with the Local Balance Tree accounting.
-2. **A chain can claim only what has been received from a settled L1 state.**
-    * Ensured by verifying the inclusion proofs against the L1 Info Tree (committing to all bridge transactions) for all claims.
-
-If the computation performed within the pessimistic proof is consistent, a valid proof is generated.
-
+<!-- CTA Button Component -->
+<div style="text-align: center; margin: 3rem 0;">
+  <a href="/agglayer/get-started/quickstart/" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
+    Start Building →
+  </a>
+</div>
