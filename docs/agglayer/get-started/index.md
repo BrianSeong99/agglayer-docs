@@ -1,7 +1,5 @@
 ---
 title: Get Started
-hide:
-  - toc
 ---
 
 <!-- Page Header Component -->
@@ -15,6 +13,31 @@ hide:
   </p>
 </div>
 
+## Ready to Build Cross-Chain Applications?
+
+Whether you're building your first cross-chain DeFi protocol, creating multi-chain gaming experiences, or exploring unified liquidity solutions, Agglayer provides the tools and infrastructure you need.
+
+### Your Development Journey
+
+**Start Local**: Set up a complete development environment on your machine with **AggSandbox** - no need for testnets or complex configurations to start experimenting.
+
+**Explore Networks**: Understand which chains are currently supported and their specific configurations, so you can choose the right networks for your application.
+
+**Build Production Apps**: Access the **Agglayer Developer Portal** with production-ready examples, interactive tools, and real-world implementations.
+
+### What You Can Build
+
+With Agglayer, you can create applications that were previously impossible or extremely complex:
+
+- **Atomic Cross-Chain Operations**: Execute complex operations across multiple chains in a single transaction
+- **Unified Asset Management**: Build applications where users' assets work seamlessly across all supported chains
+- **Cross-Chain Smart Contracts**: Create contracts that can trigger actions and transfer value across different networks
+- **Multi-Chain User Experiences**: Build interfaces where users don't need to think about which chain they're using
+
+## Start Your Build
+
+Choose your starting point based on your goals:
+
 <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 800px; margin: 1rem 0;">
 
   <!-- Quickstart Card -->
@@ -23,7 +46,7 @@ hide:
       Quickstart
     </h3>
     <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
-      Get your local development environment up and running in under 5 minutes with AggSandbox.
+      Set up a complete local development environment with AggSandbox. Test cross-chain operations without testnets or external dependencies.
     </p>
     <a href="/agglayer/get-started/quickstart/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
       Start Building →
@@ -36,7 +59,7 @@ hide:
       Supported Networks
     </h3>
     <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
-      Learn about the networks currently supported by Agglayer and their configurations.
+      Explore supported networks, their unique features, and configuration details to choose the right chains for your application.
     </p>
     <a href="https://build.agglayer.dev/chains" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
       View Networks →
@@ -49,7 +72,7 @@ hide:
       Agglayer Developer Portal
     </h3>
     <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
-      Access the interactive developer portal with production-ready examples and tools.
+      Access production-ready code examples, interactive tools, and real implementations you can deploy immediately.
     </p>
     <a href="https://build.agglayer.dev/" target="_blank" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
       Open Portal →

@@ -13,27 +13,35 @@ title: Core Concepts
   </p>
 </div>
 
-## Overview
+## Understanding Agglayer's Architecture
 
-Agglayer is a next-generation interoperability protocol that enables seamless communication and asset transfer between different blockchain networks. It's a unified protocol that connects multiple blockchain networks, enabling users and developers to interact across different chains as if they were a single ecosystem.
+Agglayer solves blockchain fragmentation through a sophisticated multi-component architecture. Rather than building simple bridges between chains, Agglayer creates a unified interoperability protocol that makes cross-chain operations as seamless as single-chain transactions.
 
-**Key Features:**
+### The Challenge We're Solving
 
-- **Unified Experience**: Single SDK integration for all cross-chain operations
-- **Security First**: Multiple layers of security and verification
-- **Developer Friendly**: Easy-to-use tools and comprehensive documentation
-- **Scalable Architecture**: Designed to support hundreds of connected chains
+Today's blockchain ecosystem forces users and developers to navigate complex multi-step processes for cross-chain operations. Want to use your ETH from Ethereum in a Polygon DeFi protocol? You'll need to bridge assets, wait for confirmations, deal with wrapped tokens, and hope nothing goes wrong in the process.
 
-**Core Components:**
+### Agglayer's Approach
 
-- **AggKit**: Developer toolkit for building cross-chain applications
-- **Unified Bridge**: Seamless asset and message transfer mechanism
-- **Proof Systems**: Multiple verification layers for security
-- **Developer Tools**: Comprehensive SDKs and development environments
+Agglayer reimagines this entirely. Instead of connecting chains through bridges, it creates a **unified network** where:
 
-## Getting Started
+- **Assets maintain their identity** across chains (no wrapped tokens)
+- **Operations are atomic** across multiple chains (all succeed or all fail)
+- **Security is mathematical** (cryptographic proofs, not trusted parties)
+- **Chains remain sovereign** (no compromise on decentralization)
 
-Ready to dive deeper? Explore each concept to understand how Agglayer works:
+### What You'll Learn
+
+The following concepts will take you from understanding the problem to mastering the technical implementation:
+
+- **Foundation**: Start with understanding what Agglayer is and why it exists - learn how it transforms the fragmented blockchain landscape into a unified, interoperable network
+- **Architecture**: Learn how the components work together to enable seamless interoperability - from high-level system design to detailed component interactions
+- **Security Systems**: Understand the three security gateways that protect cross-chain operations - each providing different layers of mathematical and cryptographic protection
+- **Implementation**: Dive deep into the technical mechanisms that make it all possible - Merkle trees, cryptographic proofs, and state verification systems
+
+## Explore the Concepts
+
+Ready to understand how Agglayer works? Start with the fundamentals and work your way up to the technical details:
 
 <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 800px; margin: 1rem 0;">
 
@@ -43,7 +51,7 @@ Ready to dive deeper? Explore each concept to understand how Agglayer works:
       What is Agglayer?
     </h3>
     <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
-      Learn about Agglayer's purpose, vision, and how it solves the interoperability challenge in blockchain.
+      Start here to understand the blockchain fragmentation problem and how Agglayer creates a unified interoperability solution.
     </p>
     <a href="/agglayer/core-concepts/what-is-agglayer/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
       Learn more →
@@ -56,9 +64,48 @@ Ready to dive deeper? Explore each concept to understand how Agglayer works:
       Architecture
     </h3>
     <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
-      Understand Agglayer's technical architecture, components, and how they work together.
+      Explore the overall system design and learn how different components coordinate to enable unified cross-chain operations.
     </p>
     <a href="/agglayer/core-concepts/architecture/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+      Learn more →
+    </a>
+  </div>
+
+  <!-- Unified Bridge Card -->
+  <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
+    <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
+      Unified Bridge
+    </h3>
+    <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
+      Gateway 1: Where cross-chain transactions happen. Learn how assets and messages move between chains securely.
+    </p>
+    <a href="/agglayer/core-concepts/unified-bridge/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+      Learn more →
+    </a>
+  </div>
+
+  <!-- Pessimistic Proof Card -->
+  <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
+    <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
+      Pessimistic Proof
+    </h3>
+    <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
+      Gateway 2: The financial firewall. Understand how Agglayer prevents compromised chains from draining funds.
+    </p>
+    <a href="/agglayer/core-concepts/pessimistic-proof/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+      Learn more →
+    </a>
+  </div>
+
+  <!-- State Transition Proof Card -->
+  <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
+    <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
+      State Transition Proof
+    </h3>
+    <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
+      Gateway 3: Dual proof system. Learn how Agglayer validates both internal chain operations and cross-chain transfers.
+    </p>
+    <a href="/agglayer/core-concepts/state-transition-proof/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
       Learn more →
     </a>
   </div>
