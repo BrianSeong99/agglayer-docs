@@ -244,27 +244,6 @@ sequenceDiagram
     L2B_Bridge->>Target_Contract: Execute message
     Target_Contract->>Target_Contract: onMessageReceived()
 ```
-
-## Security Considerations
-
-### Message Validation
-
-- **Proof Verification**: All messages require valid Merkle proofs
-- **Global Exit Root**: Messages verified against synchronized GER
-- **Finality**: Messages only claimable after L1 finality
-
-### Execution Security
-
-- **Gas Limits**: Gas limits prevent infinite loops and excessive gas usage
-- **Value Limits**: ETH value limits prevent excessive value transfers
-- **Contract Validation**: Destination contracts should validate message sources
-
-### Economic Security
-
-- **No Double Execution**: Each message can only be executed once
-- **Proof Requirements**: Cryptographic proofs prevent invalid message execution
-- **Finality Requirements**: L1 finality ensures message security
-
 <!-- CTA Button Component -->
 <div style="text-align: center; margin: 3rem 0;">
   <a href="/agglayer/core-concepts/unified-bridge/bridge-and-call" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">

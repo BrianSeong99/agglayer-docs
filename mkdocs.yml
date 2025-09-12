@@ -63,14 +63,15 @@ nav:
         - What is Agglayer?: agglayer/core-concepts/what-is-agglayer.md
         - Architecture: agglayer/core-concepts/architecture.md
         - Unified Bridge: 
-          - agglayer/core-concepts/unified-bridge.md
+          - Introduction: agglayer/core-concepts/unified-bridge.md
+          - Architecture: agglayer/core-concepts/unified-bridge/architecture.md
           - Data Structures: agglayer/core-concepts/unified-bridge/data-structures.md
           - Bridge Components: agglayer/core-concepts/unified-bridge/bridge-components.md
           - Asset Bridging: agglayer/core-concepts/unified-bridge/asset-bridging.md
           - Message Bridging: agglayer/core-concepts/unified-bridge/message-bridging.md
           - Bridge-and-Call: agglayer/core-concepts/unified-bridge/bridge-and-call.md
         - Pessimistic Proof: 
-          - agglayer/core-concepts/pessimistic-proof.md
+          - Introduction: agglayer/core-concepts/pessimistic-proof.md
           - Architecture: agglayer/core-concepts/pessimistic-proof/architecture.md
           - Data Structures: agglayer/core-concepts/pessimistic-proof/data-structures.md
           - Proof Generation: agglayer/core-concepts/pessimistic-proof/proof-generation.md

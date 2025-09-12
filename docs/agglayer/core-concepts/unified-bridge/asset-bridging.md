@@ -251,27 +251,6 @@ sequenceDiagram
     L2B_Bridge->>L2B_Bridge: Verify Merkle proofs
     L2B_Bridge->>User: Mint/Transfer tokens
 ```
-
-## Security Considerations
-
-### Proof Verification
-
-- **Merkle Proofs**: All claims require valid Merkle proofs
-- **Global Exit Root**: Claims verified against synchronized GER
-- **Finality**: Claims only possible after L1 finality
-
-### Token Security
-
-- **Asset Locking**: Source chain assets locked until claimed
-- **Burn and Mint**: Foreign tokens burned on source, minted on destination
-- **Transfer Verification**: All transfers verified before execution
-
-### Economic Security
-
-- **No Double Spending**: Each transaction can only be claimed once
-- **Proof Requirements**: Cryptographic proofs prevent invalid claims
-- **Finality Requirements**: L1 finality ensures transaction security
-
 <!-- CTA Button Component -->
 <div style="text-align: center; margin: 3rem 0;">
   <a href="/agglayer/core-concepts/unified-bridge/message-bridging/" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">

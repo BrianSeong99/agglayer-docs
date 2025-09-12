@@ -123,10 +123,3 @@ Ready to learn about Pessimistic Proof?
   </div>
 
 </div>
-
-<!-- CTA Button Component -->
-<div style="text-align: center; margin: 3rem 0;">
-  <a href="/agglayer/get-started/quickstart/" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
-    Start Building →
-  </a>
-</div>

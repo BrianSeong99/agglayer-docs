@@ -27,16 +27,21 @@ Each Agglayer connected chain maintains its own Local Exit Tree (LET) that recor
 
 ### Local Exit Tree (LET)
 
-- **Structure**: 32-level binary Sparse Merkle Tree
-- **Purpose**: Records all bridge transactions initiated on the chain
-- **Storage**: Maintained in `PolygonZKEVMBridgeV2.sol` on each chain
-- **Updates**: Root updated with each new cross-chain transaction
+- **Structure**: A 32-level binary Sparse Merkle Tree that efficiently stores bridge transaction data. The tree uses a sparse representation, meaning it only stores non-zero values, making it highly efficient for storing mostly-empty trees with occasional transactions.
+
+- **Purpose**: Records all bridge transactions initiated on the chain as cryptographic commitments. Each outgoing `bridgeAsset` or `bridgeMessage` transaction is hashed and stored as a leaf node, creating an immutable record of all cross-chain activities originating from this chain.
+
+- **Storage**: Maintained in the `PolygonZKEVMBridgeV2.sol` contract deployed on each chain. This contract serves as both the user interface for bridge operations and the storage mechanism for the Local Exit Tree state.
+
+- **Updates**: The tree root is recalculated and updated with each new cross-chain transaction. This ensures that the Local Exit Root always represents the current state of all bridge transactions from this chain.
 
 ### Local Index (depositCount)
 
-- **Definition**: The index of the leaf node in the Local Exit Tree
-- **Value**: Each leaf represents a hash of a cross-chain transaction (`bridgeAsset` or `bridgeMessage`)
-- **Increment**: Incremented with each new bridge transaction
+- **Definition**: The sequential index of the leaf node in the Local Exit Tree, starting from 0 and incrementing by 1 for each new transaction. This creates a unique identifier for each bridge transaction within the chain's Local Exit Tree.
+
+- **Value**: Each leaf at this index represents a Keccak256 hash of a complete cross-chain transaction, including all transaction details like destination chain, recipient address, token amount, and metadata.
+
+- **Increment**: Automatically incremented with each new bridge transaction, ensuring that every cross-chain operation gets a unique position in the tree. This index is crucial for generating Merkle proofs during the claim process.
 
 ![Local Exit Tree](../../../img/agglayer/LET.png)
 
@@ -48,15 +53,19 @@ The Rollup Exit Root (RER) is the Merkle root of all L2s' Local Exit Roots, main
 
 ### How it Works
 
-1. **L2 Submission**: L2s submit their Local Exit Root to `PolygonRollupManager.sol` on L1
-2. **Frequency**: L2s can choose to submit immediately or batch multiple transactions
-3. **RER Update**: RollupManager updates the Rollup Exit Tree with the new L2 LET
-4. **GER Update**: RER update triggers Global Exit Root update
+1. **L2 Submission**: Connected L2s periodically submit their updated Local Exit Root to the `PolygonRollupManager.sol` contract on L1. This submission includes cryptographic proof that the Local Exit Root represents valid bridge transactions that have been properly sequenced and finalized on the L2.
+
+2. **Frequency**: L2s have flexibility in submission timing - they can submit their Local Exit Root immediately after each bridge transaction for fastest finality, or batch multiple transactions together before submitting to optimize for L1 gas costs and throughput.
+
+3. **RER Update**: The RollupManager validates the submitted Local Exit Root and updates the corresponding leaf in the Rollup Exit Tree. This creates a new Rollup Exit Root that represents the aggregated state of all connected L2s' bridge activities.
+
+4. **GER Update**: When the Rollup Exit Root changes, it automatically triggers an update to the Global Exit Root in the `PolygonZkEVMGlobalExitRootV2.sol` contract, ensuring the unified state is always current.
 
 ### Key Contracts
 
-- **PolygonRollupManager.sol**: Manages L2 state updates on L1
-- **PolygonZkEVMGlobalExitRootV2.sol**: Updates GER when RER changes
+- **PolygonRollupManager.sol**: Manages L2 state updates on L1 by validating submitted Local Exit Roots, maintaining the Rollup Exit Tree, and coordinating with the Global Exit Root contract for unified state updates.
+
+- **PolygonZkEVMGlobalExitRootV2.sol**: Automatically updates the Global Exit Root whenever the Rollup Exit Root or Mainnet Exit Root changes, and manages the L1 Info Tree for historical GER tracking.
 
 ![Rollup Exit Tree](../../../img/agglayer/RET.png)
 
@@ -68,14 +77,17 @@ The Mainnet Exit Root (MER) tracks L1 to L2 bridge transactions, similar to how 
 
 ### How it Works
 
-1. **L1 Bridge**: When L1 bridge transactions occur, they're recorded in L1's Local Exit Tree
-2. **MER Update**: Mainnet Exit Root is updated in `PolygonZkEVMGlobalExitRootV2.sol`
-3. **GER Update**: MER update triggers Global Exit Root update
+1. **L1 Bridge**: When users initiate bridge transactions from L1 to connected L2s, these transactions are recorded directly in L1's own Local Exit Tree (called Mainnet Exit Tree). This happens immediately within the same transaction that initiates the bridge operation.
+
+2. **MER Update**: The Mainnet Exit Root is automatically updated in the `PolygonZkEVMGlobalExitRootV2.sol` contract whenever L1 bridge transactions occur. Unlike L2s, L1 doesn't need to submit its Local Exit Root separately since the Global Exit Root contract is on L1 itself.
+
+3. **GER Update**: Any Mainnet Exit Root update immediately triggers a Global Exit Root recalculation, which then gets appended to the L1 Info Tree for L2 synchronization.
 
 ### Key Difference
 
-- **L2s**: Submit their LET to L1 via RollupManager
-- **L1**: Updates its own MER directly in the Global Exit Root contract
+- **L2s**: Must submit their Local Exit Roots to L1 via the RollupManager contract, creating a two-step process where L2 transactions are first finalized locally, then submitted to L1 for global state updates.
+
+- **L1**: Updates its own Mainnet Exit Root directly within the Global Exit Root contract during the bridge transaction itself, eliminating the need for separate submission transactions.
 
 ![Mainnet Exit Tree](../../../img/agglayer/L1MET.png)
 
@@ -95,21 +107,26 @@ GER = hash(RollupExitRoot, MainnetExitRoot)
 
 The L1 Info Tree is a 32-level binary Sparse Merkle Tree that maintains all Global Exit Roots:
 
-- **Purpose**: Historical record of all GER updates
-- **Height**: 32 levels
-- **Updates**: New leaf added with each GER update
-- **Sync**: L2s sync with latest GER via `updateExitRoot` function
+- **Purpose**: Serves as a historical record of all Global Exit Root updates, enabling L2s to synchronize with specific points in time and generate valid Merkle proofs for claims. This tree is essential for the claim verification process.
+
+- **Height**: Uses 32 levels to provide sufficient capacity for storing Global Exit Root updates over the system's lifetime. The sparse nature means only populated leaves consume storage.
+
+- **Updates**: A new leaf is added to the tree each time the Global Exit Root changes (either from Rollup Exit Root or Mainnet Exit Root updates). Each leaf contains the new Global Exit Root value along with timestamp information.
+
+- **Sync**: L2s periodically call the `updateExitRoot` function on their `PolygonZkEVMGlobalExitRootL2.sol` contract to fetch and synchronize with the latest Global Exit Root from L1, ensuring they can validate incoming claims.
 
 ### Global Index
 
-The Global Index is a 256-bit identifier that uniquely locates each cross-chain transaction:
+The Global Index is a 256-bit identifier that uniquely locates each cross-chain transaction within the global system:
 
 | Bits | Purpose | Description |
 |------|---------|-------------|
-| 191 bits | Unused | Reserved bits (typically filled with zeros) |
-| 1 bit | Mainnet Flag | 0 = Rollup, 1 = Mainnet |
-| 32 bits | Rollup Index | Specific rollup ID (only when mainnet flag = 0) |
-| 32 bits | Local Root Index | Index within the local exit tree |
+| 191 bits | Unused | Reserved bits typically filled with zeros for cost efficiency in storage and computation |
+| 1 bit | Mainnet Flag | Indicates transaction origin: 0 = transaction from L2 rollup, 1 = transaction from L1 mainnet |
+| 32 bits | Rollup Index | Identifies the specific L2 rollup within the Rollup Exit Tree (only used when mainnet flag = 0) |
+| 32 bits | Local Root Index | The depositCount/leaf index within the source chain's Local Exit Tree where this transaction is stored |
+
+This structure enables efficient lookup of any transaction across the entire network by encoding the path through the hierarchical tree structure.
 
 ![L1 Info Tree](../../../img/agglayer/L1InfoTree.png)
 

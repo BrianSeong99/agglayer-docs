@@ -226,29 +226,9 @@ sequenceDiagram
     JumpPoint->>Target_Contract: Execute call with assets
 ```
 
-## Security Considerations
-
-### Access Control
-
-- **Bridge Contract Only**: Only bridge contract can call `onMessageReceived`
-- **Origin Validation**: Verify message origin is valid BridgeExtension
-- **Asset Verification**: Ensure asset bridge transaction is properly claimed
-
-### Execution Security
-
-- **Gas Limits**: JumpPoint execution has gas limits to prevent infinite loops
-- **Fallback Handling**: Failed executions transfer assets to fallback address
-- **Contract Validation**: Target contracts should validate call sources
-
-### Economic Security
-
-- **Asset Locking**: Assets locked until successful execution or fallback
-- **No Double Execution**: Each Bridge-and-Call can only be executed once
-- **Proof Requirements**: Cryptographic proofs prevent invalid executions
-
 <!-- CTA Button Component -->
 <div style="text-align: center; margin: 3rem 0;">
-  <a href="/agglayer/get-started/quickstart/" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
-    Start Building →
+  <a href="/agglayer/core-concepts/pessimistic-proof" style="background: #0071F7; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
+    Learn About Pessimistic Proof →
   </a>
 </div>
