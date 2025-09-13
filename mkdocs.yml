@@ -120,13 +120,17 @@ nav:
             - Bridge-and-Call: agglayer/developer-tools/aggsandbox/bridge-and-call.md
           - Reference:
             - CLI Commands: agglayer/developer-tools/aggsandbox/cli-commands.md
-      #   - Lxly.js:
-      #     - agglayer/developer-tools/lxlyjs/index.md
-      #     - Installation: agglayer/developer-tools/lxlyjs/installation.md
-      #     - Client Initialization: agglayer/developer-tools/lxlyjs/client-initialization.md
-      #     - ERC20 Token Operations: agglayer/developer-tools/lxlyjs/erc20-operations.md
-      #     - Custom Contracts: agglayer/developer-tools/lxlyjs/custom-contracts.md
-      #     - API Reference: agglayer/developer-tools/lxlyjs/api-reference.md
+        - Lxly.js:
+          - Introduction: agglayer/developer-tools/lxlyjs/introduction.md
+          - Getting Started:
+            - Installation: agglayer/developer-tools/lxlyjs/installation.md
+            - Client Initialization: agglayer/developer-tools/lxlyjs/client-initialization.md
+          - Bridge Operations:
+            - Bridge Asset: agglayer/developer-tools/lxlyjs/bridge-asset.md
+            - Bridge Message: agglayer/developer-tools/lxlyjs/bridge-message.md
+            - Bridge-and-Call: agglayer/developer-tools/lxlyjs/bridge-and-call.md
+          - Reference:
+            - API Reference: agglayer/developer-tools/lxlyjs/api-reference.md
   - CDK:
       - CDK: cdk/index.md
       - Get Started:

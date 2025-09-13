@@ -73,16 +73,16 @@ graph TD
 - **Cross-chain validation** verifies that bridge operations are secure and atomic
 - **Dual proof system** ensures comprehensive security coverage
 
-## Getting Started
+## Core Concepts
 
-Ready to learn about State Transition Proof?
+Understand the dual proof system architecture:
 
 <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 800px; margin: 1rem 0;">
 
-  <!-- Architecture Overview Card -->
+  <!-- Architecture Card -->
   <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
     <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
-      Architecture Overview
+      Architecture
     </h3>
     <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
       Understand the dual proof system and component interactions.

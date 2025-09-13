@@ -64,16 +64,16 @@ The pessimistic proof mechanism implements a safety boundary between chains - it
 - State transitions are cryptographically verified before acceptance
 - Mathematical constraints prevent unauthorized fund drainage
 
-## Getting Started
+## Core Concepts
 
-Ready to learn about Pessimistic Proof?
+Understand the fundamental architecture and security mechanisms:
 
 <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 800px; margin: 1rem 0;">
 
-  <!-- Architecture Overview Card -->
+  <!-- Architecture Card -->
   <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
     <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
-      Architecture Overview
+      Architecture
     </h3>
     <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
       Understand how Pessimistic Proof works and its role in Agglayer security.
@@ -109,10 +109,16 @@ Ready to learn about Pessimistic Proof?
     </a>
   </div>
 
+</div>
+
+## Reference
+
+<div style="display: flex; flex-direction: column; gap: 1rem; max-width: 800px; margin: 1rem 0;">
+
   <!-- Benchmarks Card -->
   <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
     <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
-      Pessimistic Proof Benchmarks
+      Benchmarks
     </h3>
     <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
       Experimental performance analysis across different zkVM implementations.
