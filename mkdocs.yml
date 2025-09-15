@@ -55,40 +55,82 @@ nav:
       - Overview: index.md
       - Get Started:
         - agglayer/get-started/index.md
-        -  Set up your environment: agglayer/get-started/bridge-assets.md
-      - How To:
-         - agglayer/how-to/index.md
-         - Bridge an ERC-20 token: agglayer/how-to/transfer-asset.md
-         - Call a smart contract cross-chain: agglayer/how-to/call-contract.md
-         - Bridge-and-call in one step: agglayer/how-to/transfer-and-call.md
-         - Deploy balance scanner: agglayer/how-to/balance-scanner.md
+        - Quickstart: agglayer/get-started/quickstart.md
+        - Supported Networks: https://build.agglayer.dev/chains
+        - Agglayer Developer Portal: https://build.agglayer.dev
       - Core Concepts:
-          - agglayer/core-concepts/index.md
-          - Architecture: agglayer/core-concepts/architecture.md
-          - Unified Bridge: agglayer/core-concepts/unified-bridge.md
-          - Pessimistic Proof: agglayer/core-concepts/pessimistic-proof.md
-          - State Transition Proof: agglayer/core-concepts/state-transition-proof.md
-          # - Multi-stack Interop: agglayer/core-concepts/connecting-chains.md
-      - AggSandbox:
-          - agglayer/aggsandbox/index.md
-          - Get Started:
-            - Quickstart: agglayer/aggsandbox/quickstart.md
-            - Installation: agglayer/aggsandbox/installation.md
+        - agglayer/core-concepts/index.md
+        - What is Agglayer?: agglayer/core-concepts/what-is-agglayer.md
+        - Architecture: agglayer/core-concepts/architecture.md
+        - Unified Bridge: 
+          - Introduction: agglayer/core-concepts/unified-bridge/introduction.md
           - Core Concepts:
-            - Architecture: agglayer/aggsandbox/architecture.md
-            - Bridge Basics: agglayer/aggsandbox/bridge-basics.md
+            - Architecture: agglayer/core-concepts/unified-bridge/architecture.md
+            - Data Structures: agglayer/core-concepts/unified-bridge/data-structures.md
+            - Bridge Components: agglayer/core-concepts/unified-bridge/bridge-components.md
           - Bridge Operations:
-            - Asset Bridging: agglayer/aggsandbox/asset-bridging.md
-            - Message Bridging: agglayer/aggsandbox/message-bridging.md
-            - Bridge-and-Call: agglayer/aggsandbox/bridge-and-call.md
+            - Asset Bridging: agglayer/core-concepts/unified-bridge/asset-bridging.md
+            - Message Bridging: agglayer/core-concepts/unified-bridge/message-bridging.md
+            - Bridge-and-Call: agglayer/core-concepts/unified-bridge/bridge-and-call.md
+        - Pessimistic Proof: 
+          - Introduction: agglayer/core-concepts/pessimistic-proof/introduction.md
+          - Core Concepts:
+            - Architecture: agglayer/core-concepts/pessimistic-proof/architecture.md
+            - Data Structures: agglayer/core-concepts/pessimistic-proof/data-structures.md
+            - Proof Generation: agglayer/core-concepts/pessimistic-proof/proof-generation.md
           - Reference:
-            - CLI Commands: agglayer/aggsandbox/cli-commands.md
-      - Additional Resources:
-          - agglayer/additional-resources/index.md
-          - Connected Chains: agglayer/additional-resources/connected-chains.md
-          - 'Deep Dive: Pessimistic Proof ↗': "https://github.com/BrianSeong99/Agglayer_PessimisticProof_Benchmark/"
-          - 'Deep Dive: Unified Bridge ↗': "https://github.com/BrianSeong99/AggLayer_UnifiedBridge/"
-          - 'Deep Dive: State Transition Proof ↗': "https://github.com/BrianSeong99/Agglayer_StateTransitionProof?tab=readme-ov-file#state-transition-proof"
+            - Benchmarks: agglayer/core-concepts/pessimistic-proof/benchmarks.md
+        - State Transition Proof: 
+          - Introduction: agglayer/core-concepts/state-transition-proof/introduction.md
+          - Core Concepts:
+            - Architecture: agglayer/core-concepts/state-transition-proof/architecture.md
+            - Aggchain Proof: agglayer/core-concepts/state-transition-proof/aggchain-proof.md
+      #   - AggKit:
+      #     - agglayer/core-concepts/aggkit/index.md
+      #     - AggSender: agglayer/core-concepts/aggkit/aggsender.md
+      #     - AggOracle: agglayer/core-concepts/aggkit/aggoracle.md
+      #     - Bridge Service: agglayer/core-concepts/aggkit/bridge-service.md
+      #     - L1InfoTreeSync: agglayer/core-concepts/aggkit/l1infotreesync.md
+      #     - ClaimSponsor: agglayer/core-concepts/aggkit/claimsponsor.md
+      #   - Prover:
+      #     - agglayer/core-concepts/prover/index.md
+      #     - Prover Architecture: agglayer/core-concepts/prover/architecture.md
+      #     - Proof Generation: agglayer/core-concepts/prover/proof-generation.md
+      #     - Verification Process: agglayer/core-concepts/prover/verification-process.md
+      # - Bridge on Agglayer:
+      #   - agglayer/bridging/index.md
+      #   - Asset Bridging: agglayer/bridging/asset-bridging.md
+      #   - Message Bridging: agglayer/bridging/message-bridging.md
+      #   - Bridge-and-Call: agglayer/bridging/bridge-and-call.md
+      #   - Bridge on Agglayer via VaultBridge: agglayer/bridging/vaultbridge.md
+      - Developer Tools:
+        - agglayer/developer-tools/index.md
+        # - Agglayer SDK: agglayer/developer-tools/agglayer-sdk.md
+        - AggSandbox:
+          - Introduction: agglayer/developer-tools/aggsandbox/introduction.md
+          - Getting Started:
+            - Quickstart: agglayer/developer-tools/aggsandbox/quickstart.md
+            - Installation: agglayer/developer-tools/aggsandbox/installation.md
+          - Core Concepts:
+            - Architecture: agglayer/developer-tools/aggsandbox/architecture.md
+            - Bridge Basics: agglayer/developer-tools/aggsandbox/bridge-basics.md
+          - Bridge Operations:
+            - Asset Bridging: agglayer/developer-tools/aggsandbox/asset-bridging.md
+            - Message Bridging: agglayer/developer-tools/aggsandbox/message-bridging.md
+            - Bridge-and-Call: agglayer/developer-tools/aggsandbox/bridge-and-call.md
+          - Reference:
+            - CLI Commands: agglayer/developer-tools/aggsandbox/cli-commands.md
+        - Lxly.js:
+          - Introduction: agglayer/developer-tools/lxlyjs/introduction.md
+          - Getting Started:
+            - Installation: agglayer/developer-tools/lxlyjs/installation.md
+            - Client Initialization: agglayer/developer-tools/lxlyjs/client-initialization.md
+          - Bridge Operations:
+            - Bridge Asset: agglayer/developer-tools/lxlyjs/bridge-asset.md
+            - Bridge Message: agglayer/developer-tools/lxlyjs/bridge-message.md
+            - Bridge-and-Call: agglayer/developer-tools/lxlyjs/bridge-and-call.md
+          - Reference:
+            - API Reference: agglayer/developer-tools/lxlyjs/api-reference.md
   - CDK:
       - CDK: cdk/index.md
       - Get Started:
