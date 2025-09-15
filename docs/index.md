@@ -1,4 +1,5 @@
 ---
+title: Agglayer
 hide:
   - toc
 ---
@@ -22,34 +23,41 @@ hide:
 </div>
 
 <div class="hero-left" style="max-width: 85%; margin: 0 auto; padding: 20px; text-align: left;">
-   <p class="hero-subtext">The Agglayer is an interoperability protocol that allows for trustless, cross-chain token transfers and message-passing, as well as more complex operations. The safety of the Agglayer is provided by ZK proofs.</p>
-   <p class="hero-subtext">The latest version of the Agglayer (v0.3) features a comprehensive State Transition Proof system, Pessimistic Proof, and Unified Bridge that enable interoperability among diverse blockchain architectures including ZK-powered Layer 2s, existing L2s, appchains, and non-EVM chains.</p>
-   <p class="hero-subtext">Agglayer CDK allows developers to launch CDK chains natively connected to Agglayer. Learn more about our <a href="/cdk/get-started/overview/#cdk-erigon">CDK-erigon</a> and <a href="/cdk/get-started/overview/#cdk-opgeth">CDK-opgeth</a> stacks</p>
+   <p class="hero-subtext">Agglayer is a unified interoperability protocol that transforms blockchain fragmentation into seamless multi-chain experiences. Build applications where assets maintain their identity across chains, operations are atomic across multiple networks, and security is mathematically guaranteed.</p>
+   <p class="hero-subtext">The current version (v0.3) features three security gateways: the Unified Bridge for cross-chain operations, Pessimistic Proof for financial isolation, and State Transition Proof for comprehensive validation. Together, they enable secure interoperability across diverse blockchain architectures.</p>
 </div>
 
 <div class="grid-container">
    <div class="grid-item">
-    <a href="/agglayer/core-concepts/architecture/">
+    <a href="/agglayer/core-concepts/">
         <div class="product-list-item-header">
-            <div class="feature-card-heading">Architecture</div>
+            <div class="feature-card-heading">Core Concepts</div>
         </div>
-        <p class="feature-paragraph">A high-level overview of the Agglayer’s components and their functions</p>
+        <p class="feature-paragraph">Understand how Agglayer works, from the blockchain fragmentation problem to the three security gateways that solve it</p>
     </a>
 </div>
 <div class="grid-item">
-    <a href="/agglayer/how-to/transfer-and-call/">
+    <a href="/agglayer/get-started/">
         <div class="product-list-item-header">
-            <div class="feature-card-heading">Cross-chain Interop</div>
+            <div class="feature-card-heading">Get Started</div>
         </div>
-        <p class="feature-paragraph">Learn how to use <code>bridgeAndCall()</code> for cross-chain interactions</p>
+        <p class="feature-paragraph">Set up your development environment and build your first cross-chain application in under 10 minutes</p>
     </a>
 </div>
 <div class="grid-item">
-    <a href="/agglayer/core-concepts/pessimistic-proof/">
+    <a href="/agglayer/developer-tools/">
         <div class="product-list-item-header">
-            <div class="feature-card-heading">Pessimistic Proof</div>
+            <div class="feature-card-heading">Developer Tools</div>
         </div>
-        <p class="feature-paragraph">Designed to be chain-agnostic, the pessimistic proof ensures safety for the Agglayer</p>
+        <p class="feature-paragraph">Explore AggSandbox for local testing and Lxly.js SDK for production applications</p>
+    </a>
+</div>
+<div class="grid-item">
+    <a href="https://build.agglayer.dev/" target="_blank">
+        <div class="product-list-item-header">
+            <div class="feature-card-heading">Developer Portal</div>
+        </div>
+        <p class="feature-paragraph">Access supported networks, configurations, and interactive tools for production development</p>
     </a>
 </div>
 </div>
