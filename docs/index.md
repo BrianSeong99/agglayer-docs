@@ -1,7 +1,5 @@
 ---
 title: Agglayer
-hide:
-  - toc
 ---
 
 <style>
