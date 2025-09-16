@@ -52,7 +52,7 @@ theme:
 
 nav:
   - Agglayer: 
-      - Overview: index.md
+      - agglayer/index.md
       - Get Started:
         - agglayer/get-started/index.md
         - Quickstart: agglayer/get-started/quickstart.md
@@ -63,7 +63,7 @@ nav:
         - What is Agglayer?: agglayer/core-concepts/what-is-agglayer.md
         - Architecture: agglayer/core-concepts/architecture.md
         - Unified Bridge: 
-          - Introduction: agglayer/core-concepts/unified-bridge/introduction.md
+          - agglayer/core-concepts/unified-bridge/index.md
           - Core Concepts:
             - Architecture: agglayer/core-concepts/unified-bridge/architecture.md
             - Data Structures: agglayer/core-concepts/unified-bridge/data-structures.md
@@ -73,7 +73,7 @@ nav:
             - Message Bridging: agglayer/core-concepts/unified-bridge/message-bridging.md
             - Bridge-and-Call: agglayer/core-concepts/unified-bridge/bridge-and-call.md
         - Pessimistic Proof: 
-          - Introduction: agglayer/core-concepts/pessimistic-proof/introduction.md
+          - agglayer/core-concepts/pessimistic-proof/index.md
           - Core Concepts:
             - Architecture: agglayer/core-concepts/pessimistic-proof/architecture.md
             - Data Structures: agglayer/core-concepts/pessimistic-proof/data-structures.md
@@ -81,7 +81,7 @@ nav:
           - Reference:
             - Benchmarks: agglayer/core-concepts/pessimistic-proof/benchmarks.md
         - State Transition Proof: 
-          - Introduction: agglayer/core-concepts/state-transition-proof/introduction.md
+          - agglayer/core-concepts/state-transition-proof/index.md
           - Core Concepts:
             - Architecture: agglayer/core-concepts/state-transition-proof/architecture.md
             - Aggchain Proof: agglayer/core-concepts/state-transition-proof/aggchain-proof.md
@@ -107,7 +107,7 @@ nav:
         - agglayer/developer-tools/index.md
         # - Agglayer SDK: agglayer/developer-tools/agglayer-sdk.md
         - AggSandbox:
-          - Introduction: agglayer/developer-tools/aggsandbox/introduction.md
+          - agglayer/developer-tools/aggsandbox/index.md
           - Getting Started:
             - Quickstart: agglayer/developer-tools/aggsandbox/quickstart.md
             - Installation: agglayer/developer-tools/aggsandbox/installation.md
@@ -121,7 +121,7 @@ nav:
           - Reference:
             - CLI Commands: agglayer/developer-tools/aggsandbox/cli-commands.md
         - Lxly.js:
-          - Introduction: agglayer/developer-tools/lxlyjs/introduction.md
+          - agglayer/developer-tools/lxlyjs/index.md
           - Getting Started:
             - Installation: agglayer/developer-tools/lxlyjs/installation.md
             - Client Initialization: agglayer/developer-tools/lxlyjs/client-initialization.md
@@ -236,6 +236,35 @@ plugins:
   - open-in-new-tab
   - redirects:
       redirect_maps:
+        # AggSandbox moved location
+        'agglayer/aggsandbox/index.md': 'agglayer/developer-tools/aggsandbox/index.md'
+        
+        # Introduction pages renamed to index.md for SEO optimization
+        'agglayer/core-concepts/unified-bridge/introduction.md': 'agglayer/core-concepts/unified-bridge/index.md'
+        'agglayer/core-concepts/pessimistic-proof/introduction.md': 'agglayer/core-concepts/pessimistic-proof/index.md'
+        'agglayer/core-concepts/state-transition-proof/introduction.md': 'agglayer/core-concepts/state-transition-proof/index.md'
+        
+        # State Transition Proof files that were consolidated into aggchain-proof.md
+        'agglayer/core-concepts/state-transition-proof/validity-proof.md': 'agglayer/core-concepts/state-transition-proof/aggchain-proof.md'
+        'agglayer/core-concepts/state-transition-proof/ecdsa-verification.md': 'agglayer/core-concepts/state-transition-proof/aggchain-proof.md'
+        
+        # Pessimistic Proof files that were deleted and consolidated into benchmarks.md
+        'agglayer/core-concepts/pessimistic-proof/zkvm-integration.md': 'agglayer/core-concepts/pessimistic-proof/benchmarks.md'
+        'agglayer/core-concepts/pessimistic-proof/performance-benchmarks.md': 'agglayer/core-concepts/pessimistic-proof/benchmarks.md'
+        
+        # Lxly.js files that were renamed during restructuring
+        'agglayer/developer-tools/lxlyjs/erc20-operations.md': 'agglayer/developer-tools/lxlyjs/bridge-asset.md'
+        'agglayer/developer-tools/lxlyjs/custom-contracts.md': 'agglayer/developer-tools/lxlyjs/bridge-message.md'
+        
+        # Overview page was deleted (content moved to index.md)
+        'agglayer/overview.md': 'index.md'
+        
+        # Developer guide was removed from unified bridge
+        'agglayer/core-concepts/unified-bridge/developer-guide.md': 'agglayer/developer-tools/lxlyjs/index.md'
+        
+        # Introduction pages renamed to index.md for SEO optimization (developer tools)
+        'agglayer/developer-tools/aggsandbox/introduction.md': 'agglayer/developer-tools/aggsandbox/index.md'
+        'agglayer/developer-tools/lxlyjs/introduction.md': 'agglayer/developer-tools/lxlyjs/index.md'
         'docs/develop/network-details/network.md': 'cdk/index.md'
         'cdk/getting-started/index.md': 'cdk/getting-started/local-deployment.md'      
         'zkEVM/how-to/index.md': 'zkEVM/get-started/index.md'
