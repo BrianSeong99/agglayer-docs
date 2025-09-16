@@ -18,6 +18,7 @@ title: AggSandbox
 AggSandbox is your comprehensive development environment for Agglayer cross-chain applications. It provides a complete local blockchain ecosystem with pre-configured networks, deployed contracts, and bridge services - eliminating the complexity of setting up infrastructure so you can focus on building and testing your applications.
 
 **Key Benefits:**
+
 - **Instant Setup**: Get a complete multi-chain environment running in minutes
 - **Production Parity**: Test with the same contracts and logic used in production
 - **Rich Debugging**: Comprehensive logging and monitoring for all bridge operations
