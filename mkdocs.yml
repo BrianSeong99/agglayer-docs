@@ -236,8 +236,17 @@ plugins:
   - open-in-new-tab
   - redirects:
       redirect_maps:
-        # AggSandbox moved location
+        # AggSandbox moved location - all pages
         'agglayer/aggsandbox/index.md': 'agglayer/developer-tools/aggsandbox/index.md'
+        'agglayer/aggsandbox/introduction.md': 'agglayer/developer-tools/aggsandbox/index.md'
+        'agglayer/aggsandbox/quickstart.md': 'agglayer/developer-tools/aggsandbox/quickstart.md'
+        'agglayer/aggsandbox/installation.md': 'agglayer/developer-tools/aggsandbox/installation.md'
+        'agglayer/aggsandbox/architecture.md': 'agglayer/developer-tools/aggsandbox/architecture.md'
+        'agglayer/aggsandbox/bridge-basics.md': 'agglayer/developer-tools/aggsandbox/bridge-basics.md'
+        'agglayer/aggsandbox/asset-bridging.md': 'agglayer/developer-tools/aggsandbox/asset-bridging.md'
+        'agglayer/aggsandbox/message-bridging.md': 'agglayer/developer-tools/aggsandbox/message-bridging.md'
+        'agglayer/aggsandbox/bridge-and-call.md': 'agglayer/developer-tools/aggsandbox/bridge-and-call.md'
+        'agglayer/aggsandbox/cli-commands.md': 'agglayer/developer-tools/aggsandbox/cli-commands.md'
         
         # Introduction pages renamed to index.md for SEO optimization
         'agglayer/core-concepts/unified-bridge/introduction.md': 'agglayer/core-concepts/unified-bridge/index.md'
