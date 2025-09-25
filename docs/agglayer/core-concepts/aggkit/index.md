@@ -9,17 +9,17 @@ title: AggKit
 
 <div style="text-align: left; margin: 0.5rem 0;">
   <p style="font-size: 18px; color: #666; max-width: 600px; margin: 0;">
-    The essential synchronization toolkit that connects any blockchain to the unified Agglayer ecosystem
+    The essential synchronization toolkit that connects Aggchains to the unified Agglayer ecosystem
   </p>
 </div>
 
 ## Overview
 
-AggKit is the modular synchronization toolkit that connects any blockchain to the unified Agglayer ecosystem. It provides the essential infrastructure components that L2 chains need to maintain seamless communication with Agglayer and participate in cross-chain operations.
+AggKit is the modular synchronization toolkit that connects Aggchains to the unified Agglayer ecosystem. It provides the essential infrastructure components that L2 chains need to maintain seamless communication with Agglayer and participate in cross-chain operations.
 
 **Key Benefits:**
 
-- **Universal Compatibility**: Works with any L2 chain architecture without requiring infrastructure changes
+- **Universal Compatibility**: Works with L2 chain architecture without requiring infrastructure changes
 - **Modular Design**: Deploy only the components your chain actually needs
 - **Enhanced Security**: v0.3.5 introduces multi-party committee systems for production-ready deployments
 - **Standardized Integration**: Provides a "rinse and repeat" process for connecting chains to Agglayer
