@@ -82,9 +82,8 @@ nav:
             - Benchmarks: agglayer/core-concepts/pessimistic-proof/benchmarks.md
         - State Transition Proof: 
           - agglayer/core-concepts/state-transition-proof/index.md
-          - Core Concepts:
-            - Architecture: agglayer/core-concepts/state-transition-proof/architecture.md
-            - Aggchain Proof: agglayer/core-concepts/state-transition-proof/aggchain-proof.md
+          - Architecture: agglayer/core-concepts/state-transition-proof/architecture.md
+          - Aggchain Proof: agglayer/core-concepts/state-transition-proof/aggchain-proof.md
         - AggKit:
           - agglayer/core-concepts/aggkit/index.md
           - Architecture: agglayer/core-concepts/aggkit/architecture.md
