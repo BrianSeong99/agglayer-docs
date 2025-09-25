@@ -85,24 +85,17 @@ nav:
           - Core Concepts:
             - Architecture: agglayer/core-concepts/state-transition-proof/architecture.md
             - Aggchain Proof: agglayer/core-concepts/state-transition-proof/aggchain-proof.md
-      #   - AggKit:
-      #     - agglayer/core-concepts/aggkit/index.md
-      #     - AggSender: agglayer/core-concepts/aggkit/aggsender.md
-      #     - AggOracle: agglayer/core-concepts/aggkit/aggoracle.md
-      #     - Bridge Service: agglayer/core-concepts/aggkit/bridge-service.md
-      #     - L1InfoTreeSync: agglayer/core-concepts/aggkit/l1infotreesync.md
-      #     - ClaimSponsor: agglayer/core-concepts/aggkit/claimsponsor.md
-      #   - Prover:
-      #     - agglayer/core-concepts/prover/index.md
-      #     - Prover Architecture: agglayer/core-concepts/prover/architecture.md
-      #     - Proof Generation: agglayer/core-concepts/prover/proof-generation.md
-      #     - Verification Process: agglayer/core-concepts/prover/verification-process.md
-      # - Bridge on Agglayer:
-      #   - agglayer/bridging/index.md
-      #   - Asset Bridging: agglayer/bridging/asset-bridging.md
-      #   - Message Bridging: agglayer/bridging/message-bridging.md
-      #   - Bridge-and-Call: agglayer/bridging/bridge-and-call.md
-      #   - Bridge on Agglayer via VaultBridge: agglayer/bridging/vaultbridge.md
+        - AggKit:
+          - agglayer/core-concepts/aggkit/index.md
+          - Architecture: agglayer/core-concepts/aggkit/architecture.md
+          - Components:
+            - agglayer/core-concepts/aggkit/components/index.md
+            - AggSender: agglayer/core-concepts/aggkit/components/aggsender.md
+            - AggOracle: agglayer/core-concepts/aggkit/components/aggoracle.md
+            - BridgeSync: agglayer/core-concepts/aggkit/components/bridge-sync.md
+            - L1InfoTreeSync: agglayer/core-concepts/aggkit/components/l1infotree-sync.md
+            - L2GERSync: agglayer/core-concepts/aggkit/components/l2ger-sync.md
+            - AggchainProofGen: agglayer/core-concepts/aggkit/components/aggchain-proof-gen.md
       - Developer Tools:
         - agglayer/developer-tools/index.md
         # - Agglayer SDK: agglayer/developer-tools/agglayer-sdk.md
@@ -131,6 +124,9 @@ nav:
             - Bridge-and-Call: agglayer/developer-tools/lxlyjs/bridge-and-call.md
           - Reference:
             - API Reference: agglayer/developer-tools/lxlyjs/api-reference.md
+        - Bridge Service API:
+          - agglayer/developer-tools/bridge-service-api/index.md
+          - API Reference: agglayer/developer-tools/bridge-service-api/api-reference.md
   - CDK:
       - CDK: cdk/index.md
       - Get Started:
