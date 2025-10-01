@@ -17,6 +17,8 @@ title: AggKit
 
 AggKit is the modular synchronization toolkit that connects Aggchains to the unified Agglayer ecosystem. It provides the essential infrastructure components that L2 chains need to maintain seamless communication with Agglayer and participate in cross-chain operations.
 
+![AggKit High-Level Architecture](../../../img/agglayer/agglayer-v1.png)
+
 **Key Benefits:**
 
 - **Universal Compatibility**: Works with L2 chain architecture without requiring infrastructure changes
