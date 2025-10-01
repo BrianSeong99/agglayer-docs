@@ -110,4 +110,17 @@ Ready to understand how Agglayer works? Start with the fundamentals and work you
     </a>
   </div>
 
+  <!-- AggKit Card -->
+  <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
+    <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
+      AggKit
+    </h3>
+    <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
+      Essential synchronization toolkit. Learn how any chain can connect to Agglayer with enhanced v0.3.5 security.
+    </p>
+    <a href="/agglayer/core-concepts/aggkit/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+      Learn more →
+    </a>
+  </div>
+
 </div>
