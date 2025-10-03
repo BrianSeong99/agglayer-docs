@@ -1,17 +1,9 @@
 {% extends "base.html" %}
-
 {% block extrahead %}
-
     <!-- Verification for Google search -->
     <meta name="google-site-verification" content="sALqmNQZWZ6_5ig5JqIaFiR6AMUotcGG6xFq_fQPt_U" />
     <!-- End of verification for Google search -->
-
-     <!-- Chef AI -->
-  <script src="https://cdn.jsdelivr.net/npm/@cookbookdev/docsbot/dist/standalone/index.cjs.js" defer></script>
-  <!-- End Chef AI -->
-
 {% endblock %}
-
 {% block scripts %}
   {{ super() }}
   
@@ -19,8 +11,60 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MQWH3L28"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    
-     <!-- Chef AI -->
-     <div id="__cookbook" data-api-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OGIwZGI4MjM0ZWM1OGQ5MjUyNTU0YjgiLCJpYXQiOjE3NTY0MjA5OTQsImV4cCI6MjA3MTk5Njk5NH0.NyQiKbz8J_-k4sngxoWpB2L_FAKrFgegXf_GTtUzLjU" ></div>
-    <!-- End Chef AI -->
+
+    <!-- AskCookbook Integration -->
+    <script>
+      (function () {
+        function initAskCookbook() {
+          // It's a public API key, so it's safe to expose it here
+          const PUBLIC_API_KEY =
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OGIwZGI4MjM0ZWM1OGQ5MjUyNTU0YjgiLCJpYXQiOjE3NTY0MjA5OTQsImV4cCI6MjA3MTk5Njk5NH0.NyQiKbz8J_-k4sngxoWpB2L_FAKrFgegXf_GTtUzLjU";
+
+          let cookbookContainer = document.getElementById("__cookbook");
+          if (!cookbookContainer) {
+            cookbookContainer = document.createElement("div");
+            cookbookContainer.id = "__cookbook";
+            cookbookContainer.dataset.apiKey = PUBLIC_API_KEY;
+            document.body.appendChild(cookbookContainer);
+          }
+
+          let cookbookScript = document.getElementById("__cookbook-script");
+          if (!cookbookScript) {
+            cookbookScript = document.createElement("script");
+            cookbookScript.id = "__cookbook-script";
+            cookbookScript.src =
+              "https://cdn.jsdelivr.net/npm/@cookbookdev/docsbot/dist/standalone/index.cjs.js";
+            cookbookScript.async = true;
+            document.head.appendChild(cookbookScript);
+          }
+
+          const keyPressPropagationBlocker = function (e) {
+            e.stopPropagation();
+          };
+          document.addEventListener(
+            "cookbook:modal:state:change",
+            function (e) {
+              const isOpen = e.detail.isOpen;
+              if (isOpen) {
+                document.body.addEventListener("keydown", keyPressPropagationBlocker, {
+                  capture: true,
+                });
+              } else {
+                document.body.removeEventListener("keydown", keyPressPropagationBlocker, {
+                  capture: true,
+                });
+              }
+            }
+          );
+        }
+
+        if (document.readyState === "complete") {
+          initAskCookbook();
+        } else {
+          window.addEventListener("load", initAskCookbook);
+        }
+      })();
+    </script>
+    <!-- End AskCookbook Integration -->
+
 {% endblock %}
