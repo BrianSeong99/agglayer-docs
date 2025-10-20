@@ -97,7 +97,34 @@ nav:
             - AggchainProofGen: agglayer/core-concepts/aggkit/components/aggchain-proof-gen.md
       - Developer Tools:
         - agglayer/developer-tools/index.md
-        # - Agglayer SDK: agglayer/developer-tools/agglayer-sdk.md
+        - Agglayer SDK:
+          - agglayer/developer-tools/agglayer-sdk/index.md
+          - Getting Started:
+            - Installation: agglayer/developer-tools/agglayer-sdk/installation.md
+            - Quickstart: agglayer/developer-tools/agglayer-sdk/quickstart.md
+          - Multi-Bridge Routes:
+            - agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/index.md
+            - How It Works: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/how-it-works.md
+            - Operations:
+              - Chain Metadata: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/chain-metadata.md
+              - Route Discovery: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/route-discovery.md
+              - Transaction Building: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/transaction-building.md
+              - Transaction History: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/transaction-history.md
+            - Step-by-Step Guide:
+              - Multi-Bridge Routing (Mainnet): agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/step-by-step-guide/multi-bridge-routing-mainnet.md
+          - Agglayer Native Routes:
+            - agglayer/developer-tools/agglayer-sdk/agglayer-native-routes/index.md
+            - How It Works: agglayer/developer-tools/agglayer-sdk/agglayer-native-routes/how-it-works.md
+            - Operations:
+              - ERC20 Operations: agglayer/developer-tools/agglayer-sdk/agglayer-native-routes/operations/erc20-operations.md
+              - Bridge Operations: agglayer/developer-tools/agglayer-sdk/agglayer-native-routes/operations/bridge-operations.md
+              - Chain Management: agglayer/developer-tools/agglayer-sdk/agglayer-native-routes/operations/chain-management.md
+            - Step-by-Step Guide:
+              - Native Route (Locally): agglayer/developer-tools/agglayer-sdk/agglayer-native-routes/step-by-step-guide/native-route-locally.md
+              - Native Route (Testnet): agglayer/developer-tools/agglayer-sdk/agglayer-native-routes/step-by-step-guide/native-route-testnet.md
+              - Native Route (Mainnet): agglayer/developer-tools/agglayer-sdk/agglayer-native-routes/step-by-step-guide/native-route-mainnet.md
+          - Reference:
+            - API Reference: agglayer/developer-tools/agglayer-sdk/api-reference.md
         - AggSandbox:
           - agglayer/developer-tools/aggsandbox/index.md
           - Getting Started:
