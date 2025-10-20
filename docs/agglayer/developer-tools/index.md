@@ -29,6 +29,19 @@ Agglayer provides a complete suite of developer tools for building cross-chain a
 
 <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 800px; margin: 1rem 0;">
 
+  <!-- Agglayer SDK Card -->
+  <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
+    <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
+      Agglayer SDK
+    </h3>
+    <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
+      Modern TypeScript SDK combining ARC API route aggregation with direct bridge operations. Supports multi-hop bridging and advanced cross-chain scenarios.
+    </p>
+    <a href="/agglayer/developer-tools/agglayer-sdk/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+      Learn more →
+    </a>
+  </div>
+
   <!-- AggSandbox Card -->
   <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
     <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
