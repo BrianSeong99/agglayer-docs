@@ -45,10 +45,10 @@ The Agglayer SDK provides two complementary modules for different use cases:
       Multi-Bridge Routes
     </h3>
     <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
-      Route aggregation and optimization using ARC API. Combines Agglayer Bridge + LiFi routes for complex scenarios like multi-hop bridging from non-Agglayer chains.
+      Route aggregation and optimization using ARC API. Combines Agglayer Bridge + LiFi routes for cross-chain bridging operations.
     </p>
     <div style="margin: 0.5rem 0; font-size: 13px; color: #888;">
-      <strong>Best for:</strong> Complex routing, multi-hop bridges, route optimization, UI applications
+      <strong>Best for:</strong> Complex routing, cross-chain bridges, route optimization, UI applications
     </div>
     <div style="margin: 0.5rem 0; font-size: 13px; color: #888;">
       <strong>Testing:</strong> Mainnet only (ARC API dependency)
@@ -104,7 +104,7 @@ Ready to start building with the Agglayer SDK?
       Quickstart
     </h3>
     <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
-      Complete your first cross-chain bridge operation in 10 minutes. Includes a practical multi-hop example: Base → Katana via route aggregation.
+      Complete your first cross-chain bridge operation in 10 minutes. Includes a practical example: Base → Katana via route aggregation.
     </p>
     <a href="/agglayer/developer-tools/agglayer-sdk/quickstart/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
       Start building →
