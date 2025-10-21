@@ -121,6 +121,19 @@ graph TB
     </a>
   </div>
 
+  <!-- Step-by-Step Guide Card -->
+  <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
+    <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
+      Production Implementation Guide
+    </h3>
+    <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
+      Complete production implementation with service architecture, error handling, monitoring, and real-time transaction tracking for mainnet deployment.
+    </p>
+    <a href="/agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/step-by-step-guide/multi-bridge-routing-mainnet/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+      Learn more →
+    </a>
+  </div>
+
 </div>
 
 ## Why Use Multi-Bridge Routes?
