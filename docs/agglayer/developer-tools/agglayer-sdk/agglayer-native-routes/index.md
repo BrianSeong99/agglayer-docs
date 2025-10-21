@@ -62,27 +62,6 @@ Agglayer Native Routes is the SDK's **Native module** that provides direct inter
 
 </div>
 
-## Learn How It Works
-
-Understanding direct bridge operations helps you build more efficient applications:
-
-<div style="display: flex; flex-direction: column; gap: 1rem; max-width: 800px; margin: 1rem 0;">
-
-  <!-- How It Works Card -->
-  <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
-    <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
-      How Native Routes Work
-    </h3>
-    <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
-      Deep dive into direct bridge contract interactions, proof generation, and how Native Routes provides maximum control over cross-chain operations.
-    </p>
-    <a href="/agglayer/developer-tools/agglayer-sdk/agglayer-native-routes/how-it-works/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
-      Learn more →
-    </a>
-  </div>
-
-</div>
-
 ## Complete Guides
 
 Native Routes supports development across all environments:

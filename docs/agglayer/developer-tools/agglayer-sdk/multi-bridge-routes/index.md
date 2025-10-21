@@ -19,52 +19,6 @@ Multi-Bridge Routes is the Agglayer SDK's **Core module** that provides access t
 
 The ARC API combines routes from Agglayer Bridge and LiFi Bridge into a single interface, automatically finding the most cost-effective and fastest paths while providing risk assessment for each route.
 
-## What Multi-Bridge Routes Enables
-
-### **Complex Bridge Scenarios Made Simple**
-
-Instead of integrating with multiple bridge APIs separately, Multi-Bridge Routes gives you access to all possibilities through a single interface:
-
-```mermaid
-graph TB
-    subgraph "Your Application"
-        UI[Bridge Interface]
-        Logic[Route Selection Logic]
-    end
-    
-    subgraph "Agglayer SDK"
-        MBR[Multi-Bridge Routes<br/>Core Module]
-    end
-    
-    subgraph "ARC API"
-        Aggregator[Route Aggregator]
-    end
-    
-    subgraph "Bridge Providers"
-        AB[Agglayer Bridge<br/>L1 <-> L2 Direct]
-        LiFi[LiFi Bridge<br/>Multi-Chain Support]
-    end
-    
-    UI --> Logic
-    Logic --> MBR
-    MBR --> Aggregator
-    Aggregator --> AB
-    Aggregator --> LiFi
-    
-    style MBR fill:#e3f2fd
-    style Aggregator fill:#fff3e0
-```
-
-### **Supported Bridge Scenarios**
-
-| Scenario | Route Type | Example |
-|----------|------------|---------|
-| **L1 → L2** | Native | Ethereum → Katana |
-| **L2 → L1** | Native | Katana → Ethereum |
-| **L2 → L2** | Native | Katana → OKX Chain |
-| **Outpost → L2** | Lifi | Base → Katana |
-| **L2 → Outpost** | Lifi | Katana → Base |
-
 ## Core Features
 
 <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 800px; margin: 1rem 0;">
@@ -136,16 +90,70 @@ graph TB
 
 </div>
 
-## Why Use Multi-Bridge Routes?
+## What Multi-Bridge Routes Enables
 
-For users, the main benefit is getting the best routes automatically. Instead of manually comparing different bridge services, the ARC API does all the work behind the scenes to find optimal routes, transparent pricing, and risk assessment.
+Instead of integrating with multiple bridge APIs separately, Multi-Bridge Routes gives you access to all possibilities through a single interface:
 
-For developers, it means one integration instead of multiple bridge APIs. You get comprehensive chain and token metadata, production-ready error handling, and automatic access to new bridge providers as they're added to the system.
-
-## Testing Requirements
-
-**Important**: Multi-Bridge Routes requires mainnet access because it depends on the ARC API service, which aggregates real mainnet routes and pricing data. For development, you'll need mainnet RPC URLs for route discovery and transaction building. For local testing, use [Native Routes](/agglayer/developer-tools/agglayer-sdk/agglayer-native-routes/) with AggSandbox instead.
+```mermaid
+graph TB
+    subgraph "Your Application"
+        UI[Bridge Interface]
+        Logic[Route Selection Logic]
+    end
+    
+    subgraph "Agglayer SDK"
+        MBR[Multi-Bridge Routes<br/>Core Module]
+    end
+    
+    subgraph "ARC API"
+        Aggregator[Route Aggregator]
+    end
+    
+    subgraph "Bridge Providers"
+        AB[Agglayer Bridge<br/>L1 <-> L2 Direct]
+        LiFi[LiFi Bridge<br/>Multi-Chain Support]
+    end
+    
+    UI --> Logic
+    Logic --> MBR
+    MBR --> Aggregator
+    Aggregator --> AB
+    Aggregator --> LiFi
+    
+    style MBR fill:#e3f2fd
+    style Aggregator fill:#fff3e0
+```
 
 ## When to Use Multi-Bridge Routes
 
 Use Multi-Bridge Routes when you need route optimization across multiple bridge providers, cross-chain bridging from non-Agglayer chains, or want to build user-friendly interfaces with automatic route comparison. It's perfect for handling complex bridge scenarios automatically with production-ready routing and comprehensive metadata.
+
+## Quick Example
+
+Here's how simple it is to discover and execute cross-chain routes:
+
+```typescript
+import { AggLayerSDK } from '@agglayer/sdk';
+
+// Initialize SDK
+const sdk = new AggLayerSDK();
+const core = sdk.getCore();
+
+// Discover routes from Base to Katana
+const routes = await core.getRoutes({
+  fromChainId: 8453,     // Base
+  toChainId: 747474,     // Katana
+  fromTokenAddress: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', // USDC on Base
+  toTokenAddress: '0x203a662b0bd271a6ed5a60edfbd04bfce608fd36',   // USDC on Katana
+  amount: '1000000000',  // 1000 USDC
+  fromAddress: '0xYourAddress',
+  slippage: 0.5,
+});
+
+// Get best route and build transaction
+const bestRoute = routes[0];
+const transaction = await core.getUnsignedTransaction(bestRoute);
+
+// Transaction ready for signing and execution
+console.log('Bridge transaction built:', transaction.to);
+```
