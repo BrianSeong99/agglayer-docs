@@ -105,8 +105,8 @@ nav:
           - Multi-Bridge Routes:
             - agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/index.md
             - Operations:
-              - Chain Metadata: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/chain-metadata.md
               - Route Discovery: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/route-discovery.md
+              - Chain Metadata: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/chain-metadata.md
               - Transaction Building: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/transaction-building.md
               - Transaction History: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/transaction-history.md
             - Step-by-Step Guide:

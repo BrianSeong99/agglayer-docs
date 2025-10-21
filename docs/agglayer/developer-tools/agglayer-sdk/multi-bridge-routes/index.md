@@ -15,26 +15,13 @@ title: Multi-Bridge Routes
 
 ## Overview
 
-Multi-Bridge Routes is the Agglayer SDK's **Core module** that provides access to **ARC API (Agglayer Route Consolidator)**. This powerful service aggregates routes from multiple bridge providers, enabling complex cross-chain operations that would otherwise require multiple separate integrations.
+Multi-Bridge Routes is the Agglayer SDK's **Core module** that provides access to **ARC API**. This powerful service aggregates routes from multiple bridge providers, enabling complex cross-chain operations that would otherwise require multiple separate integrations.
 
 The ARC API combines routes from Agglayer Bridge and LiFi Bridge into a single interface, automatically finding the most cost-effective and fastest paths while providing risk assessment for each route.
 
 ## Core Features
 
 <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 800px; margin: 1rem 0;">
-
-  <!-- Chain Metadata Card -->
-  <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
-    <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
-      Chain & Token Metadata
-    </h3>
-    <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
-      Access comprehensive information about supported chains, tokens, and bridge capabilities. Perfect for building dynamic UIs and token selectors.
-    </p>
-    <a href="/agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/chain-metadata/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
-      Learn more →
-    </a>
-  </div>
 
   <!-- Route Discovery Card -->
   <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
@@ -45,6 +32,19 @@ The ARC API combines routes from Agglayer Bridge and LiFi Bridge into a single i
       Find optimal cross-chain routes with advanced filtering, optimization preferences, and risk assessment. Supports complex routing scenarios.
     </p>
     <a href="/agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/route-discovery/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+      Learn more →
+    </a>
+  </div>
+
+  <!-- Chain Metadata Card -->
+  <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
+    <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
+      Chain & Token Metadata
+    </h3>
+    <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
+      Access comprehensive information about supported chains, tokens, and bridge capabilities. Perfect for building dynamic UIs and token selectors.
+    </p>
+    <a href="/agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/chain-metadata/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
       Learn more →
     </a>
   </div>
@@ -75,6 +75,11 @@ The ARC API combines routes from Agglayer Bridge and LiFi Bridge into a single i
     </a>
   </div>
 
+</div>
+
+## Complete Guides
+
+<div>
   <!-- Step-by-Step Guide Card -->
   <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
     <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
@@ -87,7 +92,6 @@ The ARC API combines routes from Agglayer Bridge and LiFi Bridge into a single i
       Learn more →
     </a>
   </div>
-
 </div>
 
 ## What Multi-Bridge Routes Enables

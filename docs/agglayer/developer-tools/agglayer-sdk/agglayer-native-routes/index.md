@@ -64,8 +64,6 @@ Agglayer Native Routes is the SDK's **Native module** that provides direct inter
 
 ## Complete Guides
 
-Native Routes supports development across all environments:
-
 <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 800px; margin: 1rem 0;">
 
   <!-- Local Testing Card -->
