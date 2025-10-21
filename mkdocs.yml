@@ -104,7 +104,6 @@ nav:
             - Quickstart: agglayer/developer-tools/agglayer-sdk/quickstart.md
           - Multi-Bridge Routes:
             - agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/index.md
-            - How It Works: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/how-it-works.md
             - Operations:
               - Chain Metadata: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/chain-metadata.md
               - Route Discovery: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/route-discovery.md
