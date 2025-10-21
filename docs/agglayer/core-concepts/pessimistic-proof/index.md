@@ -56,7 +56,7 @@ Agglayer assumes every prover can be unsound. The pessimistic proof guarantees t
 
 The pessimistic proof mechanism implements a safety boundary between chains - it ensures that even if a chain's prover becomes compromised or unsound, the damage is strictly limited to the funds currently deposited on that specific chain.
 
-![Pessimistic Proof Flow](../../img/agglayer/PessimisticProofFlow.png)
+![Pessimistic Proof Flow](../../../img/agglayer/PessimisticProofFlow.png)
 
 **Security Model:**
 

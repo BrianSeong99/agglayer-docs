@@ -204,20 +204,10 @@ You've successfully completed your first cross-chain bridge operation! You've:
 - **[Message Bridging](message-bridging.md)** - Cross-chain contract calls
 - **[Bridge-and-Call](bridge-and-call.md)** - Advanced atomic operations
 
-### **Build Tests**
-- **[Testing Guide](testing-guide.md)** - Create automated bridge tests
-- **[Python Framework](api-integration.md)** - Programmatic bridge testing
-- **[Test Examples](test-examples.md)** - Ready-to-use test templates
-
 ### **Advanced Usage**
 - **[CLI Reference](cli-commands.md)** - Complete command documentation
-- **[Configuration](configuration.md)** - Customize your environment
-- **[Multi-L2 Mode](networks.md)** - Test L2-L2 bridging
-
-### **Production Integration**
-- **[Integration Patterns](integration-patterns.md)** - DApp integration examples
-- **[Monitoring](monitoring.md)** - Production monitoring setup
-- **[Security](advanced-concepts.md)** - Security considerations
+- **[Bridge Basics](bridge-basics.md)** - Understand bridge fundamentals
+- **[Architecture](architecture.md)** - Learn about AggSandbox architecture
 
 ## Common Next Actions
 

@@ -32,7 +32,7 @@ State Transition Proof is a comprehensive trust validation process that ensures 
 - **Internal Chain Validation**: State transition verification within individual chains
 - **Cross-Chain Validation**: Bridge operation verification between chains (Aggchain Proof + Pessimistic Proof)
 
-![State Transition Proof Flow](../../img/agglayer/v03Flow.png)
+![State Transition Proof Flow](../../../img/agglayer/v03Flow.png)
 
 *Figure 1: High-level overview of the v0.3 dual proof system*
 

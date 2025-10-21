@@ -33,7 +33,7 @@ The Unified Bridge is the core interoperability layer that enables seamless cros
 
 The Unified Bridge uses a sophisticated Merkle tree structure to securely track and verify all cross-chain transactions:
 
-![Unified Bridge Data Structure](../../img/agglayer/UnifiedBridgeTree.png)
+![Unified Bridge Data Structure](../../../img/agglayer/UnifiedBridgeTree.png)
 
 **Security Model:**
 
