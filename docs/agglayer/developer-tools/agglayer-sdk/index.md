@@ -113,6 +113,26 @@ Ready to start building with the Agglayer SDK?
 
 </div>
 
+## Core Concepts
+
+Understanding these fundamentals will help you make the most of the Agglayer SDK.
+
+### What is ARC API?
+
+The Agglayer Route Consolidator (ARC) API aggregates bridge routes from multiple providers (Agglayer Bridge + LiFi) into a single interface. It automatically finds the best routes by comparing cost, speed, and output amounts across all available bridges, eliminating the need to integrate with each provider separately.
+
+### Chain ID vs Network ID
+
+**Chain ID** is the standard blockchain identifier (e.g., Ethereum = 1, Base = 8453). **Network ID** is Agglayer's internal identifier for bridge contracts (e.g., Ethereum = 0, Katana = 20). Multi-Bridge Routes uses Chain IDs for route discovery, while Native Routes uses Network IDs for direct contract interactions.
+
+### Transaction Building vs Execution
+
+The SDK **builds** unsigned transactions with proper call data and gas estimates, but you're responsible for **signing and broadcasting** them to the blockchain using your wallet client (e.g., ethers.js, viem, or browser wallets). This design keeps your private keys secure by never exposing them to the SDK.
+
+### Token Approval Requirements
+
+Before bridging ERC20 tokens, you must approve the bridge contract to spend your tokens. The SDK provides methods to check current allowances and build approval transactions. Native currency (ETH, MATIC) doesn't require approval since it's sent directly with the transaction value.
+
 ## Development Path
 
 The Agglayer SDK supports a complete development lifecycle:
