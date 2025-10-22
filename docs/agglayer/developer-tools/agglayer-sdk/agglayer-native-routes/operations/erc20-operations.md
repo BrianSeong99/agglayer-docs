@@ -75,6 +75,10 @@ interface ERC20Token {
 
 ## Balance Operations
 
+### Checking Token Balances
+
+Check ERC20 token balances and native currency balances for any address on any supported network.
+
 ```typescript
 // Check ERC20 token balance
 const balance = await usdcToken.getBalance('0xUserAddress');
@@ -94,6 +98,10 @@ function formatAmount(amount: string, decimals: number = 18): string {
 
 ## Allowance Operations
 
+### Managing Token Approvals
+
+Check current token allowances and build approval transactions for bridge contracts or other spenders.
+
 ```typescript
 // Check current allowance for bridge contract
 const bridgeAddress = '0x2a3DD3EB832aF982ec71669E178424b10Dca2EDe';
@@ -109,6 +117,11 @@ const approvalTx = await usdcToken.buildApprove(
 ```
 
 ## Transfer Operations
+
+### Building Transfer Transactions
+
+Build standard ERC20 transfer transactions and transferFrom transactions for approved spending scenarios.
+
 ```typescript
 // Build transfer transaction
 const transferTx = await usdcToken.buildTransfer(
@@ -127,6 +140,10 @@ const transferFromTx = await usdcToken.buildTransferFrom(
 ```
 
 ## Bridge Operations
+
+### Direct Bridge-to Operations
+
+Bridge ERC20 tokens directly to another network using the Agglayer bridge contract. Get wrapped token addresses for destination networks.
 
 ```typescript
 // Build bridge transaction
@@ -151,6 +168,8 @@ const wrappedAddress = await usdcToken.getWrappedToken();
 
 ### Claiming Bridged Assets
 
+Claim bridged assets on the destination network after the bridge transaction has been processed by AggKit.
+
 ```typescript
 // Claim assets on destination network
 const bridgeTxHash = '0xYourBridgeTransactionHash';
@@ -166,6 +185,8 @@ const claimTx = await katanaUsdc.claimAsset(
 ```
 
 ### Claiming Bridge Messages
+
+Claim bridge messages sent via contract-to-contract communication on the destination network.
 
 ```typescript
 // Claim bridge messages (for contract-to-contract communication)
@@ -184,6 +205,8 @@ console.log(`  Gas: ${messageClaimTx.gas}`);
 
 ### Bridge Event Information
 
+Get comprehensive information about a bridge transaction including origin network, token details, and deposit count for claiming.
+
 ```typescript
 // Get bridge event information
 const bridgeEventInfo = await usdcToken.getBridgeEventInfo(
@@ -191,13 +214,6 @@ const bridgeEventInfo = await usdcToken.getBridgeEventInfo(
   sourceNetwork,
   bridgeIndex
 );
-
-console.log('Bridge Event Information:');
-console.log(`  Origin Network: ${bridgeEventInfo.originNetwork}`);
-console.log(`  Token: ${bridgeEventInfo.originTokenAddress}`);
-console.log(`  Amount: ${formatAmount(bridgeEventInfo.amount.toString(), 6)} tokens`);
-console.log(`  Destination: ${bridgeEventInfo.destinationAddress}`);
-console.log(`  Deposit Count: ${bridgeEventInfo.depositCount}`);
 ```
 
 ## Working Example
