@@ -38,7 +38,7 @@ const sdk = new AggLayerSDK({
 const native = sdk.getNative();
 
 // Create ERC20 token instance
-const usdcToken = native.erc20('0xA0b86a33E6441b8c4C8C0e4b8c4C8C0e4b8c4C8C0', 1); // USDC on Ethereum
+const usdcToken = native.erc20('0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 1); // USDC on Ethereum
 const katanaUsdc = native.erc20('0x203a662b0bd271a6ed5a60edfbd04bfce608fd36', 747474); // USDC on Katana
 
 // Create native ETH instance
