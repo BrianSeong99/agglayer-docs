@@ -19,7 +19,9 @@ Route discovery is the core functionality of Multi-Bridge Routes, enabling you t
 
 ## Basic Route Discovery
 
-### Simple Route Request
+### Finding Available Routes
+
+Discover available routes between chains with cost analysis, execution time estimates, and risk assessment for each option.
 
 ```typescript
 import { AggLayerSDK } from '@agglayer/sdk';
@@ -31,7 +33,7 @@ const core = sdk.getCore();
 const routes = await core.getRoutes({
   fromChainId: 1,        // Ethereum
   toChainId: 747474,     // Katana
-  fromTokenAddress: '0xA0b86a33E6441b8c4C8C0e4b8c4C8C0e4b8c4C8C0', // USDC on Ethereum
+  fromTokenAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', // USDC on Ethereum
   toTokenAddress: '0x203a662b0bd271a6ed5a60edfbd04bfce608fd36',   // USDC on Katana
   amount: '1000000000',  // 1000 USDC (6 decimals)
   fromAddress: '0xYourWalletAddress',
@@ -43,13 +45,13 @@ console.log(`Found ${routes.length} available routes`);
 
 ### Route Response Structure
 
-Each route contains comprehensive information:
+Each route contains comprehensive information about the bridge path:
 
 ```typescript
 interface Route {
   // Route identification
   id: string;
-  provider: string[];        // ['agglayer'] or ['lifi', 'agglayer']
+  provider: string[];        // ['agglayer'] or ['lifi']
   
   // Basic information
   fromChainId: number;
@@ -73,61 +75,78 @@ interface Route {
 
 ## Advanced Route Discovery
 
-### Cross-Chain Route Discovery
+### Route Optimization with Preferences
 
-```typescript
-// Base → Katana (cross-chain routing)
-const crossChainRoutes = await core.getRoutes({
-  fromChainId: 8453,     // Base
-  toChainId: 747474,     // Katana
-  fromTokenAddress: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', // USDC on Base
-  toTokenAddress: '0x203a662b0bd271a6ed5a60edfbd04bfce608fd36',   // USDC on Katana
-  amount: '3000000000',  // 3000 USDC
-  fromAddress: '0xYourAddress',
-  slippage: 1.5, // Higher slippage for cross-chain
-  preferences: {
-    prioritize: 'COST', // Optimize for lowest cost
-    minAmountToReceive: '2950000000', // Minimum acceptable output
-  },
-});
-
-// Analyze cross-chain route
-const route = crossChainRoutes[0];
-console.log(`Cross-chain route: ${route.provider.join(' + ')}`);
-console.log(`Steps: ${route.steps.length}`);
-
-route.steps.forEach((step, index) => {
-  console.log(`Step ${index + 1}: ${step.action.fromChainId} → ${step.action.toChainId} via ${step.tool}`);
-});
-```
-
-### Route Optimization Preferences
+Customize route discovery with optimization preferences to prioritize cost, speed, or output amount. Set minimum acceptable outputs and exclude specific protocols.
 
 ```typescript
 // Cost optimization
 const costOptimizedRoutes = await core.getRoutes({
-  // ... basic parameters
+  fromChainId: 8453,
+  toChainId: 747474,
+  fromTokenAddress: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
+  toTokenAddress: '0x203a662b0bd271a6ed5a60edfbd04bfce608fd36',
+  amount: '3000000000',
+  fromAddress: '0xYourAddress',
+  slippage: 0.5,
   preferences: {
     prioritize: 'COST',
-    excludeProtocols: ['expensive-bridge'], // Exclude specific providers
+    minAmountToReceive: '2950000000',
   },
 });
+```
 
-// Speed optimization
+### Route Preferences Options
+
+Available preferences for customizing route discovery:
+
+```typescript
+interface RoutePreferences {
+  prioritize?: 'COST' | 'SPEED';
+  minAmountToReceive?: string;
+  gasEstimate?: string;
+  excludeProtocols?: string[];
+  includeProtocols?: string[];
+}
+```
+
+- **`prioritize`**: Decide whether you care more about minimizing cost (fees + slippage) or maximizing speed (time to complete).
+- **`minAmountToReceive`**: Specify the minimum amount of the destination token you are willing to accept. Routes yielding less due to slippage/fees will be filtered out.
+- **`gasEstimate`**: Optionally specify a gas cost budget or threshold. The routing engine can consider this when choosing the route.
+- **`excludeProtocols`**: List protocols (bridges or DEXes) that you do not want to use. For example, if you don't trust a certain bridge, you can exclude it.
+- **`includeProtocols`**: List protocols to prefer or constrain to. Use this when you only want trusted bridges or a specific DEX aggregator.
+
+Speed optimization with protocol filtering:
+
+```typescript
 const speedOptimizedRoutes = await core.getRoutes({
-  // ... basic parameters  
+  fromChainId: 1,
+  toChainId: 747474,
+  fromTokenAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+  toTokenAddress: '0x203a662b0bd271a6ed5a60edfbd04bfce608fd36',
+  amount: '1000000000',
+  fromAddress: '0xYourAddress',
+  slippage: 0.5,
   preferences: {
     prioritize: 'SPEED',
-    includeProtocols: ['agglayer', 'lifi'], // Only include specific providers
+    includeProtocols: ['agglayer', 'lifi'],
   },
 });
+```
 
-// Custom optimization
-const customRoutes = await core.getRoutes({
-  // ... basic parameters
+Custom constraints with minimum output:
+
+```typescript
+const constrainedRoutes = await core.getRoutes({
+  fromChainId: 1,
+  toChainId: 747474,
+  fromTokenAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+  toTokenAddress: '0x203a662b0bd271a6ed5a60edfbd04bfce608fd36',
+  amount: '1000000000',
+  fromAddress: '0xYourAddress',
+  slippage: 0.5,
   preferences: {
-    minAmountToReceive: '995000000', // Minimum output requirement
-    gasEstimate: '500000', // Maximum gas willing to spend
+    minAmountToReceive: '995000000', // Must receive at least 995 USDC
   },
 });
 ```

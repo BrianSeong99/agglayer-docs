@@ -21,6 +21,8 @@ Transaction history operations provide tracking and monitoring of cross-chain br
 
 ### Getting Recent Transactions
 
+Retrieve recent bridge transactions with status, protocols used, and amount information for tracking and monitoring.
+
 ```typescript
 import { AggLayerSDK } from '@agglayer/sdk';
 
@@ -32,42 +34,11 @@ const recentTransactions = await core.getTransactions({
 });
 ```
 
-### Transaction Structure
-
-```typescript
-interface Transaction {
-  id: string;                    // Unique transaction ID
-  transactionHash: string;       // Blockchain transaction hash
-  status: string;               // Transaction status
-  protocols: string[];          // Bridge providers used
-  fromAddress: string;          // Sender address
-  toAddress: string;            // Recipient address
-  lastUpdatedAt: number;        // Unix timestamp of last update
-  sending: {
-    network: {
-      chainId: number;          // Source chain ID
-    };
-    amount: string;             // Amount sent
-    token: {
-      originTokenAddress: string; // Token address
-      originTokenNetwork: number; // Token network
-    };
-  };
-  receiving?: {
-    network: {
-      chainId: number;          // Destination chain ID
-    };
-    amount: string;             // Amount received
-    timestamp?: number;         // Completion timestamp
-  };
-  bridgeHash?: string | null;   // Bridge-specific hash
-  depositCount?: number | null; // Agglayer deposit count
-  leafIndex?: number | null;    // Merkle tree leaf index
-  blockNumber?: number | null;  // Block number
-}
-```
-
 ## Filtering Transactions
+
+### Filtering by Address and Networks
+
+Filter transaction history by user address or network pairs to narrow down results for specific use cases.
 
 ```typescript
 // By user address

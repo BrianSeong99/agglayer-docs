@@ -21,6 +21,8 @@ Before starting, ensure you have completed the [Quickstart tutorial](../../quick
 
 ## Step 1: Initialize the SDK
 
+Create an SDK instance and get the Core module for accessing Multi-Bridge Routes functionality.
+
 ```typescript
 import { AggLayerSDK } from '@agglayer/sdk';
 
@@ -29,6 +31,8 @@ const core = sdk.getCore();
 ```
 
 ## Step 2: Discover Routes
+
+Query the ARC API to find available routes between chains with cost analysis, execution time estimates, and risk assessment.
 
 ```typescript
 // Get available routes for your bridge operation
@@ -41,7 +45,7 @@ const routes = await core.getRoutes({
   fromAddress: '0xYourWalletAddress',
   slippage: 0.5,
   preferences: {
-    prioritize: 'COST', // or 'SPEED', 'OUTPUT'
+    prioritize: 'COST', // or 'SPEED'
   },
 });
 
@@ -49,6 +53,8 @@ console.log(`Found ${routes.length} routes`);
 ```
 
 ## Step 3: Analyze Routes
+
+Compare available routes by cost, speed, and output amount to select the best option for your use case.
 
 ```typescript
 // Routes are automatically sorted by your preferences
@@ -69,6 +75,8 @@ routes.forEach((route, index) => {
 
 ## Step 4: Build Transaction
 
+Convert the selected route into an unsigned transaction ready for wallet signing with proper gas estimates and call data.
+
 ```typescript
 // Build the transaction for the selected route
 const transaction = await core.getUnsignedTransaction(bestRoute);
@@ -80,6 +88,8 @@ console.log(`Chain ID: ${transaction.chainId}`);
 ```
 
 ## Step 5: Check Approval Requirements
+
+Determine if token approval is required before executing the bridge transaction by checking the route steps for approval addresses.
 
 ```typescript
 // Check if token approval is needed before bridging
@@ -96,6 +106,8 @@ if (approvalStep) {
 ```
 
 ## Step 6: Monitor Transaction
+
+Track the bridge transaction status after sending it to the network, polling periodically until completion or failure.
 
 ```typescript
 // After sending the transaction, monitor its status

@@ -19,7 +19,9 @@ Transaction building converts discovered routes into executable blockchain trans
 
 ## Basic Transaction Building
 
-### From Route to Transaction
+### Building Executable Transactions
+
+Convert discovered routes into unsigned transactions ready for wallet signing with proper gas estimates and call data.
 
 ```typescript
 import { AggLayerSDK } from '@agglayer/sdk';
@@ -43,22 +45,11 @@ const selectedRoute = routes[0];
 const unsignedTx = await core.getUnsignedTransaction(selectedRoute);
 ```
 
-### Transaction Structure
-
-```typescript
-interface UnsignedTransaction {
-  to: string;              // Contract address to call
-  value: string;           // ETH value in wei (usually "0" for token operations)
-  data: string;            // Encoded function call data
-  gasLimit: string;        // Gas limit estimate
-  chainId: number;         // Target chain ID
-  gasPrice?: string;       // Gas price (legacy)
-  maxFeePerGas?: string;   // EIP-1559 max fee
-  maxPriorityFeePerGas?: string; // EIP-1559 priority fee
-}
-```
-
 ## Approval Requirements
+
+### Checking for Required Approvals
+
+Determine if the route requires token approval before executing the bridge transaction by checking route steps.
 
 ```typescript
 // Check if route requires token approval
@@ -70,6 +61,10 @@ if (approvalStep) {
 ```
 
 ## Claim Transaction Building
+
+### Building Claim Transactions
+
+For Agglayer routes, build claim transactions to retrieve bridged assets on the destination network after AggKit processing.
 
 ```typescript
 if (route.provider.includes('agglayer')) {

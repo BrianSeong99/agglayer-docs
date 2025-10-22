@@ -19,7 +19,9 @@ Chain metadata operations provide access to comprehensive information about supp
 
 ## Getting All Supported Chains
 
-### Basic Chain Discovery
+### Retrieving Supported Chains
+
+Get all chains supported by the ARC API with their configurations, bridge addresses, and available routes.
 
 ```typescript
 import { AggLayerSDK } from '@agglayer/sdk';
@@ -30,15 +32,6 @@ const core = sdk.getCore();
 // Get all supported chains
 const chains = await core.getAllChains();
 console.log(`Found ${chains.chains.length} supported chains`);
-
-// Display chain information
-chains.chains.forEach(chain => {
-  console.log(`${chain.name}:`);
-  console.log(`  Chain ID: ${chain.chainId}`);
-  console.log(`  Network ID: ${chain.networkId}`);
-  console.log(`  Bridge: ${chain.bridgeAddress}`);
-  console.log(`  Routes: ${chain.supportedRoutes.join(', ')}`);
-});
 ```
 
 ### Chain Information Structure
@@ -47,121 +40,65 @@ Each chain object contains comprehensive metadata:
 
 ```typescript
 interface Chain {
-  chainId: number;           // Standard chain ID (1 for Ethereum)
-  networkId: number;         // Agglayer network ID (0 for Ethereum)
-  name: string;              // Human-readable name
-  bridgeAddress: string;     // Bridge contract address
+  chainId: number; // Standard chain ID (1 for Ethereum)
+  networkId: number; // Agglayer network ID (0 for Ethereum)
+  name: string; // Human-readable name
+  bridgeAddress: string; // Bridge contract address
   supportedRoutes: string[]; // ['agglayer', 'lifi', etc.]
   nativeCurrency: {
-    name: string;            // "Ethereum"
-    symbol: string;          // "ETH"
-    decimals: number;        // 18
+    name: string; // "Ethereum"
+    symbol: string; // "ETH"
+    decimals: number; // 18
   };
-  blockExplorerUrl: string;  // Explorer URL
-  rpcUrl: string;           // RPC endpoint
+  blockExplorerUrl: string; // Explorer URL
+  rpcUrl: string; // RPC endpoint
 }
 ```
 
 ## Getting Specific Chain Metadata
 
-### Filter by Chain IDs
+### Filtering Chains by Chain IDs
+
+Get metadata for specific chains by providing their chain IDs, including network information and supported bridge routes.
 
 ```typescript
 // Get metadata for specific chains
 const specificChains = await core.getChainMetadataByChainIds([1, 747474, 8453]);
-
-console.log(`Retrieved ${specificChains.chains.length} chains`);
-specificChains.chains.forEach(chain => {
-  console.log(`\n${chain.name}:`);
-  console.log(`  Chain ID: ${chain.chainId}`);
-  console.log(`  Network ID: ${chain.networkId}`);
-  console.log(`  Native Currency: ${chain.nativeCurrency.symbol}`);
-  console.log(`  Block Explorer: ${chain.blockExplorerUrl}`);
-  console.log(`  Supported Routes: ${chain.supportedRoutes.join(', ')}`);
-});
 ```
 
-### Chain Data with Supported Tokens
+### Getting Chains with Token Lists
+
+Retrieve chains along with their supported tokens for building token selectors and validating bridge pairs.
 
 ```typescript
 // Get chains with their supported tokens
 const chainsWithTokens = await core.getChainDataAndTokensByChainIds([1, 747474]);
-
-chainsWithTokens.chains.forEach(chain => {
-  console.log(`\n${chain.name} Tokens:`);
-  
-  if (chain.fromTokens && chain.fromTokens.length > 0) {
-    console.log(`  From Tokens: ${chain.fromTokens.length} available`);
-    chain.fromTokens.slice(0, 3).forEach(token => {
-      console.log(`    - ${token.symbol}: ${token.address}`);
-    });
-  }
-  
-  if (chain.toTokens && chain.toTokens.length > 0) {
-    console.log(`  To Tokens: ${chain.toTokens.length} available`);
-  }
-});
 ```
 
 ## Token Metadata Operations
 
 ### Getting Token Information
 
+Retrieve detailed token metadata including name, symbol, decimals, and origin network information for any supported token.
+
 ```typescript
 // Get specific token metadata
 const tokenMetadata = await core.getTokenMetadata({
-  tokenAddress: '0xA0b86a33E6441b8c4C8C0e4b8c4C8C0e4b8c4C8C0' // USDC
+  tokenAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48' // USDC
 });
-
-console.log('Token Metadata:');
-console.log(`  Name: ${tokenMetadata.name}`);
-console.log(`  Symbol: ${tokenMetadata.symbol}`);
-console.log(`  Decimals: ${tokenMetadata.decimals}`);
-console.log(`  Origin Network: ${tokenMetadata.originTokenNetwork}`);
-console.log(`  Origin Address: ${tokenMetadata.originTokenAddress}`);
-```
-
-### Token Metadata Structure
-
-```typescript
-interface TokenMetadata {
-  name: string;                    // "USD Coin"
-  symbol: string;                  // "USDC"
-  decimals: number;                // 6
-  address: string;                 // Token contract address
-  originTokenNetwork: number;      // Origin network ID
-  originTokenAddress: string;      // Original token address
-  wrappedTokenNetwork?: number;    // Wrapped network ID
-  wrappedTokenAddress?: string;    // Wrapped token address
-}
 ```
 
 ## Token Mappings
 
-### Cross-Chain Token Relationships
+### Getting Cross-Chain Token Relationships
+
+Retrieve token mappings to understand how tokens are represented across different networks (origin vs wrapped versions).
 
 ```typescript
 // Get token mappings for cross-chain relationships
 const mappings = await core.getTokenMappings({
-  tokenAddress: '0xA0b86a33E6441b8c4C8C0e4b8c4C8C0e4b8c4C8C0'
+  tokenAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
 });
-
-console.log('Token Mappings:');
-mappings.forEach(mapping => {
-  console.log(`  Origin: Network ${mapping.originTokenNetwork} - ${mapping.originTokenAddress}`);
-  console.log(`  Wrapped: Network ${mapping.wrappedTokenNetwork} - ${mapping.wrappedTokenAddress}`);
-});
-```
-
-### Token Mapping Structure
-
-```typescript
-interface TokenMapping {
-  originTokenNetwork: number;      // Original network ID
-  originTokenAddress: string;      // Original token address
-  wrappedTokenNetwork: number;     // Wrapped network ID
-  wrappedTokenAddress: string;     // Wrapped token address
-}
 ```
 
 
