@@ -482,6 +482,126 @@ const NETWORKS = {
 } as const;
 ```
 
+## Usage Patterns
+
+### Module Selection
+
+Choose the modules you need based on your use case:
+
+```typescript
+// Multi-Bridge Routes only (for route aggregation)
+const sdk = new AggLayerSDK({
+  mode: [SDK_MODES.CORE],
+});
+
+// Native Routes only (for direct bridge operations)
+const sdk = new AggLayerSDK({
+  mode: [SDK_MODES.NATIVE],
+});
+
+// Both modules (for complete functionality)
+const sdk = new AggLayerSDK({
+  mode: [SDK_MODES.CORE, SDK_MODES.NATIVE],
+});
+```
+
+### Environment-Specific Configuration
+
+Configure the SDK for different environments:
+
+```typescript
+const config = {
+  development: {
+    mode: [SDK_MODES.CORE, SDK_MODES.NATIVE],
+    core: { apiBaseUrl: 'https://arc-api.polygon.technology' },
+    native: { 
+      defaultNetwork: 11155111, // Sepolia
+      customRpcUrls: { 
+        11155111: process.env.SEPOLIA_RPC_URL,
+        747474: process.env.KATANA_RPC_URL,
+      }
+    },
+  },
+  production: {
+    mode: [SDK_MODES.CORE, SDK_MODES.NATIVE],
+    core: { apiBaseUrl: 'https://arc-api.polygon.technology' },
+    native: {
+      defaultNetwork: 1,
+      customRpcUrls: {
+        1: process.env.ETHEREUM_RPC_URL,
+        747474: process.env.KATANA_RPC_URL,
+      },
+    },
+  },
+};
+
+const sdk = new AggLayerSDK(config[process.env.NODE_ENV || 'development']);
+```
+
+## Error Handling
+
+### Common Error Patterns
+
+Handle errors gracefully in your application:
+
+```typescript
+// Network errors from ARC API
+try {
+  const routes = await core.getRoutes({...});
+} catch (error) {
+  console.error('Failed to discover routes:', error);
+  // Fallback to cached routes or show error to user
+}
+
+// Configuration errors
+try {
+  const native = sdk.getNative();
+} catch (error) {
+  console.error('Native module not initialized. Add SDK_MODES.NATIVE to mode array.');
+}
+
+// Transaction errors
+try {
+  const tx = await core.getUnsignedTransaction(route);
+  const receipt = await wallet.sendTransaction(tx);
+  await receipt.wait();
+} catch (error) {
+  console.error('Transaction failed:', error);
+  // Handle insufficient gas, reverted transaction, etc.
+}
+```
+
+### Retry with Exponential Backoff
+
+Implement retry logic for network operations:
+
+```typescript
+async function retryOperation<T>(
+  operation: () => Promise<T>,
+  maxRetries: number = 3
+): Promise<T> {
+  let lastError: Error;
+  
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      return await operation();
+    } catch (error) {
+      lastError = error as Error;
+      
+      if (attempt < maxRetries - 1) {
+        const delay = 1000 * Math.pow(2, attempt);
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
+    }
+  }
+  
+  throw lastError!;
+}
+
+// Usage
+const routes = await retryOperation(() => core.getRoutes({...}));
+```
+  
 ## Migration Guide
 
 ### From Lxly.js to Agglayer SDK

@@ -146,7 +146,8 @@ export const localSDK = new AggLayerSDK({
 **Additional Environment Variables for Local Testing:**
 ```bash
 # Optional: For testing with known AggSandbox private keys
-AGG_SANDBOX_PRIVATE_KEY=(Can be found via `Aggsandbox info` command)
+AGG_SANDBOX_PRIVATE_KEY=  # Can be found via `aggsandbox info` command
+```
 
 **Important:** SDK manual claiming doesn't work with AggSandbox due to API endpoint differences. Use AggSandbox's auto-claiming service for local testing.
 
@@ -318,4 +319,120 @@ const sdk = new AggLayerSDK({
 
 const core = sdk.getCore();
 const native = sdk.getNative();
+```
+
+## Troubleshooting
+
+### Common Issues and Solutions
+
+#### Node Version Mismatch
+
+**Problem**: `Error: Unsupported Node.js version`
+
+**Solution**:
+```bash
+# Check your Node.js version
+node --version
+
+# If below 18.0.0, upgrade Node.js
+# Using nvm (recommended)
+nvm install 18
+nvm use 18
+
+# Or download from nodejs.org
+```
+
+#### TypeScript Configuration Issues
+
+**Problem**: `Cannot find module '@agglayer/sdk'` or type errors
+
+**Solution**:
+```json
+// tsconfig.json - ensure these settings
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "target": "ES2020",
+    "lib": ["ES2020"]
+  }
+}
+```
+
+#### RPC URL Connectivity Problems
+
+**Problem**: `Network request failed` or `Connection timeout`
+
+**Solution**:
+```typescript
+// Test RPC connectivity
+import { ethers } from 'ethers';
+
+const provider = new ethers.JsonRpcProvider(process.env.ETHEREUM_RPC_URL);
+const blockNumber = await provider.getBlockNumber();
+console.log(`Connected! Current block: ${blockNumber}`);
+```
+
+**Common causes**:
+- Invalid or expired API key in RPC URL
+- Rate limiting on free RPC tier
+- Firewall blocking outbound connections
+- Incorrect RPC URL format
+
+#### Module Not Initialized Error
+
+**Problem**: `Error: Core module not initialized` or `Native module not initialized`
+
+**Solution**:
+```typescript
+// Ensure the module is in the mode array
+const sdk = new AggLayerSDK({
+  mode: [SDK_MODES.CORE, SDK_MODES.NATIVE], // Include both if you need both
+});
+
+// Then you can access both modules
+const core = sdk.getCore();
+const native = sdk.getNative();
+```
+
+#### ARC API Connection Issues
+
+**Problem**: `Failed to fetch routes` or `API timeout`
+
+**Solution**:
+```typescript
+// Increase timeout for slow connections
+const sdk = new AggLayerSDK({
+  mode: [SDK_MODES.CORE],
+  core: {
+    apiBaseUrl: 'https://arc-api.polygon.technology',
+    apiTimeout: 60000, // 60 seconds instead of default 30s
+  },
+});
+```
+
+#### Local Testing Issues with AggSandbox
+
+**Problem**: `Cannot connect to local RPC` when using AggSandbox
+
+**Solution**:
+```bash
+# 1. Verify AggSandbox is running
+aggsandbox status
+
+# 2. Check ports are accessible
+curl http://localhost:8545 -X POST -H "Content-Type: application/json" \
+  --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'
+
+# 3. Ensure correct RPC URLs in SDK config
+const sdk = new AggLayerSDK({
+  mode: [SDK_MODES.NATIVE],
+  native: {
+    customRpcUrls: {
+      1: 'http://localhost:8545',     // Not https, not 127.0.0.1
+      1101: 'http://localhost:8546',
+    },
+  },
+});
 ```
