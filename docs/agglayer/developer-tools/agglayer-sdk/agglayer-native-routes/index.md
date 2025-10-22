@@ -115,7 +115,7 @@ Consider [Multi-Bridge Routes](../multi-bridge-routes/index.md) for route optimi
 
 ## Quick Example
 
-Here's how simple it is to perform direct bridge operations:
+Here's how simple it is to perform direct bridge operations with Native Routes:
 
 ```typescript
 import { AggLayerSDK, SDK_MODES } from '@agglayer/sdk';

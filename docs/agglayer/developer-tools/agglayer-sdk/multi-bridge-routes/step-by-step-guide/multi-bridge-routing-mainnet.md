@@ -9,13 +9,13 @@ title: Multi-Bridge Routing (Mainnet)
 
 <div style="text-align: left; margin: 0.5rem 0;">
   <p style="font-size: 18px; color: #666; max-width: 600px; margin: 0;">
-    Step-by-step guide for multi-bridge routing using the Agglayer SDK on mainnet
+    Step-by-step guide for Multi-Bridge routing using the Agglayer SDK on mainnet
   </p>
 </div>
 
 ## Overview
 
-This guide walks through the complete process of multi-bridge routing using the Agglayer SDK. You'll learn how to discover routes, build transactions, and monitor cross-chain operations.
+This guide walks through the complete process of Multi-Bridge routing using the Agglayer SDK. You'll learn how to discover routes, build transactions, and monitor cross-chain operations.
 
 Before starting, ensure you have completed the [Quickstart tutorial](../../quickstart.md) and have mainnet RPC access for the chains you want to bridge between.
 
@@ -206,7 +206,7 @@ async function multiBridgeExample() {
       console.log('No approval required');
     }
     
-    console.log('\nMulti-bridge routing walkthrough completed!');
+    console.log('\nMulti-Bridge routing walkthrough completed!');
     
   } catch (error) {
     console.error('Example failed:', error);

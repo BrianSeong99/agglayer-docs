@@ -271,4 +271,5 @@ Use Native Routes for direct blockchain operations and local testing:
 Explore the full capabilities of the SDK:
 
 - **[Multi-Bridge Routes Operations](./multi-bridge-routes/)** - Chain metadata, route discovery, transaction building
+- **[Native Routes Operations](./agglayer-native-routes/operations/erc20-operations/)** - ERC20 operations, bridge operations, chain management
 - **[API Reference](./api-reference/)** - Complete TypeScript API documentation with all methods and interfaces
