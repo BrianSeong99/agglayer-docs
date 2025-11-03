@@ -13,9 +13,9 @@ title: API Reference
   </p>
 </div>
 
-## AggLayerSDK
+## AgglayerSDK
 
-The main SDK class that orchestrates Multi-Bridge Routes and Native Routes modules.
+The main SDK class that orchestrates Multi-Bridge Routes and Agglayer Native Bridge modules.
 
 ### Constructor
 
@@ -70,7 +70,7 @@ const routes = await core.getRoutes({...});
 
 #### `getNative(): NativeClient`
 
-Returns the Native Routes module instance.
+Returns the Native Bridge module instance.
 
 **Returns:** `NativeClient` instance for direct blockchain operations
 
@@ -238,7 +238,7 @@ const transactions = await core.getTransactions({
 console.log(`Found ${transactions.transactions.length} transactions`);
 ```
 
-## NativeClient (Native Routes)
+## NativeClient (Native Bridge)
 
 Provides direct blockchain operations and bridge contract interactions.
 
@@ -469,7 +469,7 @@ interface TransactionParams {
 ```typescript
 const SDK_MODES = {
   CORE: 'CORE',     // Multi-Bridge Routes
-  NATIVE: 'NATIVE', // Native Routes
+  NATIVE: 'NATIVE', // Native Bridge
 } as const;
 ```
 
@@ -494,7 +494,7 @@ const sdk = new AggLayerSDK({
   mode: [SDK_MODES.CORE],
 });
 
-// Native Routes only (for direct bridge operations)
+// Native Bridge only (for direct bridge operations)
 const sdk = new AggLayerSDK({
   mode: [SDK_MODES.NATIVE],
 });

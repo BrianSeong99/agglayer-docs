@@ -20,7 +20,7 @@ The Agglayer SDK is a comprehensive TypeScript library that provides seamless in
 **Key Innovation:**
 
 - **Multi-Bridge Routes**: Access aggregated routes from Agglayer Bridge + LiFi Bridge through ARC API
-- **Native Routes**: Direct interaction with Agglayer bridge contracts for maximum control
+- **Native Bridge**: Direct interaction with Agglayer bridge contracts for maximum control
 - **TypeScript-First**: Full type safety with intelligent defaults and zero-config setup
 - **Production Ready**: Enterprise-grade error handling and monitoring capabilities
 
@@ -58,10 +58,10 @@ The Agglayer SDK provides two complementary modules for different use cases:
     </a>
   </div>
 
-  <!-- Agglayer Native Routes Card -->
+  <!-- Agglayer Native Bridge Card -->
   <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
     <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
-      Agglayer Native Routes
+      Agglayer Native Bridge
     </h3>
     <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
       Direct blockchain operations with Agglayer bridge contracts. Full control over ERC20 operations, bridge transactions, and chain management without external APIs.
@@ -72,7 +72,7 @@ The Agglayer SDK provides two complementary modules for different use cases:
     <div style="margin: 0.5rem 0; font-size: 13px; color: #888;">
       <strong>Testing:</strong> Local (AggSandbox), testnet, and mainnet
     </div>
-    <a href="/agglayer/developer-tools/agglayer-sdk/agglayer-native-routes/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+    <a href="/agglayer/developer-tools/agglayer-sdk/agglayer-native-bridge/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
       Learn more →
     </a>
   </div>
@@ -123,7 +123,7 @@ The Agglayer Route Consolidator (ARC) API aggregates bridge routes from multiple
 
 ### Chain ID vs Network ID
 
-**Chain ID** is the standard blockchain identifier (e.g., Ethereum = 1, Base = 8453). **Network ID** is Agglayer's internal identifier for bridge contracts (e.g., Ethereum = 0, Katana = 20). Multi-Bridge Routes uses Chain IDs for route discovery, while Native Routes uses Network IDs for direct contract interactions.
+**Chain ID** is the standard blockchain identifier (e.g., Ethereum = 1, Base = 8453). **Network ID** is Agglayer's internal identifier for bridge contracts (e.g., Ethereum = 0, Katana = 20). Multi-Bridge Routes uses Chain IDs for route discovery, while Native Bridge uses Network IDs for direct contract interactions.
 
 ### Transaction Building vs Execution
 
@@ -138,18 +138,18 @@ Before bridging ERC20 tokens, you must approve the bridge contract to spend your
 The Agglayer SDK supports a complete development lifecycle:
 
 ### **Local Development**
-Start with **AggSandbox** for rapid prototyping and testing. The Native Routes module integrates seamlessly with AggSandbox's local blockchain environment, providing instant feedback and comprehensive debugging.
+Start with **AggSandbox** for rapid prototyping and testing. The Native Bridge module integrates seamlessly with AggSandbox's local blockchain environment, providing instant feedback and comprehensive debugging.
 
 ### **Testnet Testing**
-Use **Native Routes** on Sepolia and other testnets to validate your integration with real network conditions, gas costs, and timing without risking mainnet funds.
+Use **Native Bridge** on Sepolia and other testnets to validate your integration with real network conditions, gas costs, and timing without risking mainnet funds.
 
 ### **Production Deployment**
-Deploy with confidence using both **Multi-Bridge Routes** for optimal user experience and **Native Routes** for direct control over bridge operations.
+Deploy with confidence using both **Multi-Bridge Routes** for optimal user experience and **Native Bridge** for direct control over bridge operations.
 
 ## Why Choose Agglayer SDK?
 
 ### **Unified Route Access**
-The SDK is the only library that provides access to **ARC API route aggregation**, combining Agglayer Bridge and LiFi routes to give users the best possible cross-chain experience.
+The SDK is the only library that provides access to **ARC API route aggregation**, LiFi routes to give users the best possible cross-chain experience.
 
 ### **Developer Experience**
 - **Zero Configuration**: Intelligent defaults get you started immediately
@@ -174,7 +174,7 @@ graph TB
     
     subgraph "Agglayer SDK"
         MBR[Multi-Bridge Routes<br/>ARC API Integration]
-        ANR[Agglayer Native Routes<br/>Direct Blockchain]
+        ANR[Agglayer Native Bridge<br/>Direct Blockchain]
     end
     
     subgraph "Agglayer Ecosystem"
@@ -198,7 +198,7 @@ graph TB
     style ARC fill:#fff3e0
 ```
 
-*The SDK provides two complementary approaches: Multi-Bridge Routes for route aggregation and optimization, and Native Routes for direct blockchain control.*
+*The SDK provides two complementary approaches: Multi-Bridge Routes for route aggregation and optimization, and Native Bridge for direct blockchain control.*
 
 ## Quick Example
 
@@ -236,7 +236,7 @@ const transaction = await core.getUnsignedTransaction(routes[0]);
       API Reference
     </h3>
     <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
-      Complete TypeScript API documentation with interfaces, methods, and working examples for both Multi-Bridge Routes and Native Routes modules.
+      Complete TypeScript API documentation with interfaces, methods, and working examples for both Multi-Bridge Routes and Native Bridge modules.
     </p>
     <a href="/agglayer/developer-tools/agglayer-sdk/api-reference/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
       View reference →

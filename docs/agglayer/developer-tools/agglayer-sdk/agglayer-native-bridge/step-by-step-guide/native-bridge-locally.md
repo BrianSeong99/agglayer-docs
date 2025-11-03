@@ -1,10 +1,10 @@
 ---
-title: Native Route (Locally)
+title: Native Bridge (Locally)
 ---
 
 <!-- Page Header Component -->
 <h1 style="text-align: left; font-size: 38px; font-weight: 700; font-family: 'Inter Tight', sans-serif;">
-  Native Route (Locally)
+  Native Bridge (Locally)
 </h1>
 
 <div style="text-align: left; margin: 0.5rem 0;">
@@ -15,7 +15,7 @@ title: Native Route (Locally)
 
 ## Overview
 
-This guide walks through using Agglayer Native Routes with AggSandbox for local development. You'll learn how to bridge assets locally with instant feedback and automatic claiming.
+This guide walks through using Agglayer Native Bridge with AggSandbox for local development. You'll learn how to bridge assets locally with instant feedback and automatic claiming.
 
 **Important**: SDK manual claiming doesn't work with AggSandbox due to API endpoint differences. Use AggSandbox's auto-claiming service instead.
 
@@ -140,7 +140,7 @@ console.log(`L2 balance after auto-claim: ${l2Balance}`);
 import { AggLayerSDK, SDK_MODES } from '@agglayer/sdk';
 import { ethers } from 'ethers';
 
-async function localNativeRouteExample() {
+async function localNativeBridgeExample() {
   try {
     // Initialize SDK
     const sdk = new AggLayerSDK({
@@ -201,5 +201,5 @@ async function localNativeRouteExample() {
   }
 }
 
-localNativeRouteExample();
+localNativeBridgeExample();
 ```

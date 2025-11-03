@@ -101,7 +101,7 @@ Create a `.env` file for your configuration:
 ARC_API_BASE_URL=https://arc-api.polygon.technology
 ARC_API_TIMEOUT=30000
 
-# Native Routes Configuration (RPC URLs)
+# Native Bridge Configuration (RPC URLs)
 ETHEREUM_RPC_URL=https://eth-mainnet.g.alchemy.com/v2/your-api-key
 KATANA_RPC_URL=https://rpc.katana.network
 SEPOLIA_RPC_URL=https://eth-sepolia.g.alchemy.com/v2/your-api-key
@@ -140,7 +140,7 @@ export const localSDK = new AggLayerSDK({
 });
 
 // Note: Multi-Bridge Routes (CORE mode) not available locally
-// Use Native Routes for direct bridge contract interactions
+// Use Native Bridge for direct bridge contract interactions
 ```
 
 **Additional Environment Variables for Local Testing:**
@@ -231,7 +231,7 @@ async function testInstallation() {
       
       const native = nativeSDK.getNative();
       const supportedNetworks = native.getSupportedNetworks();
-      console.log(`✅ Native Routes: ${supportedNetworks.length} networks configured`);
+      console.log(`✅ Native Bridge: ${supportedNetworks.length} networks configured`);
     }
     
     console.log('🎉 Installation verified successfully!');
@@ -255,7 +255,7 @@ Expected output:
 ```
 🚀 Testing Agglayer SDK installation...
 ✅ Multi-Bridge Routes: Found 15 supported chains
-✅ Native Routes: 2 networks configured
+✅ Native Bridge: 2 networks configured
 🎉 Installation verified successfully!
 ```
 
@@ -279,13 +279,13 @@ const core = sdk.getCore();
 // native module not available
 ```
 
-### Native Routes Only
+### Native Bridge Only
 
 ```typescript
 import { AggLayerSDK, SDK_MODES } from '@agglayer/sdk';
 
 const sdk = new AggLayerSDK({
-  mode: [SDK_MODES.NATIVE], // Only Native Routes
+  mode: [SDK_MODES.NATIVE], // Only Native Bridge
   native: {
     defaultNetwork: 1,
     customRpcUrls: {

@@ -64,7 +64,7 @@ if (approvalStep) {
 
 ### Building Claim Transactions
 
-For Agglayer routes, build claim transactions to retrieve bridged assets on the destination network after AggKit processing.
+For Agglayer Bridge, build claim transactions to retrieve bridged assets on the destination network after AggKit processing.
 
 ```typescript
 if (route.provider.includes('agglayer')) {

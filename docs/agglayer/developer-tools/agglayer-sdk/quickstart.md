@@ -193,7 +193,7 @@ async function quickstartExample() {
     console.log('1. Present transaction to user wallet for signing');
     console.log('2. Submit signed transaction to Base network');
     console.log('3. Monitor transaction execution across bridges');
-    console.log('4. Handle claim process if using Agglayer routes');
+    console.log('4. Handle claim process if using Agglayer Bridge');
     
   } catch (error) {
     console.error('❌ Quickstart failed:', error);
@@ -264,12 +264,12 @@ Learn how to build production-ready applications with comprehensive error handli
 ### **Direct Bridge Control**
 Use Native Routes for direct blockchain operations and local testing:
 
-- **[Native Routes Overview](./agglayer-native-routes/)** - Direct bridge contract interactions with full control
-- **[Local Testing with AggSandbox](./agglayer-native-routes/step-by-step-guide/native-route-locally/)** - Test locally with instant feedback
+- **[Native Bridge Overview](./agglayer-native-bridge/)** - Direct bridge contract interactions with full control
+- **[Local Testing with AggSandbox](./agglayer-native-bridge/step-by-step-guide/native-bridge-locally/)** - Test locally with instant feedback
 
 ### **Deep Dive**
 Explore the full capabilities of the SDK:
 
 - **[Multi-Bridge Routes Operations](./multi-bridge-routes/)** - Chain metadata, route discovery, transaction building
-- **[Native Routes Operations](./agglayer-native-routes/operations/erc20-operations/)** - ERC20 operations, bridge operations, chain management
+- **[Native Bridge Operations](./agglayer-native-bridge/operations/erc20-operations/)** - ERC20 operations, bridge operations, chain management
 - **[API Reference](./api-reference/)** - Complete TypeScript API documentation with all methods and interfaces

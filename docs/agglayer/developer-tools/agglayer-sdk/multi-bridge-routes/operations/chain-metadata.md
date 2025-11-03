@@ -44,7 +44,7 @@ interface Chain {
   networkId: number; // Agglayer network ID (0 for Ethereum)
   name: string; // Human-readable name
   bridgeAddress: string; // Bridge contract address
-  supportedRoutes: string[]; // ['agglayer', 'lifi', etc.]
+  supportedRoutes: string[]; // ['lifi', etc.]
   nativeCurrency: {
     name: string; // "Ethereum"
     symbol: string; // "ETH"

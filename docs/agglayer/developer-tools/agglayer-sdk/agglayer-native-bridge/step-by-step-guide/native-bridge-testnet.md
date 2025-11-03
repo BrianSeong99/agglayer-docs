@@ -1,27 +1,27 @@
 ---
-title: Native Route (Mainnet)
+title: Native bridge (Testnet)
 ---
 
 <!-- Page Header Component -->
 <h1 style="text-align: left; font-size: 38px; font-weight: 700; font-family: 'Inter Tight', sans-serif;">
-  Native Route (Mainnet)
+  Native bridge (Testnet)
 </h1>
 
 <div style="text-align: left; margin: 0.5rem 0;">
   <p style="font-size: 18px; color: #666; max-width: 600px; margin: 0;">
-    Step-by-step guide for production deployment on mainnet
+    Step-by-step guide for testnet development with real network conditions
   </p>
 </div>
 
 ## Overview
 
-This guide walks through using Agglayer Native Routes on mainnet for production deployment. You'll learn how to bridge real assets with proper security considerations.
+This guide walks through using Agglayer Native Bridge on testnet networks for integration validation. You'll learn how to bridge assets on testnet with real network conditions and actual gas costs.
 
-Before starting, ensure you have mainnet RPC access, real funds for testing, and have completed testing on local and testnet environments.
+Before starting, ensure you have testnet RPC access and testnet tokens (Sepolia ETH, test USDC, etc.).
 
 ## Step 1: Initialize SDK
 
-Configure the SDK for mainnet networks with production RPC URLs.
+Configure the SDK for testnet networks with appropriate RPC URLs.
 
 ```typescript
 import { AggLayerSDK, SDK_MODES } from '@agglayer/sdk';
@@ -29,9 +29,9 @@ import { AggLayerSDK, SDK_MODES } from '@agglayer/sdk';
 const sdk = new AggLayerSDK({
   mode: [SDK_MODES.NATIVE],
   native: {
-    defaultNetwork: 1, // Ethereum
+    defaultNetwork: 11155111, // Sepolia
     customRpcUrls: {
-      1: 'https://eth-mainnet.g.alchemy.com/v2/your-key',
+      11155111: 'https://eth-sepolia.g.alchemy.com/v2/your-key',
       747474: 'https://rpc.katana.network',
     },
   },
@@ -40,14 +40,14 @@ const sdk = new AggLayerSDK({
 const native = sdk.getNative();
 ```
 
-## Step 2: Validate Balances
+## Step 2: Check Balances
 
-Check you have sufficient tokens and ETH for gas fees on the source network.
+Verify you have sufficient testnet tokens and ETH for gas fees.
 
 ```typescript
-const ethereumUsdc = native.erc20('0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 1);
-const balance = await ethereumUsdc.getBalance('0xYourAddress');
-const ethBalance = await native.getNativeBalance('0xYourAddress', 1);
+const sepoliaUsdc = native.erc20('0xSepoliaUSDCAddress', 11155111);
+const balance = await sepoliaUsdc.getBalance('0xYourAddress');
+const ethBalance = await native.getNativeBalance('0xYourAddress', 11155111);
 
 console.log(`USDC Balance: ${balance}`);
 console.log(`ETH Balance: ${ethBalance}`);
@@ -55,15 +55,15 @@ console.log(`ETH Balance: ${ethBalance}`);
 
 ## Step 3: Build Approval
 
-Check allowance and build approval transaction for the bridge contract, then sign and broadcast it to the blockchain.
+Check allowance and build approval transaction if needed, then sign and broadcast it to the blockchain.
 
 ```typescript
 const bridgeAddress = '0x2a3DD3EB832aF982ec71669E178424b10Dca2EDe';
-const amount = '1000000000'; // 1000 USDC
-const allowance = await ethereumUsdc.getAllowance('0xYourAddress', bridgeAddress);
+const amount = '10000000'; // 10 USDC
+const allowance = await sepoliaUsdc.getAllowance('0xYourAddress', bridgeAddress);
 
 if (BigInt(allowance) < BigInt(amount)) {
-  const approvalTx = await ethereumUsdc.buildApprove(
+  const approvalTx = await sepoliaUsdc.buildApprove(
     bridgeAddress,
     amount,
     '0xYourAddress'
@@ -72,16 +72,15 @@ if (BigInt(allowance) < BigInt(amount)) {
   // Sign and send to blockchain (swap below code with your own wallet client)
   const receipt = await wallet.sendTransaction(approvalTx);
   await receipt.wait(); // Wait for confirmation
-  console.log(`Approval confirmed: ${receipt.hash}`);
 }
 ```
 
 ## Step 4: Build Bridge Transaction
 
-Build the bridge transaction to transfer tokens from Ethereum to Katana, then sign and broadcast it.
+Build the bridge transaction to transfer tokens from Sepolia to Katana, then sign and broadcast it.
 
 ```typescript
-const bridgeTx = await ethereumUsdc.bridgeTo(
+const bridgeTx = await sepoliaUsdc.bridgeTo(
   20, // Katana network ID
   '0xYourAddress',
   amount,
@@ -92,7 +91,7 @@ const bridgeTx = await ethereumUsdc.bridgeTo(
   }
 );
 
-// Sign and send to blockchain (swap below code with your own wallet client)
+// Sign and send to blockchain (swap below code with your wallet client)
 const receipt = await wallet.sendTransaction(bridgeTx);
 await receipt.wait(); // Wait for confirmation
 const bridgeTxHash = receipt.hash;
@@ -101,23 +100,22 @@ console.log(`Bridge transaction confirmed: ${bridgeTxHash}`);
 
 ## Step 5: Wait for AggKit Processing
 
-Wait for AggKit to process the bridge event (timing varies on mainnet based on network congestion).
+Wait for AggKit to process the bridge event (typically 2-5 minutes on testnet).
 
 ```typescript
 console.log('Waiting for AggKit to process bridge event...');
-// Typically 10-30 minutes on mainnet
-await new Promise(resolve => setTimeout(resolve, 1800000)); // 30 minutes
+await new Promise(resolve => setTimeout(resolve, 300000)); // 5 minutes
 ```
 
 ## Step 6: Build Claim Transaction
 
-Build the claim transaction on Katana, then sign and send it to retrieve your bridged tokens.
+Build the claim transaction on the destination network, then sign and send it to retrieve your bridged tokens.
 
 ```typescript
-const katanaUsdc = native.erc20('0x203a662b0bd271a6ed5a60edfbd04bfce608fd36', 747474);
+const katanaUsdc = native.erc20('0xKatanaUSDCAddress', 747474);
 const claimTx = await katanaUsdc.claimAsset(
   bridgeTxHash,
-  0, // Source network (Ethereum)
+  0, // Source network (Sepolia)
   0, // Bridge index
   '0xYourAddress'
 );
@@ -132,37 +130,37 @@ console.log(`Claim transaction confirmed: ${claimReceipt.hash}`);
 
 ```typescript
 import { AggLayerSDK, SDK_MODES } from '@agglayer/sdk';
+import { ethers } from 'ethers';
 
-async function mainnetNativeRouteExample() {
+async function testnetNativebridgeExample() {
   try {
     // Initialize SDK
     const sdk = new AggLayerSDK({
       mode: [SDK_MODES.NATIVE],
       native: {
-        defaultNetwork: 1,
+        defaultNetwork: 11155111,
         customRpcUrls: {
-          1: 'https://eth-mainnet.g.alchemy.com/v2/your-key',
+          11155111: 'https://eth-sepolia.g.alchemy.com/v2/your-key',
           747474: 'https://rpc.katana.network',
         },
       },
     });
     
     const native = sdk.getNative();
-    const ethereumUsdc = native.erc20('0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 1);
-    const katanaUsdc = native.erc20('0x203a662b0bd271a6ed5a60edfbd04bfce608fd36', 747474);
+    const sepoliaUsdc = native.erc20('0xSepoliaUSDCAddress', 11155111);
+    const katanaUsdc = native.erc20('0xKatanaUSDCAddress', 747474);
     
-    // Check balances
-    const balance = await ethereumUsdc.getBalance('0xYourAddress');
-    const ethBalance = await native.getNativeBalance('0xYourAddress', 1);
-    console.log(`USDC: ${balance}, ETH: ${ethBalance}`);
+    // Check balance
+    const balance = await sepoliaUsdc.getBalance('0xYourAddress');
+    console.log(`Sepolia USDC: ${balance}`);
     
     // Build approval
     const bridgeAddress = '0x2a3DD3EB832aF982ec71669E178424b10Dca2EDe';
-    const amount = '1000000000';
+    const amount = '10000000';
     
-    const allowance = await ethereumUsdc.getAllowance('0xYourAddress', bridgeAddress);
+    const allowance = await sepoliaUsdc.getAllowance('0xYourAddress', bridgeAddress);
     if (BigInt(allowance) < BigInt(amount)) {
-      const approvalTx = await ethereumUsdc.buildApprove(
+      const approvalTx = await sepoliaUsdc.buildApprove(
         bridgeAddress,
         amount,
         '0xYourAddress'
@@ -171,7 +169,7 @@ async function mainnetNativeRouteExample() {
     }
     
     // Build bridge transaction
-    const bridgeTx = await ethereumUsdc.bridgeTo(
+    const bridgeTx = await sepoliaUsdc.bridgeTo(
       20,
       '0xYourAddress',
       amount,
@@ -182,7 +180,7 @@ async function mainnetNativeRouteExample() {
     
     // Wait for AggKit
     console.log('Waiting for AggKit processing...');
-    await new Promise(resolve => setTimeout(resolve, 1800000)); // 30 minutes
+    await new Promise(resolve => setTimeout(resolve, 300000));
     
     // Build claim
     const claimTx = await katanaUsdc.claimAsset(
@@ -193,12 +191,12 @@ async function mainnetNativeRouteExample() {
     );
     // Sign and send
     
-    console.log('Mainnet native route completed!');
+    console.log('Testnet native bridge completed!');
     
   } catch (error) {
     console.error('Example failed:', error);
   }
 }
 
-mainnetNativeRouteExample();
+testnetNativebridgeExample();
 ```

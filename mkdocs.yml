@@ -111,16 +111,16 @@ nav:
               - Transaction History: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/transaction-history.md
             - Step-by-Step Guide:
               - Multi-Bridge Routing (Mainnet): agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/step-by-step-guide/multi-bridge-routing-mainnet.md
-          - Agglayer Native Routes:
-            - agglayer/developer-tools/agglayer-sdk/agglayer-native-routes/index.md
+          - Agglayer Native Bridge:
+            - agglayer/developer-tools/agglayer-sdk/agglayer-native-bridge/index.md
             - Operations:
-              - ERC20 Operations: agglayer/developer-tools/agglayer-sdk/agglayer-native-routes/operations/erc20-operations.md
-              - Bridge Operations: agglayer/developer-tools/agglayer-sdk/agglayer-native-routes/operations/bridge-operations.md
-              - Chain Management: agglayer/developer-tools/agglayer-sdk/agglayer-native-routes/operations/chain-management.md
+              - ERC20 Operations: agglayer/developer-tools/agglayer-sdk/agglayer-native-bridge/operations/erc20-operations.md
+              - Bridge Operations: agglayer/developer-tools/agglayer-sdk/agglayer-native-bridge/operations/bridge-operations.md
+              - Chain Management: agglayer/developer-tools/agglayer-sdk/agglayer-native-bridge/operations/chain-management.md
             - Step-by-Step Guide:
-              - Native Route (Locally): agglayer/developer-tools/agglayer-sdk/agglayer-native-routes/step-by-step-guide/native-route-locally.md
-              - Native Route (Testnet): agglayer/developer-tools/agglayer-sdk/agglayer-native-routes/step-by-step-guide/native-route-testnet.md
-              - Native Route (Mainnet): agglayer/developer-tools/agglayer-sdk/agglayer-native-routes/step-by-step-guide/native-route-mainnet.md
+              - Native Bridge (Locally): agglayer/developer-tools/agglayer-sdk/agglayer-native-bridge/step-by-step-guide/native-bridge-locally.md
+              - Native Bridge (Testnet): agglayer/developer-tools/agglayer-sdk/agglayer-native-bridge/step-by-step-guide/native-bridge-testnet.md
+              - Native Bridge (Mainnet): agglayer/developer-tools/agglayer-sdk/agglayer-native-bridge/step-by-step-guide/native-bridge-mainnet.md
           - Reference:
             - API Reference: agglayer/developer-tools/agglayer-sdk/api-reference.md
         - AggSandbox:
