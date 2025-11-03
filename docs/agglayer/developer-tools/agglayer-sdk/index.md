@@ -131,7 +131,7 @@ The SDK **builds** unsigned transactions with proper call data and gas estimates
 
 ### Token Approval Requirements
 
-Before bridging ERC20 tokens, you must approve the bridge contract to spend your tokens. The SDK provides methods to check current allowances and build approval transactions. Native currency (ETH, MATIC) doesn't require approval since it's sent directly with the transaction value.
+Before bridging ERC20 tokens, you must approve the bridge contract to spend your tokens. The SDK provides methods to check current allowances and build approval transactions. Native currency (ETH, POL) doesn't require approval since it's sent directly with the transaction value.
 
 ## Development Path
 

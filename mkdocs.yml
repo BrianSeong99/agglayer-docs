@@ -109,6 +109,7 @@ nav:
               - Chain Metadata: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/chain-metadata.md
               - Transaction Building: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/transaction-building.md
               - Transaction History: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/transaction-history.md
+              - Understanding Gas Fees: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/gas-fees.md
             - Step-by-Step Guide:
               - Multi-Bridge Routing (Mainnet): agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/step-by-step-guide/multi-bridge-routing-mainnet.md
           - Agglayer Native Bridge:

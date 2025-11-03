@@ -75,6 +75,19 @@ The ARC API combines routes from Agglayer Bridge and LiFi Bridge into a single i
     </a>
   </div>
 
+  <!-- Gas Fees Card -->
+  <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
+    <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
+      Understanding Gas Fees
+    </h3>
+    <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
+      Learn how gas fees and bridge costs vary by route provider. Real transaction examples show cost differences between Stargate, Across, and other bridges.
+    </p>
+    <a href="/agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/gas-fees/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+      Learn more →
+    </a>
+  </div>
+
 </div>
 
 ## Complete Guides
