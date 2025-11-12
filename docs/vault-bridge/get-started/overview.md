@@ -21,6 +21,48 @@ Most chains don’t have durable, non-inflationary revenue streams. Sequencer fe
 * **Accounts (chains, rollups, fintechs):** Earn sustainable, non-inflationary revenue from idle bridged assets.  
 * **Agents (bridges, RaaS):** Add value to chains you support and capture part of the fee share.
 
+## Explore Vault Bridge
+
+<div style="display: flex; flex-direction: column; gap: 1rem; max-width: 800px; margin: 1rem 0;">
+
+  <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
+    <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
+      Quickstart
+    </h3>
+    <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
+      Bridge vbUSDC from Ethereum to L2 in five minutes with step-by-step guidance and sample code.
+    </p>
+    <a href="/vault-bridge/get-started/quickstart/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+      Get started →
+    </a>
+  </div>
+
+  <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
+    <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
+      Integration Guides
+    </h3>
+    <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
+      End-to-end workflows for Ethereum↔L2 bridging, proof automation, Native Converter deployments, and testing.
+    </p>
+    <a href="/vault-bridge/integration-guides/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+      Explore guides →
+    </a>
+  </div>
+
+  <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
+    <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
+      Reference Documentation
+    </h3>
+    <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
+      Contract APIs, deployment addresses, Bridge Service API helpers, and operational checklists in one place.
+    </p>
+    <a href="/vault-bridge/reference/technical-reference/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+      View reference →
+    </a>
+  </div>
+
+</div>
+
 ## **How to get started**
 
 * Before using Vault Bridge, certain legal documentation is necessary, including entry into an agreement with the escrow agent. [Contact our team to get started on the documentation process.](https://info.polygon.technology/vaultbridge-intake-form) 
