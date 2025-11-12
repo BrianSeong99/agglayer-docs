@@ -39,13 +39,13 @@ Receive vbUSDC instantly on L2
 
 ### Core Concept
 
-The Native Converter maintains a **backing pool** of underlying tokens on L2 that backs the Custom Tokens (vbTokens) it mints locally. Periodically, this backing is migrated to L1 where it's deposited into the VaultBridgeToken to generate yield.
+The Native Converter maintains a **backing pool** of underlying tokens on L2 that backs the vbTokens it mints locally. Periodically, this backing is migrated to L1 where it's deposited into the VaultBridgeToken to generate yield.
 
 ```mermaid
 flowchart TD
     subgraph Layer_2
         A[User on L2<br/>Has bridged USDC] --> B[Native Converter<br/>convert]
-        B --> C[Mint Custom Token/vbToken]
+        B --> C[Mint vbToken]
         C --> D[User receives vbToken on L2]
         D -->|Later| E[Native Converter<br/>migrateBackingToLayerX]
     end
@@ -60,34 +60,7 @@ flowchart TD
 ### Components
 
 1. **NativeConverter Contract (L2)**: Handles local conversion/deconversion and migration
-2. **CustomToken Contract (L2)**: Mintable/burnable version of vbToken
-3. **MigrationManager Contract (L1)**: Receives and processes migrated backing
-
-## When to Deploy Native Converter
-
-**Deploy if:**
-
-- Your L2 already has significant bridged asset liquidity (USDC, USDT, etc.)
-- Users want to access yield without complex bridging
-- You want to improve UX for converting to vbTokens
-- You plan to actively manage backing migration
-
-**Skip if:**
-
-- You're launching a new chain with no existing liquidity
-- Users are comfortable with L1→L2 bridging flow
-- You want simpler initial deployment
-
-## Deployment Guide
-
-The full deployment scripts live in [`vault-bridge/script`](https://github.com/agglayer/vault-bridge/tree/main/script). At a high level:
-
-1. **Deploy Custom Token** – Upgradeable ERC-20 mirroring underlying decimals.
-2. **Deploy Native Converter** – Configure `underlyingToken`, `lxlyBridge`, `layerXLxlyId`, and `migrationManager`.
-3. **Grant Roles** – Give Native Converter mint/burn permissions on the Custom Token and assign `MIGRATOR_ROLE`.
-4. **Map Tokens** – Bridge governance links the Custom Token to the L1 vbToken so users receive the custom asset on L2.
-
-Run the ready-made Foundry scripts (`DeployNativeConverter.s.sol`, `RegisterNativeConverters.s.sol`) with your environment variables—no need to rewrite them here.
+2. **MigrationManager Contract (L1)**: Receives and processes migrated backing
 
 ## Using Native Converter
 
@@ -217,7 +190,6 @@ See [Testing Guide](testing-guide.md) for:
 | `AssetsTooLarge` on deconvert | Insufficient backing on L2 | Wait for migration or reduce amount |
 | Mint/burn fails | Missing role permissions | Grant MINTER/BURNER roles to Native Converter |
 | Migration fails | Insufficient migratable backing | Check `migratableBacking()` |
-| Custom token not received after claim | Token not mapped on bridge | Configure bridge token mapping |
 
 
 

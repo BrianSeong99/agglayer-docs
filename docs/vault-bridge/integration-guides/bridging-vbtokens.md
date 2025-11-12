@@ -157,31 +157,6 @@ Periodically, Native Converter migrates backing to L1 for yield generation
 
 See [Native Converter Integration](native-converter-integration.md) for detailed implementation.
 
-## Token Mapping and Custom Tokens
-
-When bridging to L2, you can configure how vbTokens appear:
-
-### Option 1: Bridge-Wrapped Token (Default)
-
-The Unified Bridge automatically creates a wrapped version:
-- Address is deterministically generated
-- Standard ERC-20 functionality
-- Name: "Bridged Vault Bridge USDC"
-
-### Option 2: Custom Token Mapping
-
-Deploy a CustomToken contract and map it to the vbToken:
-
-- Full control over name, symbol, decimals
-- Can match local conventions (e.g., naming it "USDC" on L2)
-- Required for Native Converter integration
-- Enables special features like burn/mint permissions
-
-**When to use each:**
-
-- **Wrapped**: Simple integration, no additional contracts needed
-- **Custom**: Need Native Converter, want specific naming, or require additional functionality
-
 ## Network IDs and Bridge Addresses
 
 Each chain in the Agglayer has a unique network ID:
