@@ -599,32 +599,3 @@ L2 operations (Native Converter):
 
 *Note: Actual costs vary with network conditions and L2 gas prices*
 
----
-
-## Integration Checklist
-
-When integrating Vault Bridge, ensure you:
-
-- [ ] Use correct contract addresses for your network
-- [ ] Handle all error cases appropriately
-- [ ] Implement proper allowance management
-- [ ] Fetch fresh proofs for claims
-- [ ] Test on testnet thoroughly
-- [ ] Monitor contract pause state
-- [ ] Implement proper event monitoring
-- [ ] Handle 1:1 conversion ratio assumptions
-
----
-
-## Additional Resources
-
-- [VaultBridgeToken Source Code](https://github.com/agglayer/vault-bridge/blob/main/src/VaultBridgeToken.sol)
-- [NativeConverter Source Code](https://github.com/agglayer/vault-bridge/blob/main/src/NativeConverter.sol)
-- [Integration Tests](https://github.com/agglayer/vault-bridge/tree/main/test/integration)
-- [ERC-4626 Specification](https://eips.ethereum.org/EIPS/eip-4626)
-
-For practical integration examples, see:
-- [Ethereum to L2 Bridging Guide](../integration-guides/eth-to-l2.md)
-- [L2 to Ethereum Bridging Guide](../integration-guides/l2-to-eth.md)
-- [Native Converter Integration](../integration-guides/native-converter-integration.md)
-
