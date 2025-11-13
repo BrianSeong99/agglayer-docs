@@ -15,7 +15,7 @@ title: ABI Reference
 
 ## Overview
 
-This reference documents all public functions, events, and data structures for Vault Bridge smart contracts. For integration examples, see the [Integration Guides](../integration-guides/).
+This reference documents all public functions, events, and data structures for Vault Bridge smart contracts. For integration examples, see the [Agglayer route guide](../routes/agglayer.md) and the [Hyperlane route guide](../routes/hyperlane.md).
 
 ## VaultBridgeToken Contract
 
@@ -598,4 +598,14 @@ L2 operations (Native Converter):
 | `migrateBackingToLayerX()` | ~200,000 | Minimal (L2 gas) |
 
 *Note: Actual costs vary with network conditions and L2 gas prices*
+
+## Hyperlane Route Contracts
+
+Vault Bridge relies on Hyperlane’s yield route contracts when bridging vbTokens through the Hyperlane network:
+
+- `EvmHypOwnerCollateral` / `HypERC20CollateralVaultDeposit` — Origin chain collateral vault wrapper
+- `EvmHypSynthetic` / `HypERC20` — Synthetic token contract on destination chains
+- `Mailbox` — Core Hyperlane messaging contract with mint authority for the synthetic vbToken
+
+Use the [Hyperlane route guide](../routes/hyperlane.md) for configuration details, deployment steps, and the latest contract addresses.
 

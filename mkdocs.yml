@@ -151,24 +151,19 @@ nav:
   - Vault Bridge:
     - Get Started:
       - Overview: vault-bridge/get-started/overview.md
-      - Architecture & Roadmap: vault-bridge/get-started/architecture.md
       - Quickstart: vault-bridge/get-started/quickstart.md
-      - FAQ: vault-bridge/get-started/faq.md
-    - Integration Guides:
-      - Overview: vault-bridge/integration-guides/index.md
-      - Bridging vbTokens: vault-bridge/integration-guides/bridging-vbtokens.md
-      - How to Bridge vbAssets:
-        - Ethereum to L2: vault-bridge/integration-guides/eth-to-l2.md
-        - L2 to Ethereum: vault-bridge/integration-guides/l2-to-eth.md
-      - Native Converter Integration: vault-bridge/integration-guides/native-converter-integration.md
-    - Deploy:
-      - Launch Checklist: vault-bridge/deploy/launch-checklist.md
+    - Core Concepts:
+      - Architecture: vault-bridge/core-concepts/architecture.md
+      - vbTokens: vault-bridge/core-concepts/tokens.md
+      - Native Converter: vault-bridge/core-concepts/native-converter.md
+    - Vault Bridge Routes:
+      - Agglayer Route: vault-bridge/routes/agglayer.md
+      - Hyperlane Route: vault-bridge/routes/hyperlane.md
     - Reference:
       - Technical Reference: https://agglayer.github.io/vault-bridge/
       - ABI Reference: vault-bridge/reference/abi-reference.md
-      - Contract Addresses: vault-bridge/reference/contract-addresses.md
-      - Assets & Live Vaults: vault-bridge/reference/assets-live-vaults.md
-      - Risk & Security: vault-bridge/reference/risk-security.md
+      - Assets & Vaults: vault-bridge/reference/assets-and-vaults.md
+      - Security: vault-bridge/reference/risk-security.md
 
 extra:
   generator: false

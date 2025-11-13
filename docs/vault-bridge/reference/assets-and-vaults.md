@@ -1,55 +1,37 @@
 ---
-title: Contract Addresses
+title: Assets & Vaults
 ---
 
 <!-- Page Header Component -->
 <h1 style="text-align: left; font-size: 38px; font-weight: 700; font-family: 'Inter Tight', sans-serif;">
-  Contract Addresses
+  Vault Bridge Assets & Vaults
 </h1>
 
 <div style="text-align: left; margin: 0.5rem 0;">
   <p style="font-size: 18px; color: #666; max-width: 600px; margin: 0;">
-    Complete list of Vault Bridge contract deployments across networks
+    Reference hub for Vault Bridge production deployments, Layer&nbsp;Y integrations, and test networks.
   </p>
 </div>
 
-## Overview
-
-This page lists all Vault Bridge contract addresses for mainnet and testnet deployments. Always verify addresses before use, especially on mainnet.
-
-## Mainnet Deployments
+## Production Networks {#production-networks}
 
 ### Ethereum Mainnet
-
-**Network ID:** 0  
-**Chain ID:** 1  
-**Block Explorer:** [Etherscan](https://etherscan.io/)
 
 #### Vault Bridge Tokens
 
 | Token | Underlying | Address | Vault |
 |-------|-----------|---------|-------|
 | **vbETH** | WETH (0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2) | [0x31A5684983EeE865d943A696AAC155363bA024f9](https://etherscan.io/address/0x31A5684983EeE865d943A696AAC155363bA024f9) | [Morpho](https://app.morpho.org/ethereum/vault/0x31A5684983EeE865d943A696AAC155363bA024f9) |
-| **vbUSDC** | USDC (0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48) | [0xBEefb9f61CC44895d8AEc381373555a64191A9c4](https://etherscan.io/address/0xBEefb9f61CC44895d8AEc381373555a64191A9c4) | [Morpho](https://app.morpho.org/ethereum/vault/0xBEefb9f61CC44895d8AEc381373555a64191A9c4) |
-| **vbUSDT** | USDT (0xdAC17F958D2ee523a2206206994597C13D831ec7) | [0xc54b4E08C1Dcc199fdd35c6b5Ab589ffD3428a8d](https://etherscan.io/address/0xc54b4E08C1Dcc199fdd35c6b5Ab589ffD3428a8d) | [Morpho](https://app.morpho.org/ethereum/vault/0xc54b4E08C1Dcc199fdd35c6b5Ab589ffD3428a8d) |
-| **vbWBTC** | WBTC (0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599) | [0x812B2C6Ab3f4471c0E43D4BB61098a9211017427](https://etherscan.io/address/0x812B2C6Ab3f4471c0E43D4BB61098a9211017427) | [Morpho](https://app.morpho.org/ethereum/vault/0x812B2C6Ab3f4471c0E43D4BB61098a9211017427) |
+| **vbUSDC** | USDC (0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48) | [0xBEefb9f61CC44895d8AEc381373555a64191A9c4](https://etherscan.io/address/0xBEefb9f61CC44895d8AEc381373555a64191A9c4) | [Morpho](https://app.morpho.org/ethereum/vault/0xBEefb9f61CC44895d8AEc381373555a64191A9c4/vault-bridge-usdc) |
+| **vbUSDT** | USDT (0xdAC17F958D2ee523a2206206994597C13D831ec7) | [0xc54b4E08C1Dcc199fdd35c6b5Ab589ffD3428a8d](https://etherscan.io/address/0xc54b4E08C1Dcc199fdd35c6b5Ab589ffD3428a8d) | [Morpho](https://app.morpho.org/ethereum/vault/0xc54b4E08C1Dcc199fdd35c6b5Ab589ffD3428a8d/vault-bridge-usdt) |
+| **vbWBTC** | WBTC (0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599) | [0x812B2C6Ab3f4471c0E43D4BB61098a9211017427](https://etherscan.io/address/0x812B2C6Ab3f4471c0E43D4BB61098a9211017427) | [Morpho](https://app.morpho.org/ethereum/vault/0x812B2C6Ab3f4471c0E43D4BB61098a9211017427/vault-bridge-wbtc) |
 | **vbUSDS** | USDS (0xdC035D45d973E3EC169d2276DDab16f1e407384F) | [0x0868076663Bbc6638ceDd27704cc8F0Fa53d5b81](https://etherscan.io/address/0x0868076663Bbc6638ceDd27704cc8F0Fa53d5b81) | [Yearn](https://yearn.fi/v3/1/0x0868076663Bbc6638ceDd27704cc8F0Fa53d5b81) |
 
-#### Infrastructure Contracts
+## Layer&nbsp;Y Deployments {#layer-y-deployments}
 
-| Contract | Address | Description |
-|----------|---------|-------------|
-| **LxLy Bridge** | [0x2a3DD3EB832aF982ec71669E178424b10Dca2EDe](https://etherscan.io/address/0x2a3DD3EB832aF982ec71669E178424b10Dca2EDe) | Agglayer Unified Bridge |
-| **Migration Manager** | TBD | Handles backing migration from L2 |
+### Katana
 
----
-
-### Katana (Network ID: 747474)
-
-**Chain ID:** 747474  
-**Block Explorer:** [Katana Scan](https://katanascan.com/)
-
-#### Bridged Vault Bridge Tokens
+#### Bridged vbTokens
 
 | Token | L1 Origin | Address |
 |-------|-----------|---------|
@@ -69,16 +51,9 @@ This page lists all Vault Bridge contract addresses for mainnet and testnet depl
 | **vbWBTC** | [0xb00aa68b87256E2F22058fB2Ba3246EEc54A44fc](https://katanascan.com/address/0xb00aa68b87256E2F22058fB2Ba3246EEc54A44fc) | Convert WBTC ↔ vbWBTC on L2 |
 | **vbUSDS** | [0x639f13D5f30B47c792b6851238c05D0b623C77DE](https://katanascan.com/address/0x639f13D5f30B47c792b6851238c05D0b623C77DE) | Convert USDS ↔ vbUSDS on L2 |
 
----
-
-## Testnet Deployments
+## Test Networks {#test-networks}
 
 ### Ethereum Sepolia
-
-**Network ID:** 0  
-**Chain ID:** 11155111  
-**Block Explorer:** [Sepolia Etherscan](https://sepolia.etherscan.io/)  
-**Faucet:** [Sepolia Faucet](https://sepoliafaucet.com/)
 
 #### Vault Bridge Tokens
 
@@ -89,22 +64,3 @@ This page lists all Vault Bridge contract addresses for mainnet and testnet depl
 | **vbUSDT** | USDT: [0xDA9E6CAA9F85aE060BCcd6a789E0C7D39A33e24f](https://sepolia.etherscan.io/address/0xDA9E6CAA9F85aE060BCcd6a789E0C7D39A33e24f) | [0xdd9aCdD3D2AeC1C823C51f8389597C6be9779B28](https://sepolia.etherscan.io/address/0xdd9aCdD3D2AeC1C823C51f8389597C6be9779B28) |
 | **vbWBTC** | WBTC: [0x8dbBbF4E801774265171D7e101a9f346Fa6f56bD](https://sepolia.etherscan.io/address/0x8dbBbF4E801774265171D7e101a9f346Fa6f56bD) | [0x2CE29070ee5e65C4191d5Efca8E85be181F34B6d](https://sepolia.etherscan.io/address/0x2CE29070ee5e65C4191d5Efca8E85be181F34B6d) |
 | **vbUSDS** | USDS: [0x5956982345967Dbc9648cD133c2fECb1eF132AE6](https://sepolia.etherscan.io/address/0x5956982345967Dbc9648cD133c2fECb1eF132AE6) | [0x406F1A8D91956d8D340821Cf6744Aa74c666836C](https://sepolia.etherscan.io/address/0x406F1A8D91956d8D340821Cf6744Aa74c666836C) |
-
-#### Infrastructure Contracts
-
-| Contract | Address | Description |
-|----------|---------|-------------|
-| **LxLy Bridge** | [0x528e26b25a34a4A5d0dbDa1d57D318153d2ED582](https://sepolia.etherscan.io/address/0x528e26b25a34a4A5d0dbDa1d57D318153d2ED582) | Agglayer Unified Bridge (Sepolia) |
-
----
-
-## Network IDs Reference
-
-| Network | Network ID | Chain ID | Type |
-|---------|-----------|----------|------|
-| Ethereum Mainnet | 0 | 1 | L1 |
-| Ethereum Sepolia | 0 | 11155111 | L1 Testnet |
-| Katana (Apex) | 747474 | 747474 | L2 |
-
-**Note:** Network ID is used in bridge functions, while Chain ID is used for wallet connections and transaction signing.
-

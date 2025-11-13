@@ -39,25 +39,13 @@ Most chains don’t have durable, non-inflationary revenue streams. Sequencer fe
 
   <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
     <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
-      Integration Guides
+      Routes
     </h3>
     <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
-      End-to-end workflows for Ethereum↔L2 bridging, proof automation, Native Converter deployments, and testing.
+      Choose the interoperability route that matches your chain: Agglayer or Hyperlane, each with full walkthroughs and code samples.
     </p>
-    <a href="/vault-bridge/integration-guides/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
-      Explore guides →
-    </a>
-  </div>
-
-  <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1rem; margin: 0.25rem 0;">
-    <h3 style="color: #0071F7; margin: 0 0 0.5rem 0; font-size: 18px; font-weight: 600;">
-      Reference Documentation
-    </h3>
-    <p style="color: #666; margin-bottom: 0.75rem; line-height: 1.4; font-size: 14px;">
-      Contract APIs, deployment addresses, Bridge Service API helpers, and operational checklists in one place.
-    </p>
-    <a href="/vault-bridge/reference/technical-reference/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
-      View reference →
+    <a href="/vault-bridge/routes/agglayer/" style="color: #0071F7; text-decoration: none; font-weight: 500; font-size: 14px;">
+      Explore routes →
     </a>
   </div>
 

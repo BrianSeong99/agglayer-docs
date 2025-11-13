@@ -156,34 +156,3 @@ async function checkBalance() {
 
 checkBalance();
 ```
-
-## What's Next?
-
-You've successfully bridged vbTokens! Now dive deeper:
-
-### For Chain Operators
-
-1. **[Architecture & Roadmap](architecture.md)** - Understand Vault Bridge design
-2. **[Native Converter Integration](../integration-guides/native-converter-integration.md)** - Enable local conversion on L2
-3. **[Deploy Checklist](../deploy/launch-checklist.md)** - Production deployment guide
-
-### For Developers
-
-1. **[L2 to Ethereum Bridging](../integration-guides/l2-to-eth.md)** - Return journey with proof fetching
-2. **[Testing Guide](../integration-guides/testing-guide.md)** - Comprehensive testing
-3. **[ABI Reference](../reference/abi-reference.md)** - Complete API documentation
-
-### For RaaS/Bridge Providers
-
-1. **[Integration Patterns](../integration-guides/eth-to-l2.md)** - Advanced integration examples
-2. **[API Reference](../reference/api-reference.md)** - Bridge Service API
-3. **[Contract Addresses](../reference/contract-addresses.md)** - All deployments
-
-## Key Concepts Recap
-
-| Concept | Description |
-|---------|-------------|
-| **vbToken** | Yield-bearing ERC-20 token (1:1 backed by underlying) |
-| **depositAndBridge()** | L1 function: deposit underlying + bridge vbToken to L2 |
-| **claimAndRedeem()** | L1 function: claim vbToken from L2 + redeem for underlying |
-| **Native Converter** | Optional L2 contract for local conversions |

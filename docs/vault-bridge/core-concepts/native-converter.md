@@ -15,31 +15,49 @@ title: Native Converter Integration
 
 ## Overview
 
-The Native Converter is an optional L2 component that dramatically improves user experience by allowing users to convert local assets (e.g., bridged USDC) directly into vbTokens (e.g., vbUSDC) without needing to bridge back to Ethereum first.
+The Native Converter is an optional Layer&nbsp;Y component that upgrades the user experience. Instead of bridging back to Ethereum every time they want to access yield, users can swap local bridged assets (such as bridged USDC) directly into vbTokens, or deconvert back to the local asset when they need liquidity. The diagrams below illustrate the difference between operating with and without a converter.
 
 **Without Native Converter:**
-```
-L2 User has bridged USDC
-  ↓
-Bridge to Ethereum → Deposit to VaultBridgeToken → Bridge vbUSDC back to L2
-  ↓
-Total time: ~40-60 minutes, 2 bridge transactions
+
+```mermaid
+flowchart TD
+    subgraph Layer_2
+        direction TB
+        A[User has bridged USDC on L2]
+        D[Bridge vbUSDC back to L2]
+        E[Receive vbUSDC on L2]
+        F[Total time 40-60 minutes<br/>Two bridge transactions]
+    end
+
+    subgraph Layer_1
+        direction TB
+        B[Bridge USDC to Ethereum]
+        C[Deposit to VaultBridgeToken]
+    end
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
 ```
 
 **With Native Converter:**
-```
-L2 User has bridged USDC
-  ↓
-Call convert() on Native Converter
-  ↓
-Receive vbUSDC instantly on L2
+
+```mermaid
+flowchart LR
+    subgraph Layer_2
+        direction LR
+        A2[User has bridged USDC on L2] --> B2[Call convert on Native Converter]
+        B2 --> C2[Receive vbUSDC instantly on L2]
+    end
 ```
 
 ## How Native Converter Works
 
 ### Core Concept
 
-The Native Converter maintains a **backing pool** of underlying tokens on L2 that backs the vbTokens it mints locally. Periodically, this backing is migrated to L1 where it's deposited into the VaultBridgeToken to generate yield.
+At its core, the converter keeps a backing pool of the bridged underlying token on Layer&nbsp;Y. When users convert, the contract mints Custom Tokens (or bridged vbTokens) 1:1 against that pool. Periodically, operators call `migrateBackingToLayerX()`, which bridges the accumulated backing to Ethereum, hands it to the MigrationManager, and deposits it into the VaultBridgeToken so the assets continue earning yield. The process is summarized below.
 
 ```mermaid
 flowchart TD
@@ -59,8 +77,7 @@ flowchart TD
 
 ### Components
 
-1. **NativeConverter Contract (L2)**: Handles local conversion/deconversion and migration
-2. **MigrationManager Contract (L1)**: Receives and processes migrated backing
+The Layer&nbsp;Y `NativeConverter` contract owns the conversion logic, while the Layer&nbsp;X `MigrationManager` finalizes migrations and updates vbToken supply. Together they keep local liquidity aligned with the vault’s collateral on Ethereum.
 
 ## Using Native Converter
 
@@ -142,54 +159,4 @@ contract VbTokenVault {
     }
 }
 ```
-
-TypeScript helpers (`convert-to-vbtoken.ts`, `auto-migrate.ts`, dashboards, etc.) live in [`examples/native-converter`](https://github.com/agglayer/vault-bridge/tree/main/examples/native-converter).
-
-### User Flow Template
-
-Combine the convert/deconvert helpers with periodic migrations to offer a full user vault. Reference implementation: [`examples/native-converter/VbTokenVault.sol`](https://github.com/agglayer/vault-bridge/blob/main/examples/native-converter/VbTokenVault.sol).
-
-### Monitoring & Analytics
-
-Track:
-
-- **Backing ratio** (`backingOnLayerY / totalSupply`)
-- **Migratable backing** (`migratableBacking()`)
-- **Conversion volume** (`Convert` / `Deconvert` events)
-
-Sample dashboards are included in the examples folder for quick integration with your observability stack.
-
-## Security Considerations
-
-1. **Role Management**
-   - MINTER_ROLE and BURNER_ROLE: Only Native Converter
-   - MIGRATOR_ROLE: Trusted automated system or multisig
-   - DEFAULT_ADMIN_ROLE: Multisig recommended
-
-2. **Backing Sufficiency**
-   - Always check `maxDeconvert()` before deconversions
-   - Monitor backing ratio (should be ~100%)
-   - Set appropriate `nonMigratableBackingPercentage`
-
-3. **Migration Safety**
-   - Verify migration completes on L1
-   - Monitor MigrationManager events on L1
-   - Implement migration failure handling
-
-## Testing
-
-See [Testing Guide](testing-guide.md) for:
-- Unit tests for Native Converter
-- Integration tests with VaultBridgeToken
-- Migration workflow tests
-
-## Troubleshooting
-
-| Issue | Cause | Solution |
-|-------|-------|----------|
-| `AssetsTooLarge` on deconvert | Insufficient backing on L2 | Wait for migration or reduce amount |
-| Mint/burn fails | Missing role permissions | Grant MINTER/BURNER roles to Native Converter |
-| Migration fails | Insufficient migratable backing | Check `migratableBacking()` |
-
-
 
