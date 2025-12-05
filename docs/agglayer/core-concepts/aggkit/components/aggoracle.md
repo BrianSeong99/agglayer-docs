@@ -118,7 +118,7 @@ v0.3.5 introduces **multi-party consensus** where multiple independent AggOracle
 
 ### What is a Global Exit Root?
 
-A [Global Exit Root (GER)](../../unified-bridge/data-structures.md#global-exit-root) is a **cryptographic hash** that represents the current state of all cross-chain bridge activities across the entire Agglayer ecosystem. It's computed as:
+A [Global Exit Root (GER)](/agglayer/core-concepts/unified-bridge/data-structures/#global-exit-root) is a **cryptographic hash** that represents the current state of all cross-chain bridge activities across the entire Agglayer ecosystem. It's computed as:
 
 ```
 GER = hash(RollupExitRoot, MainnetExitRoot)

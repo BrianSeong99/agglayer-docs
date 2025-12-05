@@ -132,7 +132,7 @@ const ethBridgeTx = await bridge.buildBridgeAsset(
 
 Build bridge transactions for contract-to-contract communication across chains using arbitrary message data.
 
-**Important**: The destination contract must implement the `onMessageReceived` function to receive and process bridged messages. See the [Unified Bridge Message Bridging documentation](../../../../core-concepts/unified-bridge/message-bridging/) for details on the `IBridgeMessageReceiver` interface.
+**Important**: The destination contract must implement the `onMessageReceived` function to receive and process bridged messages. See the [Unified Bridge Message Bridging documentation](/agglayer/core-concepts/unified-bridge/message-bridging/) for details on the `IBridgeMessageReceiver` interface.
 
 ```typescript
 // Build message bridge transaction

@@ -17,7 +17,7 @@ title: Multi-Bridge Routing (Mainnet)
 
 This guide walks through the complete process of Multi-Bridge routing using the Agglayer SDK. You'll learn how to discover routes, build transactions, and monitor cross-chain operations.
 
-Before starting, ensure you have completed the [Quickstart tutorial](../../quickstart.md) and have mainnet RPC access for the chains you want to bridge between.
+Before starting, ensure you have completed the [Quickstart tutorial](/agglayer/developer-tools/agglayer-sdk/quickstart/) and have mainnet RPC access for the chains you want to bridge between.
 
 ## Step 1: Initialize the SDK
 

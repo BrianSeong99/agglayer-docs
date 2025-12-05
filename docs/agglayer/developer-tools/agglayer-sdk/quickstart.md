@@ -259,17 +259,17 @@ Now that you've completed your first cross-chain bridge operation, explore more 
 ### **Production Deployment**
 Learn how to build production-ready applications with comprehensive error handling, monitoring, and real-time transaction tracking:
 
-- **[Multi-Bridge Routing on Mainnet](./multi-bridge-routes/step-by-step-guide/multi-bridge-routing-mainnet/)** - Complete production implementation guide with service architecture and monitoring
+- **[Multi-Bridge Routing on Mainnet](/agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/step-by-step-guide/multi-bridge-routing-mainnet/)** - Complete production implementation guide with service architecture and monitoring
 
 ### **Direct Bridge Control**
 Use Native Routes for direct blockchain operations and local testing:
 
-- **[Native Bridge Overview](./agglayer-native-bridge/)** - Direct bridge contract interactions with full control
-- **[Local Testing with AggSandbox](./agglayer-native-bridge/step-by-step-guide/native-bridge-locally/)** - Test locally with instant feedback
+- **[Native Bridge Overview](/agglayer/developer-tools/agglayer-sdk/agglayer-native-bridge/)** - Direct bridge contract interactions with full control
+- **[Local Testing with AggSandbox](/agglayer/developer-tools/agglayer-sdk/agglayer-native-bridge/step-by-step-guide/native-bridge-locally/)** - Test locally with instant feedback
 
 ### **Deep Dive**
 Explore the full capabilities of the SDK:
 
-- **[Multi-Bridge Routes Operations](./multi-bridge-routes/)** - Chain metadata, route discovery, transaction building
-- **[Native Bridge Operations](./agglayer-native-bridge/operations/erc20-operations/)** - ERC20 operations, bridge operations, chain management
-- **[API Reference](./api-reference/)** - Complete TypeScript API documentation with all methods and interfaces
+- **[Multi-Bridge Routes Operations](/agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/)** - Chain metadata, route discovery, transaction building
+- **[Native Bridge Operations](/agglayer/developer-tools/agglayer-sdk/agglayer-native-bridge/operations/erc20-operations/)** - ERC20 operations, bridge operations, chain management
+- **[API Reference](/agglayer/developer-tools/agglayer-sdk/api-reference/)** - Complete TypeScript API documentation with all methods and interfaces

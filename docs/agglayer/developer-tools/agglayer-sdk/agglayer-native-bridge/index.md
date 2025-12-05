@@ -111,7 +111,7 @@ Agglayer Native Bridge is the SDK's **Native module** that provides direct inter
 
 Choose Native Bridge when you need direct control over bridge operations, local testing capabilities with AggSandbox, or custom bridge logic beyond standard route aggregation. It's ideal for advanced integrations with custom business logic and testnet development workflows.
 
-Consider [Multi-Bridge Routes](../multi-bridge-routes/index.md) for route optimization across multiple providers and cross-chain bridging from non-Agglayer chains.
+Consider [Multi-Bridge Routes](/agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/) for route optimization across multiple providers and cross-chain bridging from non-Agglayer chains.
 
 ## Quick Example
 

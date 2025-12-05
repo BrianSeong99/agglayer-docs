@@ -272,5 +272,5 @@ For a list of advanced use cases and documentation explaining how to set them up
 ## Further reading
 
 - For more information on CDK architecture, components, and how to customize your chain, refer to the [CDK architecture documentation](https://docs.polygon.technology/cdk/architecture/cdk-zkevm/).
-- For detailed how to's, including how to create a native token, check out our [how to guides](../how-to/use-native-token.md).
-- For detailed conceptual information on zero-knowledge stacks, check out our [concepts documentation](../concepts/layer2s.md).
+- For detailed how to's, including how to create a native token, check out our [how to guides](/cdk/cdk-erigon/use-native-token/).
+- For detailed conceptual information on zero-knowledge stacks, check out the [Polygon zkEVM documentation](https://docs.polygon.technology/zkEVM/).

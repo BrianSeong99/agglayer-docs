@@ -25,7 +25,7 @@ Pessimistic Proof uses sophisticated data structures to compute state transition
 
 ## Unified Bridge Foundation
 
-Pessimistic Proof builds on top of the Unified Bridge data structure. For complete understanding, refer to the [Unified Bridge Data Structures](../unified-bridge/data-structures.md).
+Pessimistic Proof builds on top of the Unified Bridge data structure. For complete understanding, refer to the [Unified Bridge Data Structures](/agglayer/core-concepts/unified-bridge/data-structures/).
 
 **Key Unified Bridge Components:**
 
