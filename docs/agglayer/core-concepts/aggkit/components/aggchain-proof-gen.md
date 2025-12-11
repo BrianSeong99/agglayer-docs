@@ -15,7 +15,7 @@ title: AggchainProofGen
 
 ## Meet AggchainProofGen: The Security Expert
 
-AggchainProofGen is the **advanced security component** for chains that need mathematical proof of their operations' validity. While basic chains can use simple signature-based verification, some chains require comprehensive **[state transition proofs](../../state-transition-proof/index.md)** that verify both internal chain operations and cross-chain bridge activities.
+AggchainProofGen is the **advanced security component** for chains that need mathematical proof of their operations' validity. While basic chains can use simple signature-based verification, some chains require comprehensive **[state transition proofs](/agglayer/core-concepts/state-transition-proof/)** that verify both internal chain operations and cross-chain bridge activities.
 
 **Core Function**: AggchainProofGen generates sophisticated cryptographic proofs that demonstrate a chain's operations are mathematically valid and comply with all bridge security constraints. These proofs enable Agglayer's advanced dual proof system introduced in v0.3.
 

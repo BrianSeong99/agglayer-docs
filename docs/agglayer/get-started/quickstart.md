@@ -78,9 +78,9 @@ aggsandbox show networks
 Now that you have AggSandbox running, you can:
 
 - **Explore Examples**: Check out the [production-ready examples](https://build.agglayer.dev/) on the developer portal
-- **Learn Bridging**: Start with [Asset Bridging](/agglayer/bridging/asset-bridging/) to transfer tokens
-- **Try Bridge-and-Call**: Learn about [Bridge-and-Call](/agglayer/bridging/bridge-and-call/) for atomic operations
-- **Use Lxly.js**: Integrate with the [Lxly.js SDK](/agglayer/developer-tools/lxlyjs/) for your applications
+- **Learn Bridging**: Start with [Asset Bridging](/agglayer/developer-tools/aggsandbox/asset-bridging/) to transfer tokens
+- **Try Bridge-and-Call**: Learn about [Bridge-and-Call](/agglayer/developer-tools/aggsandbox/bridge-and-call/) for atomic operations
+- **Use Agglayer SDK**: Integrate with the [Agglayer SDK](/agglayer/developer-tools/agglayer-sdk/) for your applications
 
 ## Troubleshooting
 

@@ -7,7 +7,7 @@ No. The Vault Bridge protocol does not charge users a protocol fee. In most case
 Before using Vault Bridge, certain legal documentation is necessary, including entry into an agreement with the escrow agent. [Contact our team to get started on the documentation process.](https://info.polygon.technology/vaultbridge-intake-form) 
 
 **How is risk managed?**  
-Strategies are curated by independent teams (e.g., Gauntlet, Steakhouse Financial). External assessments (e.g., Credora) and audits provide additional assurances. See [Risk & Security](../reference/risk-security.md) for more information.
+Strategies are curated by independent teams (e.g., Gauntlet, Steakhouse Financial). External assessments (e.g., Credora) and audits provide additional assurances. See [Risk & Security](/vault-bridge/reference/risk-security/) for more information.
 
 ## **For Accounts (Chains, Rollups, Fintechs)**
 

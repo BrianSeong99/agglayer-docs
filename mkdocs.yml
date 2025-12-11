@@ -97,7 +97,33 @@ nav:
             - AggchainProofGen: agglayer/core-concepts/aggkit/components/aggchain-proof-gen.md
       - Developer Tools:
         - agglayer/developer-tools/index.md
-        # - Agglayer SDK: agglayer/developer-tools/agglayer-sdk.md
+        - Agglayer SDK:
+          - agglayer/developer-tools/agglayer-sdk/index.md
+          - Getting Started:
+            - Installation: agglayer/developer-tools/agglayer-sdk/installation.md
+            - Quickstart: agglayer/developer-tools/agglayer-sdk/quickstart.md
+          - Multi-Bridge Routes:
+            - agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/index.md
+            - Operations:
+              - Route Discovery: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/route-discovery.md
+              - Chain Metadata: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/chain-metadata.md
+              - Transaction Building: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/transaction-building.md
+              - Transaction History: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/transaction-history.md
+              - Understanding Gas Fees: agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/operations/gas-fees.md
+            - Step-by-Step Guide:
+              - Multi-Bridge Routing (Mainnet): agglayer/developer-tools/agglayer-sdk/multi-bridge-routes/step-by-step-guide/multi-bridge-routing-mainnet.md
+          - Agglayer Native Bridge:
+            - agglayer/developer-tools/agglayer-sdk/agglayer-native-bridge/index.md
+            - Operations:
+              - ERC20 Operations: agglayer/developer-tools/agglayer-sdk/agglayer-native-bridge/operations/erc20-operations.md
+              - Bridge Operations: agglayer/developer-tools/agglayer-sdk/agglayer-native-bridge/operations/bridge-operations.md
+              - Chain Management: agglayer/developer-tools/agglayer-sdk/agglayer-native-bridge/operations/chain-management.md
+            - Step-by-Step Guide:
+              - Native Bridge (Locally): agglayer/developer-tools/agglayer-sdk/agglayer-native-bridge/step-by-step-guide/native-bridge-locally.md
+              - Native Bridge (Testnet): agglayer/developer-tools/agglayer-sdk/agglayer-native-bridge/step-by-step-guide/native-bridge-testnet.md
+              - Native Bridge (Mainnet): agglayer/developer-tools/agglayer-sdk/agglayer-native-bridge/step-by-step-guide/native-bridge-mainnet.md
+          - Reference:
+            - API Reference: agglayer/developer-tools/agglayer-sdk/api-reference.md
         - AggSandbox:
           - agglayer/developer-tools/aggsandbox/index.md
           - Getting Started:
@@ -227,6 +253,9 @@ markdown_extensions:
           - name: mermaid
             class: mermaid
             format: !!python/name:pymdownx.superfences.fence_code_format
+
+exclude_docs: |
+  shared/
 
 plugins:
   - multirepo:

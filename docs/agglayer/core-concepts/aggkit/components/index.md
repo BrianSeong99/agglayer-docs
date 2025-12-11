@@ -128,7 +128,7 @@ These two components extend AggKit's capabilities beyond basic synchronization, 
 
 ### AggchainProofGen: The Security Expert
 
-**What it really does**: AggchainProofGen is the **security expert** of the AggKit team. While basic chains can use simple signature-based verification, some chains need [**state transition proof**](../../state-transition-proof/index.md) that their operations are valid. AggchainProofGen generates these advanced cryptographic proofs.
+**What it really does**: AggchainProofGen is the **security expert** of the AggKit team. While basic chains can use simple signature-based verification, some chains need [**state transition proof**](/agglayer/core-concepts/state-transition-proof/) that their operations are valid. AggchainProofGen generates these advanced cryptographic proofs.
 
 **When you need the expert**: If your chain handles high-value transactions, operates in a regulatory environment, or wants the highest possible security guarantees, you'll want AggchainProofGen. It's like having a security specialist who can provide mathematical certainty about your chain's operations.
 
